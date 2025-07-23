@@ -7,8 +7,8 @@ Tài liệu này phân chia nhiệm vụ phát triển website đặt tour cho t
 ## Người A: Quản lý Người Dùng, Xác Thực và Đặt Tour
 
 ### Thiết lập Dự Án và Cơ Sở Dữ Liệu
-- [ ] Thiết lập dự án Laravel 12, cấu hình môi trường phát triển
-- [ ] Cấu hình database MySQL 
+- [x] Thiết lập dự án Laravel 12, cấu hình môi trường phát triển
+- [x] Cấu hình database MySQL 
 - [ ] Cài đặt và cấu hình Laravel Breeze cho authentication
 - [ ] Tạo migrations cho users, email_verifications, bookings, payments
 - [ ] Tạo seeders cho dữ liệu người dùng và vai trò
