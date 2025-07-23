@@ -4,7 +4,7 @@
 
 Tài liệu này phân chia nhiệm vụ phát triển website đặt tour cho team 2 người, với mỗi thành viên đều tham gia phát triển cả backend và frontend cho các tính năng được phân công. Phân chia dựa trên các tính năng liên quan để giảm thiểu xung đột và tối ưu hóa quy trình làm việc.
 
-## Hoàng: Quản lý Người Dùng, Xác Thực và Đặt Tour
+##  Quản lý Người Dùng, Xác Thực và Đặt Tour
 
 ### Thiết lập Dự Án và Cơ Sở Dữ Liệu
 - [x] Thiết lập dự án Laravel 12, cấu hình môi trường phát triển
@@ -52,7 +52,7 @@ Tài liệu này phân chia nhiệm vụ phát triển website đặt tour cho t
 - [ ] Viết feature tests cho luồng đăng ký và xác thực
 - [ ] Tạo tests cho quy trình booking
 
-## Việt: Quản lý Tour, Thanh Toán và Nội Dung
+## Quản lý Tour, Thanh Toán và Nội Dung
 
 ### Cơ Sở Dữ Liệu
 - [ ] Tạo migrations cho tours, destinations, reviews, posts, post_categories
