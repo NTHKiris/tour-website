@@ -4,11 +4,11 @@
 
 Tài liệu này phân chia nhiệm vụ phát triển website đặt tour cho team 2 người, với mỗi thành viên đều tham gia phát triển cả backend và frontend cho các tính năng được phân công. Phân chia dựa trên các tính năng liên quan để giảm thiểu xung đột và tối ưu hóa quy trình làm việc.
 
-## Người A: Quản lý Người Dùng, Xác Thực và Đặt Tour
+## Hoàng: Quản lý Người Dùng, Xác Thực và Đặt Tour
 
 ### Thiết lập Dự Án và Cơ Sở Dữ Liệu
-- [ ] Thiết lập dự án Laravel 12, cấu hình môi trường phát triển
-- [ ] Cấu hình database MySQL 
+- [x] Thiết lập dự án Laravel 12, cấu hình môi trường phát triển
+- [x] Cấu hình database MySQL 
 - [ ] Cài đặt và cấu hình Laravel Breeze cho authentication
 - [ ] Tạo migrations cho users, email_verifications, bookings, payments
 - [ ] Tạo seeders cho dữ liệu người dùng và vai trò
@@ -52,7 +52,7 @@ Tài liệu này phân chia nhiệm vụ phát triển website đặt tour cho t
 - [ ] Viết feature tests cho luồng đăng ký và xác thực
 - [ ] Tạo tests cho quy trình booking
 
-## Người B: Quản lý Tour, Thanh Toán và Nội Dung
+## Việt: Quản lý Tour, Thanh Toán và Nội Dung
 
 ### Cơ Sở Dữ Liệu
 - [ ] Tạo migrations cho tours, destinations, reviews, posts, post_categories
