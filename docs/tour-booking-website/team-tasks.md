@@ -55,8 +55,8 @@ Tài liệu này phân chia nhiệm vụ phát triển website đặt tour cho t
 ## Quản lý Tour, Thanh Toán và Nội Dung
 
 ### Cơ Sở Dữ Liệu
-- [ ] Tạo migrations cho tours, destinations, reviews, posts, post_categories
-- [ ] Tạo seeders cho dữ liệu tours, destinations và posts
+- [x ] Tạo migrations cho tours, destinations, reviews, posts, post_categories
+- [x ] Tạo seeders cho dữ liệu tours, destinations và posts
 
 ### Models và Relationships
 - [ ] Xây dựng Tour model với availability logic
