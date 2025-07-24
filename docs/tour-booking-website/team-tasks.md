@@ -9,12 +9,12 @@ Tài liệu này phân chia nhiệm vụ phát triển website đặt tour cho t
 ### Thiết lập Dự Án và Cơ Sở Dữ Liệu
 - [x] Thiết lập dự án Laravel 12, cấu hình môi trường phát triển
 - [x] Cấu hình database MySQL 
-- [ ] Cài đặt và cấu hình Laravel Breeze cho authentication
-- [ ] Tạo migrations cho users, email_verifications, bookings, payments
-- [ ] Tạo seeders cho dữ liệu người dùng và vai trò
+- [x] Cài đặt và cấu hình Laravel Breeze cho authentication
+- [x] Tạo migrations cho users, email_verifications, bookings, payments
+- [x] Tạo seeders cho dữ liệu người dùng và vai trò
 
 ### Models và Relationships
-- [ ] Xây dựng User model với role management
+- [x] Xây dựng User model với role management
 - [ ] Phát triển Booking model với status management
 - [ ] Tạo Payment model và relationships
 - [ ] Viết unit tests cho các models
@@ -55,8 +55,8 @@ Tài liệu này phân chia nhiệm vụ phát triển website đặt tour cho t
 ## Quản lý Tour, Thanh Toán và Nội Dung
 
 ### Cơ Sở Dữ Liệu
-- [x ] Tạo migrations cho tours, destinations, reviews, posts, post_categories
-- [x ] Tạo seeders cho dữ liệu tours, destinations và posts
+- [x] Tạo migrations cho tours, destinations, reviews, posts, post_categories
+- [x] Tạo seeders cho dữ liệu tours, destinations và posts
 
 ### Models và Relationships
 - [ ] Xây dựng Tour model với availability logic
