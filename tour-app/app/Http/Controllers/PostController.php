@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Models\PostCategory;
 
 class PostController extends Controller
 {
@@ -14,7 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::with(['category', 'images'])->orderBy('created_at', 'desc')->get();
+        return view('posts.index', ['posts' => $posts]);
     }
 
     /**
@@ -22,7 +24,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $categories = PostCategory::all();
+        return view('posts.create', compact('categories'));
     }
 
     /**
@@ -30,7 +33,33 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        //
+        $data = $request->validated();
+        $data['author_id'] = auth()->id();
+        $post = Post::create($data);
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                $path = $file->store('posts', 'public');
+                
+                // Debug: Log the path and post info
+                \Log::info('Storing image', [
+                    'path' => $path,
+                    'post_id' => $post->id,
+                    'url' => '/storage/' . $path
+                ]);
+                
+                $image = $post->images()->create([
+                    'url' => '/storage/' . $path,
+                    'alt' => $post->title,
+                ]);
+                
+                \Log::info('Image created', ['image_id' => $image->id]);
+            }
+        } else {
+            \Log::info('No images uploaded');
+        }
+
+        return redirect()->route('posts.show', $post)->with('success', 'Post created successfully!');
     }
 
     /**
@@ -38,7 +67,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        $post->load(['category', 'images']);
+        return view('posts.show', compact('post'));
     }
 
     /**
@@ -46,7 +76,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $categories = PostCategory::all();
+        $post->load('images');
+        return view('posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -54,7 +86,20 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        $data = $request->validated();
+        $post->update($data);
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                $path = $file->store('posts', 'public');
+                $post->images()->create([
+                    'url' => '/storage/' . $path,
+                    'alt' => $post->title,
+                ]);
+            }
+        }
+
+        return redirect()->route('posts.show', $post);
     }
 
     /**
@@ -62,6 +107,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->images()->delete();
+        $post->delete();
+        return redirect()->route('posts.index');
     }
 }

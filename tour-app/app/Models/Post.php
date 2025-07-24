@@ -11,7 +11,7 @@ class Post extends Model
     use HasFactory;
     protected $fillable = [
         'title',
-        'subscribers',
+        'description',
         'link',
         'category_id',
         'author_id',
@@ -25,5 +25,9 @@ class Post extends Model
     public function author()
     {
         return $this->belongsTo(User::class);
+    }
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
     }
 }
