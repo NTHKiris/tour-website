@@ -1,4 +1,5 @@
-<div class="container">
+@extends('layouts.tour')
+<div class="container mt-20">
     <h2 class="mb-4">Danh sách bài viết</h2>
     <div class="row">
         @foreach($posts as $post)
