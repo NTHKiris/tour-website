@@ -11,10 +11,13 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Gate;
 class PostController extends Controller
 {
+<<<<<<< HEAD
+=======
     use AuthorizesRequests;
     /**
      * Display a listing of the resource.
      */
+>>>>>>> b3b744dd27fa891e5a2ff06310d4c3b5caf863d4
     public function index()
     {
 
@@ -22,18 +25,12 @@ class PostController extends Controller
         return view('posts.index', ['posts' => $posts]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $categories = PostCategory::all();
         return view('posts.create', compact('categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StorePostRequest $request)
     {
         $data = $request->validated();
@@ -65,19 +62,17 @@ class PostController extends Controller
         return redirect()->route('posts.show', $post)->with('success', 'Post created successfully!');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Post $post)
     {
+<<<<<<< HEAD
+        
+=======
 
         $post->load(['category', 'images']);
         return view('posts.show', compact('post'));
+>>>>>>> b3b744dd27fa891e5a2ff06310d4c3b5caf863d4
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Post $post)
     {
         $this->authorize('update', $post);
@@ -86,9 +81,6 @@ class PostController extends Controller
         return view('posts.edit', compact('post', 'categories'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdatePostRequest $request, Post $post)
     {
         $this->authorize('update', $post);
@@ -107,10 +99,6 @@ class PostController extends Controller
 
         return redirect()->route('posts.show', $post);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Post $post)
     {
         $this->authorize('delete', $post);
