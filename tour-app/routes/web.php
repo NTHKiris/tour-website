@@ -21,17 +21,15 @@ Route::middleware('auth')->group(function () {
 
 
 
-Route::get('posts', [PostController::class, 'index'])->name('posts.index');
-
-// Protected routes for posts (phải đặt trước routes có parameter)
-Route::middleware('auth')->group(function () {
-    Route::get('posts/create', [PostController::class, 'create'])->name('posts.create');
-    Route::post('posts', [PostController::class, 'store'])->name('posts.store');
-    Route::get('posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
-    Route::put('posts/{post}', [PostController::class, 'update'])->name('posts.update');
-    Route::delete('posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+Route::prefix('posts')->group(function () {
+    Route::get('/', [PostController::class, 'index'])->name('posts.index');
+    Route::get('/create', [PostController::class, 'create'])->middleware('auth')->name('posts.create');
+    Route::post('/', [PostController::class, 'store'])->middleware('auth')->name('posts.store');
+    Route::get('/{post}/edit', [PostController::class, 'edit'])->middleware('auth')->name('posts.edit');
+    Route::put('/{post}', [PostController::class, 'update'])->middleware('auth')->name('posts.update');
+    Route::delete('/{post}', [PostController::class, 'destroy'])->middleware('auth')->name('posts.destroy');
+    Route::post('/{id}/restore', [PostController::class, 'restore'])->middleware('auth')->name('posts.restore');
+    Route::delete('/{id}/force-delete', [PostController::class, 'forceDelete'])->middleware('auth')->name('posts.forceDelete');
+    Route::get('/{post}', [PostController::class, 'show'])->name('posts.show');
 });
-
-
-Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
 require __DIR__ . '/auth.php';

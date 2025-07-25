@@ -1,12 +1,12 @@
-<header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-lg">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm shadow-lg">
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center py-4">
             <!-- Logo -->
             <a href="/" class="flex items-center text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors">
                 <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-white font-bold mr-3">
-                    BĐ
+                    QN
                 </div>
-                Bình Định Tour
+                Quy Nhon Tour
             </a>
             
             <!-- Desktop Navigation -->
@@ -44,9 +44,7 @@
                                 {{ substr(auth()->user()->name, 0, 1) }}
                             </div>
                             <span>{{ auth()->user()->name }}</span>
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
+                            <i class="fas fa-chevron-down text-sm"></i>
                         </button>
                         
                         <!-- Dropdown Menu -->
@@ -81,9 +79,7 @@
 
             <!-- Mobile Menu Button -->
             <button class="md:hidden flex items-center justify-center w-10 h-10 text-gray-700 hover:text-blue-600 transition-colors" onclick="toggleMobileMenu()">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
+                <i class="fas fa-bars text-xl"></i>
             </button>
         </div>
 

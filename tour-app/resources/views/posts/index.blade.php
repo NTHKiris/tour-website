@@ -18,6 +18,15 @@
                             </small>
                         </p>
                         <a href="{{ $post->link }}" target="_blank" class="btn btn-primary">Xem chi tiết</a>
+                        @auth
+                            <a href="{{ route('posts.edit', $post) }}" class="btn btn-warning ms-2">Sửa</a>
+                            <form action="{{ route('posts.destroy', $post) }}" method="POST" class="d-inline"
+                                onsubmit="return confirm('Bạn có chắc muốn xóa?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger ms-2">Xóa</button>
+                            </form>
+                        @endauth
                     </div>
                 </div>
             </div>
