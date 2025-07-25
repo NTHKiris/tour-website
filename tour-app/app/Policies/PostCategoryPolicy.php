@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use Illuminate\Auth\Access\Response;
-use App\Models\post_category;
+use App\Models\PostCategory;
 use App\Models\User;
 
 class PostCategoryPolicy
@@ -19,7 +19,7 @@ class PostCategoryPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, post_category $postCategory): bool
+    public function view(User $user, PostCategory $postCategory): bool
     {
         return false;
     }
@@ -35,7 +35,7 @@ class PostCategoryPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, post_category $postCategory): bool
+    public function update(User $user, PostCategory $postCategory): bool
     {
         return false;
     }
@@ -43,7 +43,7 @@ class PostCategoryPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, post_category $postCategory): bool
+    public function delete(User $user, PostCategory $postCategory): bool
     {
         return false;
     }
@@ -51,7 +51,7 @@ class PostCategoryPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, post_category $postCategory): bool
+    public function restore(User $user, PostCategory $postCategory): bool
     {
         return false;
     }
@@ -59,7 +59,7 @@ class PostCategoryPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, post_category $postCategory): bool
+    public function forceDelete(User $user, PostCategory $postCategory): bool
     {
         return false;
     }

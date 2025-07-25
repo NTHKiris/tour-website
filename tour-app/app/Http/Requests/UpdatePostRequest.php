@@ -11,7 +11,7 @@ class UpdatePostRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return auth()->check();
     }
 
     /**
@@ -22,7 +22,13 @@ class UpdatePostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'sometimes|required|string|max:255',
+            'link' => 'sometimes|required|url|max:255',
+            'description' => 'sometimes|required|string',
+            'category_id' => 'sometimes|required|exists:post_categories,id',
+            'author_id' => 'sometimes|required|exists:users,id',
+            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image.*' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 }

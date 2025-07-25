@@ -11,13 +11,13 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->id(); // Khóa chính
-            $table->string('title'); // Tiêu đề bài viết
-            $table->integer('subscribers')->default(0); // Số lượng đăng ký (hoặc có thể là trạng thái)
+            $table->id();
+            $table->string('title');
+            $table->text('description');
             $table->string('link'); // Đường dẫn bài viết
-            $table->foreignId('category_id')->constrained('post_categories')->onDelete('cascade'); // Khóa ngoại tới category_posts
-            $table->foreignId('author_id')->constrained('users')->onDelete('cascade'); // Khóa ngoại tới users
-            $table->timestamps(); // Thời gian tạo và cập nhật
+            $table->foreignId('category_id')->constrained('post_categories')->onDelete('cascade');
+            $table->foreignId('author_id')->constrained('users')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
