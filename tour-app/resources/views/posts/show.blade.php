@@ -20,7 +20,7 @@
 
             <div class="mb-4">
                 <strong>Mô tả:</strong>
-                <p>{{ $post->description }}</p>
+                <p>{!! $post->description !!}</p>
             </div>
 
             @if($post->images && $post->images->count() > 0)
