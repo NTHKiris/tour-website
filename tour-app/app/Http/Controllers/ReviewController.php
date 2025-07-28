@@ -13,7 +13,7 @@ class ReviewController extends Controller
     public function index()
     {
         $reviews = Review::orderBy('id','desc')->paginate(10);
-        return view('ReviewIndex', compact('reviews'));
+        return view('reviews.ReviewIndex', compact('reviews'));
     }
 
     public function create()
