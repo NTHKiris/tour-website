@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.card-custom {
+    @apply shadow-lg rounded-lg overflow-hidden;
+}
+
+.container_12, .container_16 {
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+.sub-item{
+    font-size: 14px;
+    color: #58616b;
+    font-family: 'r_regular';
+    min-height: 140px;
+}
+    

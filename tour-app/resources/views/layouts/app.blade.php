@@ -11,10 +11,17 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+        <link href="{{ asset('css/owl.carousel.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('css/owl.theme.default.min.css') }}" rel="stylesheet" />   
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
+
+        <script src = "{{ asset('js/jquery-3.7.1.min.js') }}"></script>
+        <script src = "{{ asset('js/owl.carousel.min.js') }}"></script>
+
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             @include('layouts.navigation')
 
@@ -33,4 +40,5 @@
             </main>
         </div>
     </body>
+    @yield('scripts')
 </html>

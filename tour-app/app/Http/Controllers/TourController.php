@@ -12,8 +12,8 @@ class TourController extends Controller
 {
     public function index()
     {
-        $tours = Tour::orderBy('id','desc')->paginate(10);
-        return view('TourIndex', compact('tours'));
+        $tours = Tour::orderBy('id','desc')->paginate(6);
+        return view('tours.TourIndex', compact('tours'));
     }
 
     public function create()
