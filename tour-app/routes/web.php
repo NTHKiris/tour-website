@@ -20,15 +20,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-<<<<<<< HEAD
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 Route::resource('reviews', ReviewController::class);
 
 Route::get('/reviews/search', [ReviewController::class, 'show'])->name('reviews.search');
 Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 
 Route::resource('tours', TourController::class);
-=======
 
 
 
@@ -44,4 +42,3 @@ Route::prefix('posts')->group(function () {
     Route::get('/{post}', [PostController::class, 'show'])->name('posts.show');
 });
 require __DIR__ . '/auth.php';
->>>>>>> b3b744dd27fa891e5a2ff06310d4c3b5caf863d4

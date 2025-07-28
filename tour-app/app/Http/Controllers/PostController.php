@@ -7,21 +7,31 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\PostCategory;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Gate;
 class PostController extends Controller
 {
-<<<<<<< HEAD
-=======
+
     use AuthorizesRequests;
     /**
      * Display a listing of the resource.
      */
->>>>>>> b3b744dd27fa891e5a2ff06310d4c3b5caf863d4
-    public function index()
+
+    public function index(Request $request)
     {
 
-        $posts = Post::with(['category', 'images'])->orderBy('created_at', 'desc')->get();
+        $query = Post::with(['category', 'images'])->orderBy('created_at', 'desc');
+        if ($request->has('category')) {
+            $category = PostCategory::where('slug', $request->category)->first();
+            if ($category) {
+                $query->where('category_id', $category->id);
+            }
+        }
+        if ($request->filled('search')) {
+            $query->where('title', 'like', '%' . $request->search . '%');
+        }
+        $posts = $query->get();
         return view('posts.index', ['posts' => $posts]);
     }
 
@@ -41,19 +51,12 @@ class PostController extends Controller
             foreach ($request->file('images') as $file) {
                 $path = $file->store('posts', 'public');
 
-                // Debug: Log the path and post info
-                \Log::info('Storing image', [
-                    'path' => $path,
-                    'post_id' => $post->id,
-                    'url' => '/storage/' . $path
-                ]);
+
 
                 $image = $post->images()->create([
                     'url' => '/storage/' . $path,
                     'alt' => $post->title,
                 ]);
-
-                \Log::info('Image created', ['image_id' => $image->id]);
             }
         } else {
             \Log::info('No images uploaded');
@@ -64,13 +67,9 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-<<<<<<< HEAD
-        
-=======
 
         $post->load(['category', 'images']);
         return view('posts.show', compact('post'));
->>>>>>> b3b744dd27fa891e5a2ff06310d4c3b5caf863d4
     }
 
     public function edit(Post $post)

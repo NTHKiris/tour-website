@@ -4,10 +4,7 @@
             <!-- Logo -->
             <a href="/"
                 class="flex items-center text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors">
-                <div
-                    class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-white font-bold mr-3">
-                    QN
-                </div>
+                <img src="/Logo.png" alt="Logo" class="w-14 h-14 object-contain mr-3 " />
                 Quy Nhon Tour
             </a>
 
