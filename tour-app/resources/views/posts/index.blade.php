@@ -39,6 +39,12 @@
                 <div class="mx-10 mb-6 flex flex-wrap gap-2">
                     <a href="{{route('posts.index')}}"
                         class="px-4 py-2 rounded-full font-semibold {{ request('category') ? 'bg-gray-100 text-gray-700' : 'bg-cyan-500 text-white' }}">All</a>
+                    @auth
+                        <a href="{{ route('posts.index', array_merge(request()->except('page'), ['my' => 1])) }}"
+                            class="px-4 py-2 rounded-full font-semibold {{ request('my') ? 'bg-cyan-500 text-white' : 'bg-gray-100 text-gray-700' }}">
+                            Bài viết của tôi
+                        </a>
+                    @endauth
                     @foreach ($categories as $category)
                         <a href="{{route('posts.index', ['category' => $category->slug])}}"
                             class="px-4 py-2 rounded-full font-semibold {{ (request('category') == $category->slug) ? 'bg-cyan-500 text-white' : 'bg-gray-100 text-gray-700' }}">{{$category->name}}</a>

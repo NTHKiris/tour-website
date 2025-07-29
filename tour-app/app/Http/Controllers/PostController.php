@@ -31,6 +31,9 @@ class PostController extends Controller
         if ($request->filled('search')) {
             $query->where('title', 'like', '%' . $request->search . '%');
         }
+        if ($request->has('my') && auth()->check()) {
+            $query->where('author_id', auth()->id());
+        }
         $posts = $query->get();
         return view('posts.index', ['posts' => $posts]);
     }
