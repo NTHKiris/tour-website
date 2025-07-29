@@ -39,6 +39,12 @@
                 <div class="mx-10 mb-6 flex flex-wrap gap-2">
                     <a href="{{route('posts.index')}}"
                         class="px-4 py-2 rounded-full font-semibold {{ request('category') ? 'bg-gray-100 text-gray-700' : 'bg-cyan-500 text-white' }}">All</a>
+                    @auth
+                        <a href="{{ route('posts.index', array_merge(request()->except('page'), ['my' => 1])) }}"
+                            class="px-4 py-2 rounded-full font-semibold {{ request('my') ? 'bg-cyan-500 text-white' : 'bg-gray-100 text-gray-700' }}">
+                            Bài viết của tôi
+                        </a>
+                    @endauth
                     @foreach ($categories as $category)
                         <a href="{{route('posts.index', ['category' => $category->slug])}}"
                             class="px-4 py-2 rounded-full font-semibold {{ (request('category') == $category->slug) ? 'bg-cyan-500 text-white' : 'bg-gray-100 text-gray-700' }}">{{$category->name}}</a>
@@ -75,8 +81,8 @@
                             <div class="p-6">
                                 <h2 class="text-xl font-bold text-gray-800 hover:text-cyan-600 transition-colors pb-2"><a
                                         href="">{{Str::limit($post->title, 45)}}</a></h2>
-                                <p class="text-gray-600 mb-4 leading-relaxed line-clamp-3 pb-6">
-                                    {{ Str::limit($post->description, 50) }}
+                                <p class="text-gray-600 mb-4 leading-relaxed line-clamp-3 pb-6 ">
+                                    {{ Str::limit(html_entity_decode(strip_tags($post->description)), 100) }}
                                 </p>
                             </div>
 

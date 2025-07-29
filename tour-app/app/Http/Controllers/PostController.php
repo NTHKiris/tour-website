@@ -31,6 +31,9 @@ class PostController extends Controller
         if ($request->filled('search')) {
             $query->where('title', 'like', '%' . $request->search . '%');
         }
+        if ($request->has('my') && auth()->check()) {
+            $query->where('author_id', auth()->id());
+        }
         $posts = $query->get();
         return view('posts.index', ['posts' => $posts]);
     }
@@ -45,7 +48,15 @@ class PostController extends Controller
     {
         $data = $request->validated();
         $data['author_id'] = auth()->id();
+        if (empty($data['link'])) {
+            $data['link'] = '#';
+        }
         $post = Post::create($data);
+
+        if ($post->link === '#') {
+            $post->link = config('app.url') . '/posts/' . $post->id;
+            $post->save();
+        }
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $file) {
