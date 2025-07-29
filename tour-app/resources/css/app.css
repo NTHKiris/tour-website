@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Prevent FOUC - Critical styles */
+@layer base {
+    html {
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+}

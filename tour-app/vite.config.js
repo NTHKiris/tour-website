@@ -4,8 +4,19 @@ import laravel from 'laravel-vite-plugin';
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'],
+            input: ['resources/js/app.js'],
             refresh: true,
         }),
     ],
+    build: {
+        cssCodeSplit: false, // Inline CSS to prevent FOUC
+        rollupOptions: {
+            input: {
+                app: 'resources/js/app.js'
+            }
+        }
+    },
+    css: {
+        devSourcemap: true
+    }
 });
