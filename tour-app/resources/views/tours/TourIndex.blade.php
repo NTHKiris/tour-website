@@ -23,11 +23,9 @@
                                     <img src="{{ asset('images/bien.webp')}}" alt="" class = "w-[100%] h-[100%]">
                                 </div>
                                 <div class="py-5 px-2.5 w-[100%] h-[40%]">
-                                    <a href="#" class = "text-18 text-black font-r_regular">{{ Str::limit($tour->title, 45)}}</a><br>
+                                    <a href="{{ route('tours.show', $tour->id) }}" class = "text-18 text-black font-r_regular">{{ Str::limit($tour->title, 45)}}</a><br>
                                     <span class = "sub-item">{{ Str::limit($tour->description, 45) }}</span><br>
-                                    <form action="{{ route('tours.update', $tour->id) }}" method="POST">
-                                        @csrf
-                                        @method('PUT')
+                                    <form action="{{ route('tours.show', $tour->id) }}" method="GET">
                                         <button type = "submit" class="no-underline hover:underline">Xem chi tiết</button>
                                     </form>
                                 </div>
@@ -49,9 +47,9 @@
                                     <img src="{{ asset('images/nui.webp')}} " alt="" class = "w-[100%] h-[100%]">
                                 </div>
                                 <div class="py-5 px-2.5 w-[60%] h-[100%]">
-                                    <a href="#" class = " text-18 text-black font-r_regular">{{ Str::limit($tour->title, 45) }}</a><br>
+                                    <a href="{{ route('tours.show', $tour->id) }}" class = " text-18 text-black font-r_regular">{{ Str::limit($tour->title, 45) }}</a><br>
                                    <span class=" sub-item">{{ Str::limit($tour->description, 45) }}</span><br>
-                                    <form action="{{ route('tours.update', $tour->id) }}" method="POST">
+                                    <form action="{{ route('tours.show', $tour->id) }}" method="POST">
                                         @csrf
                                         @method('PUT')
                                         <button type = "submit" class="no-underline hover:underline">Xem chi tiết</button>
@@ -107,34 +105,3 @@
 
 </script>
 @endsection
-
-        </div>
-            @foreach ($tours as $tour)
-                <div class="owl-item active ">
-                    <h2>Title: {{ $tour->title }}</h2>
-                    <p>id: {{ $tour->id }}</p>
-                    <p>Description: {{ $tour->description }}</p>
-                    <p>Duration: {{ $tour->duration }} days</p>
-                    <p>Price: ${{ $tour->price }}</p>
-                    <p>Rating: {{ $tour->average_rating }}</p>
-                     <!-- Giả sử bạn có thuộc tính này -->
-
-                    <form action="{{ route('tours.update', $tour->id) }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <input type="text" name="title" value="{{ $tour->title }}" required>
-                        <button type="submit">Update</button>
-                    </form>
-                    
-                    <form action="{{ route('tours.destroy', $tour->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit">Delete</button>
-                    </form>
-                </div>
-                @endforeach
-                </div>
-                </div>
-            </div>
-        </div>
-</div>  
