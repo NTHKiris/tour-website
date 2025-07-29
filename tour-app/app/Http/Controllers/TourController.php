@@ -40,11 +40,18 @@ class TourController extends Controller
         return redirect()->back()->with('success', 'Tour đã được tạo!');
     }
 
+    // public function show($searchItem)
+    // {
+    //     $tours = Tour::Where('id', 'like', '%'.$searchItem.'%')
+    //                 ->orWhere('title', 'like', '%'.$searchItem.'%')->get();
+    //     return view('TourDetail', compact('tours'));
+    // }
+
     public function show($searchItem)
     {
-        // $tours = Tour::Where('id', 'like', '%'.$searchItem.'%')
-        //             ->orWhere('title', 'like', '%'.$searchItem.'%')->get();
-        // return view('TourIndex', compact('tours'));
+        $tours = Tour::Where('id', 'like', '%'.$searchItem.'%')
+                    ->orWhere('title', 'like', '%'.$searchItem.'%')->first();
+        return view('tours.DetailTour', compact('tours'));
     }
 
     public function edit($id)

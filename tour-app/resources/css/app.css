@@ -17,4 +17,11 @@
     font-family: 'r_regular';
     min-height: 140px;
 }
-    
+.des{
+    @apply font-normal leading-[36px] text-[var(--accent)] text-[30px] mb-[15px] capitalize;
+}
+
+
+.list-item {
+    @apply text-[16px] leading-[1.875] text-left font-['Poppins'] text-[20px] italic text-[#5C626A];
+}
