@@ -49,7 +49,7 @@
         @yield('content')
     </main>
 
-
+    <x-footer />
 
     @stack('scripts')
 
