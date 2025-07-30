@@ -1,7 +1,7 @@
 @extends('layouts.tour')
 
 <div class= "mt-[200px] mb-[120px] px-[30px] ">
-    <form action="{{ isset($tour) ? route('tours.update', $tour->id) : route('tours.store') }}" method="POST" onsubmit="prepareItinerary()">
+    <form action="{{ isset($tour) ? route('tours.update', $tour->id) : route('tours.store') }}" method="POST" onsubmit="return prepareItinerary()">
         @csrf
         @if(isset($tour))
             @method('PUT')
@@ -68,7 +68,7 @@
             <?php endif; ?>
         </div>
         
-        <button type="button" onclick="prepareItinerary()" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+        <button type="button" onclick="addItinerary()" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
             Add Itinerary Item
         </button>
 
@@ -154,8 +154,9 @@
                 class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500"
             >
                 <option value="" disabled {{ !isset($tour) ? 'selected' : '' }}>Select Status</option>
-                <option value="Active" {{ (isset($tour) && $tour->status === 'Active') ? 'selected' : '' }}>Active</option>
-                <option value="Inactive" {{ (isset($tour) && $tour->status === 'Inactive') ? 'selected' : '' }}>Inactive</option>
+                <option value="active" {{ (isset($tour) && $tour->status === 'active') ? 'selected' : '' }}>Active</option>
+                <option value="inactive" {{ (isset($tour) && $tour->status === 'inactive') ? 'selected' : '' }}>Inactive</option>
+                <option value="draft" {{ (isset($tour) && $tour->status === 'draft') ? 'selected' : '' }}>Draft</option>
             </select>
         </div>
 
@@ -197,26 +198,32 @@
     }
 
     function prepareItinerary() {
-        console.log('Preparing itinerary...');
-        const days = Array.from(document.getElementsByName('day[]')).map(input => input.value);
-        const activities = Array.from(document.getElementsByName('activity[]')).map(input => input.value);
-        
-        const itinerary = {};
-        days.forEach((day, index) => {
-            if (day && activities[index]) {
-                itinerary[day] = activities[index];
-            }
-        });
-        const itineraryJson = JSON.stringify(itinerary);
-        document.getElementById('itinerary_json').value = itineraryJson;
+        try {
+            console.log('Preparing itinerary...');
+            const days = Array.from(document.getElementsByName('day[]')).map(input => input.value);
+            const activities = Array.from(document.getElementsByName('activity[]')).map(input => input.value);
+            
+            const itinerary = {};
+            days.forEach((day, index) => {
+                if (day && activities[index]) {
+                    itinerary[day] = activities[index];
+                }
+            });
+            const itineraryJson = JSON.stringify(itinerary);
+            document.getElementById('itinerary_json').value = itineraryJson;
 
-        // Loại bỏ day[] và activity[] khỏi biểu mẫu
-        const dayInputs = document.getElementsByName('day[]');
-        const activityInputs = document.getElementsByName('activity[]');
-        
-        for (let i = dayInputs.length - 1; i >= 0; i--) {
-            dayInputs[i].remove();
-            activityInputs[i].remove();
+            // Loại bỏ day[] và activity[] khỏi biểu mẫu
+            const dayInputs = document.getElementsByName('day[]');
+            const activityInputs = document.getElementsByName('activity[]');
+            
+            for (let i = dayInputs.length - 1; i >= 0; i--) {
+                dayInputs[i].remove();
+                activityInputs[i].remove();
+            }
+            return true; // Cho phép form submit
+        } catch (error) {
+            console.error('Error preparing itinerary:', error);
+            return false; // Ngăn form submit
         }
     }
 </script>

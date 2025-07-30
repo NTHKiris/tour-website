@@ -39,7 +39,7 @@ class TourController extends Controller
         return redirect()->back()->with('success', 'Tour đã được tạo!');
     }
 
-    public function show($searchItem)
+    public function show($id)
     {
         $tours = Tour::Where('id', 'like', '%'.$searchItem.'%')
                     ->orWhere('title', 'like', '%'.$searchItem.'%')->first();
@@ -55,9 +55,12 @@ class TourController extends Controller
 
     public function update(UpdateTourRequest $request, $id)
     {
-        
-       $tour = Tour::findOrFail($id);
+        $tour = Tour::findOrFail($id);
         $validated = $request->validated();
+        
+        // Debug: Log dữ liệu được validate
+        \Log::info('Tour update data:', $validated);
+        
         try {
             $updated = $tour->update($validated);
             if ($updated) {
@@ -66,6 +69,7 @@ class TourController extends Controller
                 return redirect()->back()->with('error', 'Có lỗi xảy ra khi cập nhật.');
             }
         } catch (\Exception $e) {
+            \Log::error('Tour update error:', ['error' => $e->getMessage(), 'data' => $validated]);
             return redirect()->back()->with('error', 'Có lỗi xảy ra: ' . $e->getMessage());
         }
     }
