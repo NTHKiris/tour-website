@@ -3,7 +3,7 @@
         <div class="flex justify-between items-center py-4">
             <!-- Logo -->
             <a href="/"
-                class="flex items-center text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors">
+                class="flex items-center text-2xl font-bold text-cyan-600 hover:text-cyan-700 transition-colors">
                 <img src="/Logo.png" alt="Logo" class="w-14 h-14 object-contain mr-3 " />
                 Quy Nhon Tour
             </a>
@@ -12,26 +12,26 @@
             <ul class="hidden md:flex space-x-8 ">
                 <li>
                     <a href="/"
-                        class="relative py-1 font-medium transition-colors hover:text-blue-600 {{ request()->is('/') ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-700' }}">
+                        class="relative py-1 font-medium transition-colors hover:text-cyan-600 {{ request()->is('/') ? 'text-cyan-600 border-b-2 border-cyan-600' : 'text-gray-700' }}">
                         Trang chủ
                     </a>
                 </li>
                 <li>
                     <a href="/tours"
-                        class="relative py-1 font-medium transition-colors hover:text-blue-600 {{ request()->is('tours*') ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-700' }}">
+                        class="relative py-1 font-medium transition-colors hover:text-cyan-600 {{ request()->is('tours*') ? 'text-cyan-600 border-b-2 border-cyan-600' : 'text-gray-700' }}">
                         Tours
                     </a>
                 </li>
                 <li>
                     <a href="/posts"
-                        class="relative py-1 font-medium transition-colors hover:text-blue-600 {{ request()->is('posts*') ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-700' }}">
+                        class="relative py-1 font-medium transition-colors hover:text-cyan-600 {{ request()->is('posts*') ? 'text-cyan-600 border-b-2 border-cyan-600' : 'text-gray-700' }}">
                         Blog
                     </a>
                 </li>
 
                 <li>
                     <a href="/about"
-                        class="relative py-1 font-medium transition-colors hover:text-blue-600 {{ request()->is('about') ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-700' }}">
+                        class="relative py-1 font-medium transition-colors hover:text-cyan-600 {{ request()->is('about') ? 'text-cyan-600 border-b-2 border-cyan-600' : 'text-gray-700' }}">
                         About me
                     </a>
                 </li>
@@ -43,7 +43,7 @@
                     <!-- User is logged in -->
                     <div class="relative group">
                         <button
-                            class="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:text-blue-600 transition-colors">
+                            class="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:text-cyan-600 transition-colors">
                             <div
                                 class="w-8 h-8 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
                                 {{ substr(auth()->user()->name, 0, 1) }}
@@ -90,7 +90,7 @@
 
             <!-- Mobile Menu Button -->
             <button
-                class="md:hidden flex items-center justify-center w-10 h-10 text-gray-700 hover:text-blue-600 transition-colors"
+                class="md:hidden flex items-center justify-center w-10 h-10 text-gray-700 hover:text-cyan-600 transition-colors"
                 onclick="toggleMobileMenu()">
                 <i class="fas fa-bars text-xl"></i>
             </button>
@@ -100,20 +100,20 @@
         <div id="mobile-menu" class="md:hidden hidden border-t border-gray-200 py-4">
             <div class="space-y-2">
                 <a href="/"
-                    class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors {{ request()->is('/') || request()->is('') ? 'bg-blue-50 text-blue-600' : '' }}">
+                    class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors {{ request()->is('/') || request()->is('') ? 'bg-blue-50 text-cyan-600' : '' }}">
                     Trang chủ
                 </a>
                 <a href="/tours"
-                    class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors {{(request()->is('tours*')) || request()->is('') ? 'bg-blue-50 text-blue-600' : '' }}">
+                    class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors {{(request()->is('tours*')) || request()->is('') ? 'bg-blue-50 text-cyan-600' : '' }}">
                     Tour Bình Định
                 </a>
                 <a href="/posts"
-                    class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors {{(request()->is('posts*')) || request()->is('') ? 'bg-blue-50 text-blue-600' : '' }}">
+                    class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors {{(request()->is('posts*')) || request()->is('') ? 'bg-blue-50 text-cyan-600' : '' }}">
                     Blog
                 </a>
 
                 <a href="/about"
-                    class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors {{(request()->is('about')) || request()->is('') ? 'bg-blue-50 text-blue-600' : '' }}">
+                    class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors {{(request()->is('about')) || request()->is('') ? 'bg-blue-50 text-cyan-600' : '' }}">
                     Về chúng tôi
                 </a>
 

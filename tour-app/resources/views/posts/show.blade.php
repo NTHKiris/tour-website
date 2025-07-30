@@ -29,7 +29,7 @@
         @if ($post->images && $post->images->count() > 0)
             <div>
                 @if ($post->Images->count() === 1)
-                    <div class="h-96 rounded-t-2xl overflow-hidden relative m-6">
+                    <div class="h-96 rounded-2xl overflow-hidden relative m-6">
                         <img src="{{$post->images->first()->url}}" alt="" class="h-full w-full object-cover">
 
                     </div>

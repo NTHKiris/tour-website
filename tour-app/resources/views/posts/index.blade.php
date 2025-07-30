@@ -2,7 +2,10 @@
 
 @section('title', 'Blog - Bình Định Tour')
 
-<div class=" min-h-screen mt-20">
+@push('styles')
+
+
+<div class="min-h-screen mt-20 posts-container" id="postsContainer">
     <div class="max-w-7xl mx-auto px-4 py-8">
         <div class=" gap-8 ">
             <div class="col-span-2">
@@ -29,6 +32,7 @@
                             <button type="submit" class="bg-cyan-500 text-white p-3 rounded-lg  "><i
                                     class="fas fa-search"></i></button>
                         </form>
+
                     </div>
                 </div>
 
@@ -37,13 +41,21 @@
                 @endphp
 
                 <div class="mx-10 mb-6 flex flex-wrap gap-2">
+                    @auth
+                        <a href="{{ route('posts.create') }}"
+                            class="ml-2 px-4 py-2 rounded-full font-semibold bg-cyan-500 text-white hover:bg-amber-600 transition-colors flex items-center">
+                            <i class="fas fa-plus mr-2"></i> Tạo bài viết
+                        </a>
+                    @endauth
                     <a href="{{route('posts.index')}}"
                         class="px-4 py-2 rounded-full font-semibold {{ request('category') ? 'bg-gray-100 text-gray-700' : 'bg-cyan-500 text-white' }}">All</a>
                     @auth
+
                         <a href="{{ route('posts.index', array_merge(request()->except('page'), ['my' => 1])) }}"
                             class="px-4 py-2 rounded-full font-semibold {{ request('my') ? 'bg-cyan-500 text-white' : 'bg-gray-100 text-gray-700' }}">
                             Bài viết của tôi
                         </a>
+
                     @endauth
                     @foreach ($categories as $category)
                         <a href="{{route('posts.index', ['category' => $category->slug])}}"

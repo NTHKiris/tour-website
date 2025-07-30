@@ -2,26 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-.card-custom {
-    @apply shadow-lg rounded-lg overflow-hidden;
-}
-
-.container_12, .container_16 {
-    margin-left: auto;
-    margin-right: auto;
-    width: 70%;
-}
-.sub-item{
-    font-size: 14px;
-    color: #58616b;
-    font-family: 'r_regular';
-    min-height: 140px;
-}
-.des{
-    @apply font-normal leading-[36px] text-[var(--accent)] text-[30px] mb-[15px] capitalize;
-}
-
-
-.list-item {
-    @apply text-[16px] leading-[1.875] text-left font-['Poppins'] text-[20px] italic text-[#5C626A];
+/* Prevent FOUC - Critical styles */
+@layer base {
+    html {
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
 }
