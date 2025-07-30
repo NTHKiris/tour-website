@@ -26,9 +26,19 @@ Route::resource('reviews', ReviewController::class);
 Route::get('/reviews/search', [ReviewController::class, 'show'])->name('reviews.search');
 Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 
-Route::resource('tours', TourController::class);
 
 
+Route::prefix('tours')->group(function(){
+    Route::get('/', [TourController::class, 'index'])->name('tours.index');
+    Route::get('/create', [TourController::class, 'create'])->middleware('auth')->name('tours.create');
+    Route::post('/', [TourController::class, 'store'])->middleware('auth')->name('tours.store');
+    Route::get('/{post}/edit', [TourController::class, 'edit'])->middleware('auth')->name('tours.edit');
+    Route::put('/{post}', [TourController::class, 'update'])->middleware('auth')->name('tours.update');
+    Route::delete('/{post}', [TourController::class, 'destroy'])->middleware('auth')->name('tours.destroy');
+    Route::post('/{id}/restore', [TourController::class, 'restore'])->middleware('auth')->name('tours.restore');
+    Route::delete('/{id}/force-delete', [TourController::class, 'forceDelete'])->middleware('auth')->name('tours.forceDelete');
+    Route::get('/{post}', [TourController::class, 'show'])->name('tours.show');
+});
 
 
 Route::prefix('posts')->group(function () {
