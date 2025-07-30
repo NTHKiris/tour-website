@@ -4,7 +4,9 @@
 
 @push('styles')
 
+<x-banner title="Blog du lịch">
 
+</x-banner>
 <div class="min-h-screen mt-20 posts-container" id="postsContainer">
     <div class="max-w-7xl mx-auto px-4 py-8">
         <div class=" gap-8 ">
