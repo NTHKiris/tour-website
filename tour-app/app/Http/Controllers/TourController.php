@@ -41,8 +41,8 @@ class TourController extends Controller
 
     public function show($id)
     {
-        $tours = Tour::Where('id', 'like', '%'.$searchItem.'%')
-                    ->orWhere('title', 'like', '%'.$searchItem.'%')->first();
+        $tours = Tour::Where('id', 'like', '%'.$id.'%')
+                    ->orWhere('title', 'like', '%'.$id.'%')->first();
         return view('tours.show', compact('tours'));
     }
 

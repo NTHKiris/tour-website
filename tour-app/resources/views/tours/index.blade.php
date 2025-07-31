@@ -47,7 +47,10 @@
                         </div>
                         @endforeach
                     </div>
-                    
+                    <form id="deleteForm" method="POST" style="display:none;">
+                        @csrf
+                        @method('DELETE')
+                    </form>
                 </div>
 
                 <div>
@@ -140,12 +143,14 @@
         }
     }
 
-    function update(tourId) { <!-- added -->
+    function update(tourId) {
         window.location.href = "{{ route('tours.create') }}?id=" + tourId;
     }
 
-    function deleteItem(tourId) { <!-- added -->
-        alert('Xóa tour ID: ' + tourId);
-        // Thêm chức năng xóa tại đây
+    function deleteItem(tourId) {
+        if (!confirm('Bạn có chắc chắn muốn xóa tour này?')) return;
+        let form = document.getElementById('deleteForm');
+        form.action = `/tours/${tourId}`;
+        form.submit();
     }
 </script>
