@@ -16,7 +16,7 @@ return new class extends Migration
                 $table->string('title'); // Tiêu đề tour
                 $table->string('slug')->unique(); // Đường dẫn thân thiện (slug)
                 $table->text('description'); // Mô tả tour
-                $table->json('itinerary'); // Lịch trình trong định dạng JSON
+                $table->json('itinerary'); // Lịch trình trong định dạng JSON ->nullable()
                 $table->integer('duration'); // Thời gian (ngày)
                 $table->decimal('price', 10, 2); // Giá tour
                 $table->integer('max_participants'); // Số người tối đa

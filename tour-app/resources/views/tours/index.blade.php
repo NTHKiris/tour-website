@@ -5,6 +5,11 @@
     </div>
 @endif
 
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
 
 <div>
     <div class= "tarticle__title--scrip">
@@ -18,10 +23,19 @@
                     <div  class="grid grid-flow-col grid-rows-2 gap-3" >
                         @foreach ($tours as $tour)
                         <div class = "item border-gray-50 w-[100%] h-[100%]">
-                            <div class="card ">
+                            <div class="card relative">
                                 <div class = "w-[100%] h-[60%]">
                                     <img src="{{ asset('images/bien.webp')}}" alt="" class = "w-[100%] h-[100%]">
                                 </div>
+                                @auth
+                                <div class = "absolute top-2 right-2">
+                                    <span class="dots cursor-pointer text-2xl" onclick="toggleDropdown({{ $tour->id }})">⋮</span>
+                                    <div class="dropdown hidden absolute right-0 bg-white border border-gray-300 rounded mt-1 z-10" id="dropdownMenu{{ $tour->id }}"> <!-- added -->
+                                        <a href="#" onclick="update({{ $tour->id }})" class="block px-4 py-2 text-black hover:bg-gray-100">Sửa</a> <!-- added -->
+                                        <a href="#" onclick="deleteItem({{ $tour->id }})" class="block px-4 py-2 text-black hover:bg-gray-100">Xóa</a> <!-- added -->
+                                    </div> 
+                                </div>
+                                @endauth
                                 <div class="py-5 px-2.5 w-[100%] h-[40%]">
                                     <a href="{{ route('tours.show', $tour->id) }}" class = "text-18 text-black font-r_regular">{{ Str::limit($tour->title, 45)}}</a><br>
                                     <span class = "sub-item">{{ Str::limit($tour->description, 45) }}</span><br>
@@ -33,7 +47,10 @@
                         </div>
                         @endforeach
                     </div>
-                    
+                    <form id="deleteForm" method="POST" style="display:none;">
+                        @csrf
+                        @method('DELETE')
+                    </form>
                 </div>
 
                 <div>
@@ -41,7 +58,7 @@
                 </div>
                 <div  class="grid grid-col-1 gap-6 px-4 md:grid-cols-2 md:px-0 p-8 mb-16"  >
                         @foreach ($tours as $tour)
-                        <div class = "item border-gray-50 ">
+                        <div class = "item border-gray-50 relative">
                             <div class="flex flex-col md:flex-row w-[100%] h-[100%]">
                                 <div class = "w-[40%] h-[100%]">
                                     <img src="{{ asset('images/nui.webp')}} " alt="" class = "w-[100%] h-[100%]">
@@ -54,6 +71,14 @@
                                         @method('PUT')
                                         <button type = "submit" class="no-underline hover:underline">Xem chi tiết</button>
                                     </form>
+                                    <!-- added -->
+                                    <div class="absolute top-2 right-2"> <!-- added -->
+                                        <span class="dots cursor-pointer text-2xl" onclick="toggleDropdown({{ $tour->id }})">⋮</span>
+                                        <div class="dropdown hidden absolute right-0 bg-white border border-gray-300 rounded mt-1 z-10" id="dropdownMenu{{ $tour->id }}"> <!-- added -->
+                                            <a href="#" onclick="update({{ $tour->id }})" class="block px-4 py-2 text-black hover:bg-gray-100">Sửa</a> <!-- added -->
+                                            <a href="#" onclick="deleteItem({{ $tour->id }})" class="block px-4 py-2 text-black hover:bg-gray-100">Xóa</a> <!-- added -->
+                                        </div> <!-- added -->
+                                    </div> <!-- added -->
                                 </div>
                             </div>
                         </div>
@@ -105,3 +130,27 @@
 
 </script>
 @endsection
+<script>
+    function toggleDropdown(tourId) { <!-- added -->
+        const dropdown = document.getElementById('dropdownMenu' + tourId);
+        dropdown.classList.toggle('hidden');
+    }
+
+    window.onclick = function(event) {
+        if (!event.target.matches('.dots')) {
+            const dropdowns = document.querySelectorAll('.dropdown');
+            dropdowns.forEach(dropdown => dropdown.classList.add('hidden'));
+        }
+    }
+
+    function update(tourId) {
+        window.location.href = "{{ route('tours.create') }}?id=" + tourId;
+    }
+
+    function deleteItem(tourId) {
+        if (!confirm('Bạn có chắc chắn muốn xóa tour này?')) return;
+        let form = document.getElementById('deleteForm');
+        form.action = `/tours/${tourId}`;
+        form.submit();
+    }
+</script>

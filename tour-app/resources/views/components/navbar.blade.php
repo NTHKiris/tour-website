@@ -5,7 +5,7 @@
             <a href="/"
                 class="flex items-center text-2xl font-bold text-cyan-600 hover:text-cyan-700 transition-colors">
                 <img src="/Logo.png" alt="Logo" class="w-14 h-14 object-contain mr-3 " />
-                Quy Nhon Tour
+                Quy Nhơn Tour
             </a>
 
             <!-- Desktop Navigation -->
@@ -63,6 +63,10 @@
                                 <a href="/posts/create"
                                     class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors">
                                     Tạo bài viết
+                                </a>
+                                <a href="/tours/create"
+                                    class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors">
+                                    Tạo chuyến tham quan
                                 </a>
                                 <div class="border-t border-gray-100 my-1"></div>
                                 <form method="POST" action="{{ route('logout') }}">

@@ -11,7 +11,7 @@
             <div><h1 class = "text-[30px] font-normal leading-[36px] text-accent mb-2">{{$tours->title}}</h1></div>
             <div class = " w-[100%] h-[540px] py-[20px] ">
                 <img src="{{ asset('images/Eo-Gio.jpg')}} " alt="" class="object-cover rounded-[3px] w-full h-full">
-            </div>
+            </div>  
             <div  class="grid grid-flow-col grid-rows-1 gap-6 mb-[40px]" >
                 @foreach ($tours as $tour)
                     <div class = "item border-gray-50 w-[100%] h-[100%]">
