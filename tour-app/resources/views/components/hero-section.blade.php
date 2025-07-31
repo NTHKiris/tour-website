@@ -5,7 +5,7 @@
     'image2' => '/images/eo-gio.jpg',
     'image3' => '/images/quy-nhon.jpg'
 ])
-<section class="py-16 bg-gradient-to-br from-slate-50 to-slate-200 min-h-[80vh]">
+<section class="pt-16  min-h-[60vh]">
         <div class="max-w-7xl mx-auto px-4 ">
         <div class="grid lg:grid-cols-2 ">
             <div class="max-w-lg">

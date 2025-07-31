@@ -5,9 +5,12 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\ReviewController;
+use App\Models\Tour;
 
 Route::get('/', function () {
-    return view('home');
+    $tours = Tour::orderBy('featured', 'desc')->take(3)->get();
+    return view('home', data: compact('tours'));
+
 });
 
 Route::get('/dashboard', function () {
