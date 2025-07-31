@@ -7,6 +7,7 @@
     <title>@yield('title', 'Bình Định Tour - Khám phá vẻ đẹp Bình Định')</title>
     <meta name="description"
         content="@yield('description', 'Khám phá những điểm đến tuyệt vời tại Bình Định với các tour du lịch chất lượng cao')">
+    <link rel="icon" type="image/png" href="/Logo.png">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

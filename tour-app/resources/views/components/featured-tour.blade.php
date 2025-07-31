@@ -26,7 +26,7 @@
                         <p class="text-gray-600 leading-relaxed line-clamp-3" > {{$tour->description}}</p>
                         <div class="flex justify-between items-center mt-4">
                             <div class="text-cyan-600 font-medium"><i class="fa-solid fa-clock mr-2"></i>{{$tour->duration}} ngày</div>
-                            <a href="{{ route('tours.show', $tour->slug) }}"
+                            <a href="{{ route('tours.show', $tour->id) }}"
                                 class="bg-cyan-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-cyan-600 hover:-translate-y-0.5 transition-all duration-300">
                                 Đặt tour
                             </a>
