@@ -1,5 +1,8 @@
 @extends('layouts.tour')
+@section('title', 'Tạo tour mới - Bình Định Tour')
+@section('description', 'Chia sẻ những trải nghiệm du lịch tuyệt vời tại Bình Định')
 
+@section('content')
 
 <div class= "container_12 mt-[100px]">
     @if(session('success'))
@@ -228,3 +231,4 @@
         }
     }
 </script>
+@endsection
