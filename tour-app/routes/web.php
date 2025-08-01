@@ -10,6 +10,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/about', function () {
+    return view('aboutme');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -32,12 +36,12 @@ Route::prefix('tours')->group(function(){
     Route::get('/', [TourController::class, 'index'])->name('tours.index');
     Route::get('/create', [TourController::class, 'create'])->middleware('auth')->name('tours.create');
     Route::post('/', [TourController::class, 'store'])->middleware('auth')->name('tours.store');
-    Route::get('/{id}/edit', [TourController::class, 'edit'])->middleware('auth')->name('tours.edit');
-    Route::put('/{id}', [TourController::class, 'update'])->middleware('auth')->name('tours.update');
-    Route::delete('/{id}', [TourController::class, 'destroy'])->middleware('auth')->name('tours.destroy');
+    Route::get('/{tour}/edit', [TourController::class, 'edit'])->middleware('auth')->name('tours.edit');
+    Route::put('/{tour}', [TourController::class, 'update'])->middleware('auth')->name('tours.update');
+    Route::delete('/{tour}', [TourController::class, 'destroy'])->middleware('auth')->name('tours.destroy');
     Route::post('/{id}/restore', [TourController::class, 'restore'])->middleware('auth')->name('tours.restore');
     Route::delete('/{id}/force-delete', [TourController::class, 'forceDelete'])->middleware('auth')->name('tours.forceDelete');
-    Route::get('/{id}', [TourController::class, 'show'])->name('tours.show');
+    Route::get('/{tour}', [TourController::class, 'show'])->name('tours.show');
 });
 
 

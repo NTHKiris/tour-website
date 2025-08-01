@@ -25,3 +25,8 @@
 .list-item {
     @apply text-[16px] leading-[1.875] text-left font-['Poppins'] text-[20px] italic text-[#5C626A];
 }
+
+/* file resources/css/custom.css */
+.title-main {
+  @apply w-full text-center text-black font-[Zourney] text-[50px] font-normal max-w-[415px] mx-auto leading-[54px] relative;
+}

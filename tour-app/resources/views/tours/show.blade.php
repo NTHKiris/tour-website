@@ -1,4 +1,6 @@
 @extends('layouts.tour')
+@section('title', $tours->title)
+
 @if (session('success'))
     <div class="alert alert-success">
         {{ session('success') }}

@@ -11,6 +11,14 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+
+        <!-- Slick -->
+        <link rel="stylesheet" href="/slick/slick.css"/>
+        <link rel="stylesheet" href="/slick/slick-theme.css"/>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="/slick/slick.min.js"></script>
+
+
         <link href="{{ asset('css/owl.carousel.min.css') }}" rel="stylesheet" />
         <link href="{{ asset('css/owl.theme.default.min.css') }}" rel="stylesheet" />   
 
