@@ -6,7 +6,6 @@ use App\Models\PostCategory;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostCategoryRequest;
 use App\Http\Requests\UpdatePostCategoryRequest;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
@@ -25,14 +24,14 @@ class PostCategoryController extends Controller
 
     public function create()
     {
-        $this->authorize('create');
+        $this->authorize('create', PostCategory::class);
 
         return view('post-categories.create');
     }
 
     public function store(StorePostCategoryRequest $request)
     {
-        $this->authorize('create', );
+        $this->authorize('create', PostCategory::class);
 
         $validated = $request->validated();
 
