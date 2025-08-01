@@ -26,10 +26,13 @@
             </div>
             <div class = "w-full md:w-1/2 px-[15px]">
                 <div class= "ml-[30px] mb-[30px]">
-                    <div class = "flex-col text-left">
-                        <div class="text-black font-[Jost] text-[12px] font-semibold uppercase leading-[16px] mb-[40px] transition-all duration-300">Thời gian để khám phá</div>
-                    </div>
-                    <h2 class="mb-[50px] w-full text-left text-black text-[40px] font-normal max-w-[415px] font-[Zourney] mx-auto normal-case leading-[54px] transition-all duration-300 relative">Một cách tốt hơn để du lịch và tham quan Quy Nhơn</h2>
+                    <div class="max-w-[415px] mx-auto text-left">
+                        <div class="text-black font-[Jost] text-[12px] font-semibold uppercase leading-[16px] mb-[50px] transition-all duration-300">
+                            Thời gian để khám phá
+                        </div>
+                        <h2 class="mb-[50px] text-black text-[40px] font-normal font-[Zourney] normal-case leading-[54px] transition-all duration-300 relative">
+                            Một cách tốt hơn để du lịch và tham quan Quy Nhơn
+                        </h2>
                     <div class="flex flex-row">
                         <div class ="w-3/10 mr-[30px] mb-[30px]">
                             <span class="border-t-solid w-[80px]"></span>
@@ -54,7 +57,7 @@
             </div>
         </div>
     </div>
-    <div class="w-[70%] mx-auto mt-[80px]">
+    <div class="w-[100%] mx-auto mt-[80px]">
         <div class="flex flex-row">
             <div class="w-full md:w-1/2 lg:w-1/4 px-[15px]">
                 <div class="border-r-2 border-gray-500 flex text-left items-center">
@@ -120,7 +123,7 @@
             </div>
         </div>
     </div>
-    <div class="w-[70%] mx-auto pb-[80px] mt-[100px]">
+    <div class="w-[70%] mx-auto mt-[100px]">
         <div class = "flex flex-col">
             <div class="w-full text-center text-black font-[Jost] text-[12px] font-semibold uppercase leading-[16px] mb-[40px]">tại sao lại đặt chúng tôi</div>
             <h2 class="title-main text-[40px] leading-[45px]">Quy trình đặt thuận tiện và dễ dàng</h2>
@@ -128,7 +131,8 @@
                 <span class="block border-t border-sky-500 w-[80px] mx-auto "></span>
             </div>
         </div>
-        <div class = "flex flex-wrap">
+    </div>
+        <div class = "flex flex-wrap  ">
             @for($i = 1; $i <= 6; $i++)
                 <div class="w-1/3 p-2 ">
                     <div class="mb-[50px]">
@@ -219,8 +223,8 @@ $('.single-item').slick({
     responsive: [
         { breakpoint: 768, settings: { slidesToShow: 1 } }
     ],
-    prevArrow: '<button class="absolute left-0 block h-[40px] w-[40px] leading-[0] cursor-pointer top-1/2 -translate-y-1/2 p-0 outline-none z-[9] rounded-full text-[var(--accent)] bg-transparent border-0"><i class="fa fa-chevron-left text-[20px]"></i></button>',
-    nextArrow: '<button class="absolute right-0 block h-[40px] w-[40px] leading-[0] cursor-pointer top-1/2 -translate-y-1/2 p-0 outline-none z-[9] rounded-full text-[var(--accent)] bg-transparent border-0"><i class="fa fa-chevron-right text-[20px]"></i></button>',
+    prevArrow: '<button class="absolute left-0 block h-[40px] w-[40px] leading-[0] cursor-pointer top-1/2 -translate-y-1/2 p-0 outline-none z-[9] rounded-full bg-transparent border-0"><i class="fa fa-chevron-left text-[20px]"></i></button>',
+    nextArrow: '<button class="absolute right-0 block h-[40px] w-[40px] leading-[0] cursor-pointer top-1/2 -translate-y-1/2 p-0 outline-none z-[9] rounded-full bg-transparent border-0"><i class="fa fa-chevron-right text-[20px]"></i></button>',
 });
 
 </script>
