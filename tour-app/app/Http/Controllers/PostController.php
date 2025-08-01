@@ -69,8 +69,6 @@ class PostController extends Controller
                     'alt' => $post->title,
                 ]);
             }
-        } else {
-            \Log::info('No images uploaded');
         }
 
         return redirect()->route('posts.show', $post)->with('success', 'Post created successfully!');
