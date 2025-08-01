@@ -25,7 +25,7 @@
                 <li>
                     <h3 class="font-bold text-lg">Email</h3>
                     <a href="" class="text-gray-600"><i
-                            class="fas fa-envelope text-cyan-400 mr-2 w-4"></i>QNTour@gmail.com</a>
+                            class="fas fa-envelope text-cyan-400 mr-2 w-4"></i>tourquynhon@gmail.com</a>
                 </li>
                 <li>
                     <h3 class="font-bold text-lg">Phone</h3>
