@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\PostCategoryController;
+use App\Http\Controllers\ImageController;
 
 use App\Models\Tour;
 
@@ -22,6 +23,7 @@ Route::get('/dashboard', function () {
 
 
 Route::resource('post-categories', PostCategoryController::class);
+Route::delete('/images/{image}', [ImageController::class, 'destroy'])->name('images.destroy');
 
 Route::resource('reviews', ReviewController::class);
 

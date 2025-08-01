@@ -39,9 +39,14 @@
                             @foreach ($tours as $tour)
                                 <div class="item border-gray-50 w-[100%] h-[100%]">
                                     <div class="card relative">
-                                        <div class="w-[100%] h-[60%]">
-                                            <img src="{{ asset('images/bien.webp')}}" alt="" class="w-[100%] h-[100%]">
-                                        </div>
+                                        <div class="h-56 overflow-hidden">
+                                            @if($tour->images && $tour->images->count() > 0)
+                                            <img src="{{ asset($tour->images->first()->url) }}" alt="Tour image"
+                                                class="w-full h-full object-cover">
+                                            @else
+                                                <img src="{{ asset('images/bien.webp') }}" alt="Default image"
+                                                    class="w-full h-full object-cover">
+                                            @endif
                                         @auth
                                             <div class="absolute top-2 right-2">
                                                 <span class="dots cursor-pointer text-2xl"
@@ -55,6 +60,8 @@
                                                 </div>
                                             </div>
                                         @endauth
+                                        </div>
+                                        
                                         <div class="py-5 px-2.5 w-[100%] h-[40%]">
                                             <a href="{{ route('tours.show', $tour->id) }}"
                                                 class="text-18 text-black font-r_regular">{{ Str::limit($tour->title, 45)}}</a><br>

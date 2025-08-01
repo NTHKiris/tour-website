@@ -13,7 +13,7 @@ class TourController extends Controller
 {
     public function index()
     {
-        $tours = Tour::orderBy('id','desc')->paginate(6);
+        $tours = Tour::orderBy('id', 'desc')->paginate(6);
         return view('tours.index', compact('tours'));
     }
 
@@ -23,7 +23,7 @@ class TourController extends Controller
 
         if ($request->has('id')) {
             $tourId = $request->query('id');
-            $tour = Tour::find($tourId); 
+            $tour = Tour::find($tourId);
         }
 
         return view('tours.create', compact('tour'));
@@ -31,18 +31,27 @@ class TourController extends Controller
 
     public function store(StoreTourRequest $request)
     {
-       $validated = $request->validated();
+        $validated = $request->validated();
         $validated['user_id'] = $request->user()->id;
 
-        Tour::create($validated);
-        
+        $tour = Tour::create($validated);
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                $path = $file->store('tour', 'public');
+                $image = $tour->images()->create([
+                    'url' => '/storage/' . $path
+                ]);
+            }
+        }
+
         return redirect()->back()->with('success', 'Tour đã được tạo!');
     }
 
     public function show($id)
     {
-        $tours = Tour::Where('id', 'like', '%'.$id.'%')
-                    ->orWhere('title', 'like', '%'.$id.'%')->first();
+        $tours = Tour::Where('id', 'like', '%' . $id . '%')
+            ->orWhere('title', 'like', '%' . $id . '%')->first();
         return view('tours.show', compact('tours'));
     }
 
@@ -51,20 +60,28 @@ class TourController extends Controller
         $tour = Tour::findOrFail($id);
         return view('tours.create', compact('tour'));
     }
-    
+
 
     public function update(UpdateTourRequest $request, $id)
     {
         $tour = Tour::findOrFail($id);
         $validated = $request->validated();
-        
+
         // Debug: Log dữ liệu được validate
         \Log::info('Tour update data:', $validated);
-        
+
         try {
             $updated = $tour->update($validated);
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $file) {
+                    $path = $file->store('tour', 'public');
+                    $image = $tour->images()->create([
+                        'url' => '/storage/' . $path
+                    ]);
+                }
+            }
             if ($updated) {
-                return redirect()->route('tours.index')->with('success', 'Cập nhật thành công.'); 
+                return redirect()->route('tours.index')->with('success', 'Cập nhật thành công.');
             } else {
                 return redirect()->back()->with('error', 'Có lỗi xảy ra khi cập nhật.');
             }

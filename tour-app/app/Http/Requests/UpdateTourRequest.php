@@ -32,6 +32,8 @@ class UpdateTourRequest extends FormRequest
             'destination_id' => 'sometimes|exists:destinations,id',
             'status' => 'sometimes|nullable|in:active,inactive,draft',
             'featured' => 'sometimes|nullable|boolean',
+            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image.*' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 }

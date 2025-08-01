@@ -32,6 +32,8 @@ class StoreTourRequest extends FormRequest
             'destination_id' => 'sometimes|exists:destinations,id',
             'status' => 'sometimes|nullable|in:active,inactive,draft',
             'featured' => 'sometimes|nullable|boolean',
+            'images' => 'nullable|array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ];
     }
 }

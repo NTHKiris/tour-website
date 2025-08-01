@@ -27,8 +27,17 @@ class UpdatePostRequest extends FormRequest
             'description' => 'sometimes|required|string',
             'category_id' => 'sometimes|required|exists:post_categories,id',
             'author_id' => 'sometimes|required|exists:users,id',
-            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'image.*' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images' => 'sometimes|array',
+            'images.*' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'images.*.image' => 'File phải là hình ảnh.',
+            'images.*.mimes' => 'Hình ảnh phải có định dạng: jpeg, png, jpg, gif.',
+            'images.*.max' => 'Kích thước hình ảnh không được vượt quá 2MB.',
         ];
     }
 }

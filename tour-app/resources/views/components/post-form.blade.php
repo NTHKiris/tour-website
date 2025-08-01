@@ -30,9 +30,37 @@
             </ul>
         </div>
     @endif
+     @if($post && $post->images && $post->images->count() > 0)
+        <div class="space-y-2 pt-8 px-8" >
+            <label class="flex items-center text-lg font-semibold text-gray-700">
+                <i class="fas fa-image mr-2 text-cyan-500"></i>
+                Hình ảnh hiện tại
+            </label>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                @foreach($post->images as $image)
+                    <div class="relative group">
+                        <img src="{{ $image->url }}" alt="{{ $image->alt }}" 
+                            class="w-full h-48 object-cover rounded-lg shadow-md">
+                        <form action="{{ route('images.destroy', $image->id) }}" method="POST" class="absolute top-2 right-2">
+                            @csrf
+                            @method('DELETE')
+                            <button 
+                                type="submit"
+                                onclick="return confirm('Bạn có chắc chắn muốn xóa ảnh này?')"
+                                class="bg-gray-300 bg-opacity-40 hover:bg-red-700 text-white rounded-full p-2 shadow transition duration-200 hover:scale-110"
+                            >
+                                <i class="fas fa-trash text-sm"></i>
+                            </button>
+                        </form>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    @endif
+</div>
 
     <!-- Form -->
-    <form action="{{ $action }}" method="POST" enctype="multipart/form-data" class="space-y-8 p-8">
+    <form action="{{ $action }}" method="POST" enctype="multipart/form-data" class="space-y-8 pb-8 px-8">
         @csrf
         @if($method !== 'POST')
             @method($method)
@@ -139,24 +167,6 @@
             @enderror
         </div>
 
-   
-        @if($post && $post->images && $post->images->count() > 0)
-            <div class="space-y-2">
-                <label class="flex items-center text-lg font-semibold text-gray-700">
-                    <i class="fas fa-image mr-2 text-cyan-500"></i>
-                    Hình ảnh hiện tại
-                </label>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    @foreach($post->images as $image)
-                        <div class="relative group">
-                            <img src="{{ $image->url }}" alt="{{ $image->alt }}" 
-                                 class="w-full h-48 object-cover rounded-lg shadow-md">
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        @endif
-
         <!-- Description Field -->
         <div class="space-y-2">
             <label for="description" class="flex items-center text-lg font-semibold text-gray-700">
@@ -167,7 +177,9 @@
             <textarea 
                 name="description" 
                 id="description"
-                
+                rows="6"
+                class="w-full px-4 py-3 border-none ring-2 ring-cyan-300 border-gray-200 rounded-xl focus:ring-2 focus:ring-cyan-500 transition-all duration-300 text-lg"
+                required
             >{{ old('description', $post->description ?? '') }}</textarea>
             @error('description')
                 <p class="text-red-500 text-sm mt-1 flex items-center">
@@ -194,7 +206,8 @@
             </a>
         </div>
     </form>
-</div>
+
+   
 
 <!-- TinyMCE Script -->
 @push('scripts')
@@ -214,5 +227,7 @@ tinymce.init({
     branding: false,
     promotion: false
 });
+
+
 </script>
 @endpush
