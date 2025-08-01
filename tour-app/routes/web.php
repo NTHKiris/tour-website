@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\PostCategoryController;
+
 use App\Models\Tour;
 
 Route::get('/', function () {
@@ -15,7 +17,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-
+Route::resource('post-categories', PostCategoryController::class);
 
 Route::resource('reviews', ReviewController::class);
 
