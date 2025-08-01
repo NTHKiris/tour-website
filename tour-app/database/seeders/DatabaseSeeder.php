@@ -15,10 +15,11 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(10)->create();
 
-
+        // Seed post categories first
+        $this->call([
+            PostCategorySeeder::class,
+        ]);
 
         \App\Models\Tour::factory(20)->create();
-
-
     }
 }

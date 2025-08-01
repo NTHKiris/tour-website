@@ -64,6 +64,10 @@
                                     class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors">
                                     Tạo bài viết
                                 </a>
+                                <a href="/post-categories"
+                                    class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors">
+                                    Danh mục bài viết
+                                </a>
                                 <a href="/tours/create"
                                     class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors">
                                     Tạo chuyến tham quan

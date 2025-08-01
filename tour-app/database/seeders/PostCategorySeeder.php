@@ -15,49 +15,33 @@ class PostCategorySeeder extends Seeder
     {
         $categories = [
             [
-                'name' => 'Địa điểm nổi bật',
-                'slug' => 'highlights',
-                'description' => 'Các địa điểm du lịch nổi tiếng tại Quy Nhơn.',
+                'name' => 'Điểm đến',
+                'description' => 'Khám phá những điểm đến tuyệt vời tại Quy Nhơn và Bình Định',
             ],
             [
-                'name' => 'Ẩm Thực',
-                'slug' => 'food',
-                'description' => 'Khám phá ẩm thực đặc sản và quán ăn nổi bật.',
+                'name' => 'Ẩm thực',
+                'description' => 'Những món ăn đặc sản không thể bỏ qua khi đến Quy Nhơn',
             ],
             [
-                'name' => 'Tips & Tricks',
-                'slug' => 'tips',
-                'description' => 'Kinh nghiệm, mẹo hay khi du lịch Quy Nhơn.',
+                'name' => 'Lịch sử - Văn hóa',
+                'description' => 'Tìm hiểu về lịch sử và văn hóa phong phú của vùng đất Bình Định',
             ],
             [
-                'name' => 'Văn Hóa & Lễ Hội',
-                'slug' => 'culture',
-                'description' => 'Thông tin về văn hóa, lễ hội truyền thống.',
+                'name' => 'Kinh nghiệm du lịch',
+                'description' => 'Những kinh nghiệm hữu ích cho chuyến du lịch Quy Nhơn',
             ],
             [
-                'name' => 'Chỗ ở',
-                'slug' => 'accommodation',
-                'description' => 'Khách sạn, homestay, resort tại Quy Nhơn.',
+                'name' => 'Lễ hội - Sự kiện',
+                'description' => 'Các lễ hội và sự kiện văn hóa đặc sắc tại Bình Định',
             ],
             [
-                'name' => 'Review Tour',
-                'slug' => 'review',
-                'description' => 'Đánh giá các tour và dịch vụ du lịch.',
-            ],
-            [
-                'name' => 'Tin Tức & Sự Kiện',
-                'slug' => 'news',
-                'description' => 'Cập nhật tin tức, sự kiện du lịch mới nhất.',
-            ],
-            [
-                'name' => 'Hoạt động giải trí',
-                'slug' => 'activities',
-                'description' => 'Các hoạt động vui chơi, giải trí hấp dẫn.',
+                'name' => 'Khách sạn - Lưu trú',
+                'description' => 'Gợi ý những nơi lưu trú tốt nhất tại Quy Nhơn',
             ],
         ];
 
-        foreach ($categories as $cat) {
-            PostCategory::create($cat);
+        foreach ($categories as $category) {
+            PostCategory::create($category);
         }
     }
 }

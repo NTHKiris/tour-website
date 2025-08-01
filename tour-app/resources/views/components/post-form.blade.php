@@ -87,7 +87,7 @@
         <div class="space-y-2">
             <label for="category_id" class="flex text-lg font-semibold text-gray-700">
                 <i class="fas fa-tags mr-2 text-cyan-500"></i>
-                Chuyên mục
+                Danh mục
                 <span class="text-red-500 ml-1">*</span>
             </label>
             <select 
@@ -96,7 +96,7 @@
                 class="w-full lg:w-1/3 md:min-w-[400px] px-4 py-3 border-none ring-2 ring-cyan-300 border-gray-200 rounded-xl focus:ring-2 focus:ring-cyan-500 transition-all duration-300 text-lg"
                 required
             >
-                <option value="">-- Chọn phân loại --</option>
+                <option value="">-- Chọn danh mục --</option>
                 @foreach ($categories as $cat)
                     <option value="{{ $cat->id }}" 
                         {{ old('category_id', $post->category_id ?? '') == $cat->id ? 'selected' : '' }}>

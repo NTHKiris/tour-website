@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class StorePostCategoryRequest extends FormRequest
+class UpdatePostCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,9 +22,9 @@ class StorePostCategoryRequest extends FormRequest
      */
     public function rules(): array
     {
-
+        $postCategory = $this->route('postCategory');
         return [
-            'name' => 'required|string|max:255|unique:post_categories,name,',
+            'name' => 'required|string|max:255|unique:post_categories,name,' . $postCategory->id,
             'description' => 'nullable|string|max:500',
         ];
     }

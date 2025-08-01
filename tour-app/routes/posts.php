@@ -1,6 +1,19 @@
 <?php
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostCategoryController;
 use Illuminate\Support\Facades\Route;
+
+
+Route::prefix('post-categories')->group(function () {
+    Route::get('/', [PostCategoryController::class, 'index'])->name('post-categories.index');
+    Route::get('/create', [PostCategoryController::class, 'create'])->middleware('auth')->name('post-categories.create');
+    Route::post('/', [PostCategoryController::class, 'store'])->middleware('auth')->name('post-categories.store');
+    Route::get('/{postCategory}/edit', [PostCategoryController::class, 'edit'])->middleware('auth')->name('post-categories.edit');
+    Route::put('/{postCategory}', [PostCategoryController::class, 'update'])->middleware('auth')->name('post-categories.update');
+    Route::delete('/{postCategory}', [PostCategoryController::class, 'destroy'])->middleware('auth')->name('post-categories.destroy');
+    Route::get('/{postCategory}', [PostCategoryController::class, 'show'])->name('post-categories.show');
+});
+
 
 Route::prefix('posts')->group(function () {
     Route::get('/', [PostController::class, 'index'])->name('posts.index');

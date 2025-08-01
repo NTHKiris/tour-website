@@ -8,12 +8,19 @@ use App\Models\User;
 
 class PostCategoryPolicy
 {
+
+    public function before(User $user, $ability)
+    {
+        if ($user->isAdmin()) {
+            return true;
+        }
+    }
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +28,7 @@ class PostCategoryPolicy
      */
     public function view(User $user, PostCategory $postCategory): bool
     {
-        return false;
+        return true;
     }
 
     /**
