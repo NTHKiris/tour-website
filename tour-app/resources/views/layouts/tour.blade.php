@@ -67,7 +67,7 @@
     @stack('scripts')
 
     <x-chat-bot />
-
+    <div class= "text-4xl"><span>{{env('CHATBOT_ID')}}</span></div>
 </body>
 
 </html>

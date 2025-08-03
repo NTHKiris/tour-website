@@ -8,7 +8,7 @@
 
 @section('content')
 
-    <x-banner title="Tour du lịch">
+    <x-banner title="Tour ">
 
     </x-banner>
 

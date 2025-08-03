@@ -11,8 +11,8 @@
         <div class="flex flex-col">
             <h3 class="font-bold text-lg">Liên kết nhanh</h3>
             <a href="" class="text-gray-600"><i class="fas fa-home mr-3 w-4 text-cyan-400"></i>Trang chủ</a>
-            <a href="" class="text-gray-600"><i class="fas fa-route mr-3 w-4 text-cyan-400 "></i>Tour du lịch</a>
-            <a href="" class="text-gray-600"><i class="fas fa-blog mr-3 w-4 text-cyan-400"></i>Blog</a>
+            <a href="" class="text-gray-600"><i class="fas fa-route mr-3 w-4 text-cyan-400 "></i>Chuyến du lịch</a>
+            <a href="" class="text-gray-600"><i class="fas fa-blog mr-3 w-4 text-cyan-400"></i>Bài viết</a>
             <a href="" class="text-gray-600"><i class="fas fa-info-circle mr-3 w-4 text-cyan-400"></i>Về chúng tôi</a>
         </div>
         <div>

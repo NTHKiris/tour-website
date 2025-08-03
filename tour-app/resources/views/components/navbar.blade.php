@@ -5,7 +5,7 @@
             <a href="/"
                 class="flex items-center text-2xl font-bold text-cyan-600 hover:text-cyan-700 transition-colors">
                 <img src="/Logo.png" alt="Logo" class="w-14 h-14 object-contain mr-3 " />
-                Quy Nhơn Tour
+                Quy Nhon Tour
             </a>
 
             <!-- Desktop Navigation -->
@@ -13,7 +13,7 @@
                 <li>
                     <a href="/"
                         class="relative py-1 font-medium transition-colors hover:text-cyan-600 {{ request()->is('/') ? 'text-cyan-600 border-b-2 border-cyan-600' : 'text-gray-700' }}">
-                        Trang chủ
+                        Home
                     </a>
                 </li>
                 <li>

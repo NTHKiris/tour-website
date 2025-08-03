@@ -4,7 +4,7 @@
 </div>
 <div id="chatbase-iframe-container"
     class="hidden fixed bottom-28 right-8 z-50 w-[350px] h-[500px] bg-white rounded-2xl shadow-2xl overflow-hidden border border-cyan-200">
-    <iframe src="https://www.chatbase.co/chatbot-iframe/yRqNR5EgN7LOjPFUJueWj" width="100%" height="100%"
+    <iframe src="https://www.chatbase.co/chatbot-iframe/{{ env('CHATBOT_ID') }}" width="100%" height="100%"
         frameborder="0"></iframe>
 </div>
 <script>

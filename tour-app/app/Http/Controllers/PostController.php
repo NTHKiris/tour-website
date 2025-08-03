@@ -14,6 +14,11 @@ class PostController extends Controller
 {
 
     use AuthorizesRequests;
+    public function adminIndex()
+    {
+        $posts = Post::with(['category', 'author'])->orderByDesc('created_at')->get();
+        return view('posts.admin-index', compact('posts'));
+    }
     /**
      * Display a listing of the resource.
      */
