@@ -15,7 +15,11 @@ use Illuminate\Support\Str;
 class DestinationController extends Controller
 {
     use AuthorizesRequests;
-    
+    public function adminIndex()
+    {
+        $destinations = Destination::all();
+        return view('admin.destinations', compact('destinations'));
+    }
     public function index(Request $request)
     {
 
@@ -50,7 +54,7 @@ class DestinationController extends Controller
         if (empty($data['featured_image'])) {
             $data['featured_image'] = '#';
         }
-          // Xử lý tọa độ: tách từ "12.3456, 108.1234"
+        // Xử lý tọa độ: tách từ "12.3456, 108.1234"
         if (!empty($data['coordinates'])) {
             // Tách chuỗi thành mảng [lat, lng]
             $coords = explode(',', $data['coordinates']);
@@ -65,12 +69,12 @@ class DestinationController extends Controller
                 unset($data['coordinates']); // tránh lỗi nếu format sai
             }
         }
-        
+
 
 
         $destination = Destination::create($data);
         $destination->slug = Str::slug($destination->id);
-        
+
 
         if ($destination->featured_image === '#') {
             $destination->featured_image = config('app.url') . '/destinations/' . $destination->id;
@@ -115,7 +119,7 @@ class DestinationController extends Controller
     {
         $this->authorize('delete', $destination);
         $data = $request->validated();
-          // Xử lý tọa độ: tách từ "12.3456, 108.1234"
+        // Xử lý tọa độ: tách từ "12.3456, 108.1234"
         if (!empty($data['coordinates'])) {
             // Tách chuỗi thành mảng [lat, lng]
             $coords = explode(',', $data['coordinates']);
@@ -156,7 +160,7 @@ class DestinationController extends Controller
     public function restore($id)
     {
 
-        $post = Post::withTrashed()->findOrFail($id);
+        $post = Destination::withTrashed()->findOrFail($id);
         $this->authorize('restore', $post);
         $post->restore();
         $post->images()->withTrashed()->restore();
@@ -165,7 +169,7 @@ class DestinationController extends Controller
     }
     public function forceDelete($id)
     {
-        $post = Post::withTrashed()->findOrFail($id);
+        $post = Destination::withTrashed()->findOrFail($id);
         $this->authorize('forceDelete', $post);
 
         foreach ($post->images()->withTrashed()->get() as $image) {

@@ -2,6 +2,7 @@
     use App\Models\Post;
     use App\Models\Tour;
     use App\Models\PostCategory;
+    use App\Models\Destination;
 @endphp
 <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm shadow-sm">
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -87,11 +88,13 @@
                                         Quản lý bài viết
                                     </a>
                                 @endcan
+                                @can('viewAny', Destination::class)
+                                    <a href="/admin/destinations"
+                                        class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors">
+                                        Điểm đến
+                                    </a>
+                                @endcan
 
-                                <a href="/destinations/create"
-                                    class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors">
-                                    Tạo điểm đến
-                                </a>
                                 <div class="border-t border-gray-100 my-1"></div>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf

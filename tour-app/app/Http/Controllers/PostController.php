@@ -77,7 +77,7 @@ class PostController extends Controller
             }
         }
         if (auth()->check() && auth()->user()->role === 'admin') {
-            return redirect()->route('admin.posts.index');
+            return redirect()->route('admin.posts.index')->with('success', 'Post created successfully!');
         }
         return redirect()->route('posts.show', $post)->with('success', 'Post created successfully!');
     }
@@ -119,9 +119,9 @@ class PostController extends Controller
             }
         }
         if (auth()->check() && auth()->user()->role === 'admin') {
-            return redirect()->route('admin.posts.index');
+            return redirect()->route('admin.posts.index')->with('success', 'Post updated successfully!');
         }
-        return redirect()->route('posts.show', $post);
+        return redirect()->route('posts.show', $post)->with('success', 'Post updated successfully!');
     }
     public function destroy(Post $post)
     {
@@ -130,9 +130,9 @@ class PostController extends Controller
         $post->images()->delete();
         $post->delete();
         if (auth()->check() && auth()->user()->role === 'admin') {
-            return redirect()->route('admin.posts.index');
+            return redirect()->route('admin.posts.index')->with('success', 'Post deleted successfully!');
         }
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->with('success', 'Post deleted successfully!');
     }
 
     public function restore($id)
