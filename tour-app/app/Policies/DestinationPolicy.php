@@ -45,7 +45,7 @@ class DestinationPolicy
      */
     public function delete(User $user, Destination $destination): bool
     {
-        return false;
+        return $user->isAdmin();
     }
 
     /**

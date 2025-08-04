@@ -3,18 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tour;
+use App\Models\Destination;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTourRequest;
 use App\Http\Requests\UpdateTourRequest;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class TourController extends Controller
 {
+    use AuthorizesRequests;
+    
     public function index()
     {
         $tours = Tour::orderBy('id','desc')->paginate(6);
-        return view('tours.index', compact('tours'));
+        $destinations = Destination::orderBy('id','desc')->paginate(6);
+        return view('tours.index', compact('tours', 'destinations'));
     }
 
     public function create(Request $request)
@@ -74,9 +79,11 @@ class TourController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function destroy(Tour $tour)
     {
-        $tour = Tour::find($id);
+        $this->authorize('delete', $tour);
+
+        $tour->images()->delete();
         $tour->delete();
         return redirect()->back()->with('success', 'Tour đã được xóa!');
     }

@@ -45,7 +45,7 @@ class TourPolicy
      */
     public function delete(User $user, Tour $tour): bool
     {
-        return false;
+        return $user->isAdmin();
     }
 
     /**

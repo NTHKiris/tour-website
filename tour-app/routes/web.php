@@ -4,6 +4,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TourController;
+use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\ReviewController;
 
 Route::get('/', function () {
@@ -45,6 +46,19 @@ Route::prefix('tours')->group(function(){
 });
 
 
+Route::prefix('destinations')->group(function(){
+    Route::get('/', [DestinationController::class, 'index'])->name('destinations.index');
+    Route::get('/create', [DestinationController::class, 'create'])->middleware('auth')->name('destinations.create');
+    Route::post('/', [DestinationController::class, 'store'])->middleware('auth')->name('destinations.store');
+    Route::get('/{destination}/edit', [DestinationController::class, 'edit'])->middleware('auth')->name('destinations.edit');
+    Route::put('/{destination}', [DestinationController::class, 'update'])->middleware('auth')->name('destinations.update');
+    Route::delete('/{destination}', [DestinationController::class, 'destroy'])->middleware('auth')->name('destinations.destroy');
+    Route::post('/{id}/restore', [DestinationController::class, 'restore'])->middleware('auth')->name('destinations.restore');
+    Route::delete('/{id}/force-delete', [DestinationController::class, 'forceDelete'])->middleware('auth')->name('destinations.forceDelete');
+    Route::get('/{destination}', [DestinationController::class, 'show'])->name('destinations.show');
+});
+
+
 Route::prefix('posts')->group(function () {
     Route::get('/', [PostController::class, 'index'])->name('posts.index');
     Route::get('/create', [PostController::class, 'create'])->middleware('auth')->name('posts.create');
@@ -57,3 +71,6 @@ Route::prefix('posts')->group(function () {
     Route::get('/{post}', [PostController::class, 'show'])->name('posts.show');
 });
 require __DIR__ . '/auth.php';
+
+
+Route::get('/form', [DestinationController::class, 'form']);
