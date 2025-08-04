@@ -8,12 +8,15 @@ use App\Models\User;
 
 class DestinationPolicy
 {
-    /**
-     * Determine whether the user can view any models.
-     */
+    public function before(User $user, $ability)
+    {
+        if ($user->isAdmin()) {
+            return true;
+        }
+    }
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +24,7 @@ class DestinationPolicy
      */
     public function view(User $user, Destination $destination): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,7 +32,7 @@ class DestinationPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -37,7 +40,12 @@ class DestinationPolicy
      */
     public function update(User $user, Destination $destination): bool
     {
-        return false;
+        return $user->isAdmin();
+    }
+
+    public function edit(User $user, Destination $destination): bool
+    {
+        return $user->isAdmin();
     }
 
     /**
@@ -53,7 +61,7 @@ class DestinationPolicy
      */
     public function restore(User $user, Destination $destination): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -61,6 +69,6 @@ class DestinationPolicy
      */
     public function forceDelete(User $user, Destination $destination): bool
     {
-        return false;
+        return true;
     }
 }

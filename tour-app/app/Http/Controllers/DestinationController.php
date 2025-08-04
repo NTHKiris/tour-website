@@ -19,7 +19,17 @@ class DestinationController extends Controller
     public function index(Request $request)
     {
 
-        $query = Destination::orderBy('created_at', 'desc');
+         $search = $request->input('search');
+
+        $destinations = Destination::query();
+
+        if ($search) {
+            $destinations->where('name', 'like', '%' . $search . '%');
+        }
+
+        $destination = $destinations->first();
+        return view('destinations.show', compact('destination', 'search'));
+        // $query = Destination::orderBy('created_at', 'desc');
         // if ($request->has('location')) {
         //     $destination = PostCategory::where('slug', $request->destination)->first();
         //     if ($destination) {
@@ -32,8 +42,8 @@ class DestinationController extends Controller
         // if ($request->has('my') && auth()->check()) {
         //     $query->where('author_id', auth()->id());
         // }
-        $destinations = $query->get();
-        return view('destinations.index', ['destinations' => $destinations]);
+        // $destinations = $query->get();
+        // return view('destinations.index', ['destinations' => $destinations]);
     }
 
     public function create()
@@ -97,12 +107,12 @@ class DestinationController extends Controller
     {
 
         $destination->load(['images']);
-        return view('tours.index');
+        return view('destinations.show', compact('destination'));
     }
 
     public function edit(Destination $destination)
     {
-        $this->authorize('delete', $destination);
+        $this->authorize('edit', $destination);
         $destination->load('images');
         $coords = DB::selectOne("SELECT ST_X(coordinates) as lat, ST_Y(coordinates) as lng FROM destinations WHERE id = ?", [$destination->id]);
 
@@ -113,7 +123,7 @@ class DestinationController extends Controller
 
     public function update(UpdateDestinationRequest $request, Destination $destination)
     {
-        $this->authorize('delete', $destination);
+        $this->authorize('update', $destination);
         $data = $request->validated();
           // Xử lý tọa độ: tách từ "12.3456, 108.1234"
         if (!empty($data['coordinates'])) {
@@ -134,7 +144,7 @@ class DestinationController extends Controller
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $file) {
-                $path = $file->store('posts', 'public');
+                $path = $file->store('destinations', 'public');
                 $destination->images()->create([
                     'url' => '/storage/' . $path,
                     'alt' => $destination->title,
@@ -156,23 +166,23 @@ class DestinationController extends Controller
     public function restore($id)
     {
 
-        $post = Post::withTrashed()->findOrFail($id);
-        $this->authorize('restore', $post);
-        $post->restore();
-        $post->images()->withTrashed()->restore();
+        // $post = Post::withTrashed()->findOrFail($id);
+        // $this->authorize('restore', $post);
+        // $post->restore();
+        // $post->images()->withTrashed()->restore();
 
-        return redirect()->route('posts.index');
+        // return redirect()->route('posts.index');
     }
     public function forceDelete($id)
     {
-        $post = Post::withTrashed()->findOrFail($id);
-        $this->authorize('forceDelete', $post);
+        // $post = Post::withTrashed()->findOrFail($id);
+        // $this->authorize('forceDelete', $post);
 
-        foreach ($post->images()->withTrashed()->get() as $image) {
-            $image->forceDelete();
-        }
-        $post->forceDelete();
-        return redirect()->route('posts.index');
+        // foreach ($post->images()->withTrashed()->get() as $image) {
+        //     $image->forceDelete();
+        // }
+        // $post->forceDelete();
+        // return redirect()->route('posts.index');
     }
 
 }

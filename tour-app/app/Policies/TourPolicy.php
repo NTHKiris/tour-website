@@ -27,7 +27,7 @@ class TourPolicy
      */
     public function view(User $user, Tour $tour): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -35,7 +35,7 @@ class TourPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -43,7 +43,7 @@ class TourPolicy
      */
     public function update(User $user, Tour $tour): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -59,7 +59,7 @@ class TourPolicy
      */
     public function restore(User $user, Tour $tour): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -67,6 +67,6 @@ class TourPolicy
      */
     public function forceDelete(User $user, Tour $tour): bool
     {
-        return false;
+        return true;
     }
 }
