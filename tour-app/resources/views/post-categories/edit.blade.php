@@ -35,7 +35,7 @@
             </div>
 
             <div class="flex justify-end gap-2 pt-2">
-                <a href="{{ route('post-categories.index') }}"
+                <a href="{{ route('admin.posts-categories.index') }}"
                     class="px-4 py-2 border rounded text-gray-700 hover:bg-gray-50 text-sm">Hủy</a>
                 <button type="submit"
                     class="px-4 py-2 bg-cyan-500 text-white rounded hover:bg-cyan-600 text-sm font-semibold">Cập

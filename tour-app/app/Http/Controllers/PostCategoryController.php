@@ -40,7 +40,7 @@ class PostCategoryController extends Controller
 
         PostCategory::create($validated);
 
-        return redirect()->route('post-categories.index')
+        return redirect()->route('admin.posts-categories.index')
             ->with('success', 'Danh mục đã được tạo thành công!');
     }
 
@@ -66,7 +66,7 @@ class PostCategoryController extends Controller
 
         $postCategory->update($validated);
 
-        return redirect()->route('post-categories.index')
+        return redirect()->route('admin.posts-categories.index')
             ->with('success', 'Danh mục đã được cập nhật thành công!');
     }
 
@@ -75,13 +75,13 @@ class PostCategoryController extends Controller
         $this->authorize('delete', $postCategory);
 
         if ($postCategory->posts()->count() > 0) {
-            return redirect()->route('post-categories.index')
+            return redirect()->route('admin.posts-categories.index')
                 ->with('error', 'Không thể xóa danh mục này vì vẫn còn bài viết thuộc danh mục này!');
         }
 
         $postCategory->delete();
 
-        return redirect()->route('post-categories.index')
+        return redirect()->route('admin.posts-categories.index')
             ->with('success', 'Danh mục đã được xóa thành công!');
     }
 }

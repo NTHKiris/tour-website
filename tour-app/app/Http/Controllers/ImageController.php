@@ -13,7 +13,7 @@ class ImageController extends Controller
         if ($image->url && Storage::disk('public')->exists($image->url)) {
             Storage::disk('public')->delete($image->url);
         }
-        $image->delete();
+        $image->forceDelete();
         return back();
     }
 }

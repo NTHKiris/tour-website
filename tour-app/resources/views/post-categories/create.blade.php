@@ -33,7 +33,7 @@
             </div>
 
             <div class="flex justify-end gap-2 pt-2">
-                <a href="{{ route('post-categories.index') }}"
+                <a href="{{ route('admin.posts-categories.index') }}"
                     class="px-4 py-2 text-sm font-semibold rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 transition-all duration-200">
                     Hủy
                 </a>
