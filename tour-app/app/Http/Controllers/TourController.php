@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tour;
+use App\Models\Destination;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTourRequest;
 use App\Http\Requests\UpdateTourRequest;
@@ -23,7 +24,8 @@ class TourController extends Controller
     public function index()
     {
         $tours = Tour::orderBy('id', 'desc')->paginate(6);
-        return view('tours.index', compact('tours'));
+        $destinations = Destination::orderBy('id', 'desc')->paginate(6);
+        return view('tours.index', compact('tours', 'destinations'));
     }
 
     public function create(Request $request)
@@ -111,9 +113,11 @@ class TourController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function destroy(Tour $tour)
     {
-        $tour = Tour::find($id);
+        $this->authorize('delete', $tour);
+
+        $tour->images()->delete();
         $tour->delete();
         if (auth()->check() && auth()->user()->role === 'admin') {
             return redirect()->route('admin.tours.index');

@@ -1,10 +1,4 @@
 @extends('layouts.tour')
-@section('title', 'Tour - Bình Định Tour')
-@if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
 
 @section('content')
 
@@ -19,7 +13,7 @@
     @endif
 
     @if (session('error'))
-        <div class="alert alert-danger">
+        <div class="bg-red-500 text-white p-4 rounded-md mb-4 text-center">
             {{ session('error') }}
         </div>
     @endif
@@ -27,8 +21,8 @@
     <div>
         <div class="tarticle__title--scrip">
             <div style="margin-left: auto; margin-right: auto;width: 960px;">
-                <h1
-                    style="font-family:Time New Roman, Georgia,serif; font-size:20px; margin: 20px; padding-bottom: 5px; text-align: center">
+                <h1 class = "font-semibold text-[30px]"
+                    style="font-family:Time New Roman, Georgia,serif;  margin: 20px; padding-bottom: 5px; text-align: center">
                     Tours</h1>
 
             </div>
@@ -83,8 +77,8 @@
                     <div>
                         <h1 class="text-3xl leading-9 font-bold">Địa Danh Quy Nhơn</h1>
                     </div>
-                    <div class="grid grid-col-1 gap-6 px-4 md:grid-cols-2 md:px-0 p-8 mb-16">
-                        @foreach ($tours as $tour)
+                    <div class="grid grid-cols-2 grid-rows-3  gap-6 px-4 md:grid-cols-2 md:px-0 p-8 mb-16">
+                        @foreach ($destinations as $destination)
                             <div class="item border-gray-50 relative">
                                 <div class="flex flex-col md:flex-row w-[100%] h-[100%]">
                                     <div class="w-[40%] h-[100%]">
@@ -92,29 +86,27 @@
                                     </div>
                                     <div class="py-5 px-2.5 w-[60%] h-[100%]">
                                         <a href="{{ route('tours.show', $tour->id) }}"
-                                            class=" text-18 text-black font-r_regular">{{ Str::limit($tour->title, 45) }}</a><br>
-                                        <span class=" sub-item">{{ Str::limit($tour->description, 45) }}</span><br>
-                                        <form action="{{ route('tours.show', $tour->id) }}" method="POST">
-                                            @csrf
-                                            @method('PUT')
-                                            <button type="submit" class="no-underline hover:underline">Xem chi tiết</button>
-                                        </form>
-                                        <!-- added -->
-                                        <div class="absolute top-2 right-2"> <!-- added -->
-                                            <span class="dots cursor-pointer text-2xl"
-                                                onclick="toggleDropdown({{ $tour->id }})">⋮</span>
-                                            <div class="dropdown hidden absolute right-0 bg-white border border-gray-300 rounded mt-1 z-10"
-                                                id="dropdownMenu{{ $tour->id }}"> <!-- added -->
-                                                <a href="#" onclick="update({{ $tour->id }})"
-                                                    class="block px-4 py-2 text-black hover:bg-gray-100">Sửa</a> <!-- added -->
-                                                <a href="#" onclick="deleteItem({{ $tour->id }})"
-                                                    class="block px-4 py-2 text-black hover:bg-gray-100">Xóa</a> <!-- added -->
-                                            </div> <!-- added -->
-                                        </div> <!-- added -->
+                                        class="text-18 text-black font-r_regular">{{ Str::limit($destination->name, 45) }}</a><br>
+                                        <span class="sub-item">{{ Str::limit($destination->description, 45) }}</span><br>
+
+                                        @auth
+                                            <div class="absolute top-2 right-2">
+                                                <span class="dots cursor-pointer text-2xl"
+                                                    onclick="toggleDropdownDestination({{ $destination->id }})">⋮</span>
+                                                <div class="dropdown hidden absolute right-0 bg-white border border-gray-300 rounded mt-1 z-10"
+                                                    id="dropdownMenuDestination{{ $destination->id }}">
+                                                    <a href="#" onclick="updateDestination({{ $destination->id }})"
+                                                    class="block px-4 py-2 text-black hover:bg-gray-100">Sửa</a>
+                                                    <a href="#" onclick="deleteItemDestination({{ $destination->id }})"
+                                                    class="block px-4 py-2 text-black hover:bg-gray-100">Xóa</a>
+                                                </div>
+                                            </div>
+                                        @endauth
                                     </div>
                                 </div>
                             </div>
                         @endforeach
+
                     </div>
 
                     <div>
@@ -172,6 +164,11 @@
                 dropdown.classList.toggle('hidden');
             }
 
+            function toggleDropdownDestination(destId) {
+                const dropdown = document.getElementById('dropdownMenuDestination' + destId);
+                dropdown.classList.toggle('hidden');
+            }
+
             window.onclick = function (event) {
                 if (!event.target.matches('.dots')) {
                     const dropdowns = document.querySelectorAll('.dropdown');
@@ -183,11 +180,24 @@
                 window.location.href = "{{ route('tours.create') }}?id=" + tourId;
             }
 
+            
+            function updateDestination(destinationId) {
+                window.location.href = "{{ route('destinations.edit', ':id') }}".replace(':id', destinationId);
+            }
+
             function deleteItem(tourId) {
                 if (!confirm('Bạn có chắc chắn muốn xóa tour này?')) return;
                 let form = document.getElementById('deleteForm');
                 form.action = `/tours/${tourId}`;
                 form.submit();
             }
+
+            function deleteItemDestination(destinationId) {
+                if (!confirm('Bạn có chắc chắn muốn xóa địa danh này?')) return;
+                let form = document.getElementById('deleteForm');
+                form.action = `/destinations/${destinationId}`;
+                form.submit();
+            }
+
         </script>
 @endsection

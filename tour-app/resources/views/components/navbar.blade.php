@@ -87,6 +87,11 @@
                                         Quản lý bài viết
                                     </a>
                                 @endcan
+
+                                <a href="/destinations/create"
+                                    class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors">
+                                    Tạo điểm đến
+                                </a>
                                 <div class="border-t border-gray-100 my-1"></div>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
