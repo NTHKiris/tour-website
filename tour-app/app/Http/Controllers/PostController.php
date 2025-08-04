@@ -134,7 +134,11 @@ class PostController extends Controller
         }
         return redirect()->route('posts.index')->with('success', 'Post deleted successfully!');
     }
-
+    public function trash()
+    {
+        $posts = Post::with(['category', 'author'])->onlyTrashed()->orderByDesc('created_at')->get();
+        return view('admin.posts-trash', compact('posts'));
+    }
     public function restore($id)
     {
 
@@ -143,7 +147,7 @@ class PostController extends Controller
         $post->restore();
         $post->images()->withTrashed()->restore();
 
-        return redirect()->route('posts.index');
+        return redirect()->route('admin.posts.trash')->with('success', 'Post restored successfully!');
     }
     public function forceDelete($id)
     {
@@ -154,7 +158,7 @@ class PostController extends Controller
             $image->forceDelete();
         }
         $post->forceDelete();
-        return redirect()->route('posts.index');
+        return redirect()->route('admin.posts.trash')->with('success', 'Post deleted successfully!');
     }
 
 }

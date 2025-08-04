@@ -10,21 +10,12 @@
                 {{ session('success') }}
             </div>
         @endif
-        <div class="flex justify-end items-center gap-4 ">
-            <div class="mb-6 text-right">
-                <a href="{{ route('admin.posts.trash') }}"
-                    class="inline-flex items-center px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 text-sm font-semibold">
-                    <i class="fa-solid fa-trash mr-2"></i> Thùng rác
-                </a>
-            </div>
-            <div class="mb-6 text-right">
-                <a href="{{ route('posts.create') }}"
-                    class="inline-flex items-center px-4 py-2 bg-cyan-500 text-white rounded hover:bg-cyan-600 text-sm font-semibold">
-                    <i class="fa-solid fa-plus mr-2"></i> Thêm bài viết
-                </a>
-            </div>
+        <div class="mb-6 text-right">
+            <a href="{{ route('admin.posts.index') }}"
+                class="inline-flex items-center px-4 py-2 bg-cyan-500 text-white rounded hover:bg-cyan-600 text-sm font-semibold">
+                Quay lại
+            </a>
         </div>
-
         @if($posts->count())
             <div class="space-y-4">
                 @foreach($posts as $post)
@@ -39,21 +30,22 @@
                             </div>
                         </div>
                         <div class="flex gap-2">
-                            <a href="{{ route('posts.show', $post) }}"
-                                class="inline-flex items-center px-3 py-1.5 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm">
-                                <i class="fa-solid fa-eye mr-2"></i> Xem
-                            </a>
-                            <a href="{{ route('posts.edit', $post) }}"
-                                class="inline-flex items-center px-3 py-1.5 bg-cyan-500 text-white rounded hover:bg-cyan-600 text-sm">
-                                <i class="fa-solid fa-pen-to-square mr-2"></i> Sửa
-                            </a>
-                            <form action="{{ route('posts.destroy', $post) }}" method="POST"
+                            <form action="{{ route('posts.restore', $post->id) }}"
+                                onsubmit="return confirm('Bạn có chắc chắn muốn khôi phục?');" method="POST">
+                                @csrf
+                                <button type="submit"
+                                    class="inline-flex items-center px-3 py-1.5 bg-green-500 text-white rounded hover:bg-green-600 text-sm">
+                                    <i class="fa-solid fa-backward mr-2"></i> Khôi phục</button>
+                            </form>
+
+
+                            <form action="{{ route('posts.forceDelete', $post) }}" method="POST"
                                 onsubmit="return confirm('Bạn có chắc chắn muốn xóa?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"
                                     class="inline-flex items-center px-3 py-1.5 bg-red-500 text-white rounded hover:bg-red-600 text-sm">
-                                    <i class="fa-solid fa-trash mr-2"></i> Xóa
+                                    <i class="fa-solid fa-trash mr-2"></i> Xóa vĩnh viễn
                                 </button>
                             </form>
                         </div>
