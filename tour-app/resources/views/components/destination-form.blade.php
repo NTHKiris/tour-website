@@ -43,7 +43,7 @@
         <div>
             <label for="description" class="block font-semibold mb-1">Mô tả</label>
             <textarea name="description" id="description" rows="3"
-                class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">{{ old('description') }}</textarea>
+                class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">{{ old('name', $destination->description ?? '') }}</textarea>
             @error('description')
                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
             @enderror
@@ -63,7 +63,7 @@
 
         <!-- Coordinates --> 
          <!-- xử lý dấu phẩy -->
-         @php
+        @php
             $coords = trim(($destination->lat ?? '') . ', ' . ($destination->lng ?? ''), ', ');
         @endphp
         <div>
@@ -80,8 +80,8 @@
         <!-- Featured Image -->
         <div>
             <label for="featured_image" class="block font-semibold mb-1">Ảnh địa danh</label>
-            <input type="file" name="featured_image[]" id="featured_image" 
-                accept="image/*" multiple
+            <input type="file" name="images[]" id="featured_image" 
+                accept="images/*" multiple
                 class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
             @error('featured_image')
                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
