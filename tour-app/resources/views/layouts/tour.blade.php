@@ -53,9 +53,6 @@
 
 <body class="font-be-vietnam text-gray-800 leading-relaxed">
 
-
-
-
     <x-navbar />
 
     <main class="pt-20">
@@ -67,7 +64,7 @@
     @stack('scripts')
 
     <x-chat-bot />
-    
+
 </body>
 
 </html>

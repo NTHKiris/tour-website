@@ -26,7 +26,7 @@
                     Tours</h1>
 
             </div>
-            <div class="py-5 ">
+            <div class="" >
                 <div class="w-[60%] mx-auto ">
                     <div class="row">
                         <div class="grid grid-flow-col grid-rows-2 gap-3">

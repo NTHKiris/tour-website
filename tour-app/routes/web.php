@@ -16,9 +16,10 @@ Route::get('/about', function () {
     return view('aboutme');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/home', function () {
+    $tours = Tour::orderBy('featured', 'desc')->take(3)->get();
+    return view('home', data: compact('tours'));
+})->middleware(['auth', 'verified'])->name('home');
 
 
 Route::delete('/images/{image}', [ImageController::class, 'destroy'])->name('images.destroy');
