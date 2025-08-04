@@ -5,6 +5,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ImageController;
 
 use App\Models\Tour;
+use App\Models\Destination;
 
 Route::get('/', function () {
     $tours = Tour::orderBy('featured', 'desc')->take(3)->get();
@@ -13,7 +14,8 @@ Route::get('/', function () {
 });
 
 Route::get('/about', function () {
-    return view('aboutme');
+    $destinations = Destination::with('images')->take(4)->get();
+    return view('aboutme', compact('destinations'));
 });
 
 Route::get('/home', function () {

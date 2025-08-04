@@ -99,7 +99,7 @@
                                     </div>
                                     <div class="py-5 px-2.5 w-[60%] h-[100%]">
                                         <a href="{{ route('destinations.show', $destination) }}"
-                                        class="text-18 text-black font-r_regular">{{ Str::limit($destination->name, 45) }}</a><br>
+                                        class="text-18 text-black font-r_regular font-bold">{{ Str::limit($destination->name, 45) }}</a><br>
                                         <span class="sub-item">{{ Str::limit($destination->description, 45) }}</span><br>
 
                                         @auth

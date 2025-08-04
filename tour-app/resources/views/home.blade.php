@@ -5,14 +5,17 @@
 
 @section('content')
 
-    <x-hero-section title="Trọn niềm vui với những chuyến đi đáng nhớ"
-        description="Quy Nhơn - thành phố huyền thoại với bãi biển trong xanh, Eo Gió hùng vĩ và tháp Chăm cổ kính. Cùng khám phá vẻ đẹp hoang sơ và tận hưởng những trải nghiệm tuyệt vời nơi đây!"
-        image1="/images/ky-co.jpg" image2="/images/eo-gio.jpg" image3="/images/quy-nhon.jpg" />
+    <div class="pt-20">
 
-    <x-choose-me />
-    <x-featured-tour :tours="$tours" title="Tour nổi bật" subtitle="Khám phá những điểm đến tuyệt vời nhất tại Quy Nhơn" />
-    <x-booking-guide />
-    <x-feed-back :feedbacks="[
+        <x-hero-section title="Trọn niềm vui với những chuyến đi đáng nhớ"
+            description="Quy Nhơn - thành phố huyền thoại với bãi biển trong xanh, Eo Gió hùng vĩ và tháp Chăm cổ kính. Cùng khám phá vẻ đẹp hoang sơ và tận hưởng những trải nghiệm tuyệt vời nơi đây!"
+            image1="/images/ky-co.jpg" image2="/images/eo-gio.jpg" image3="/images/quy-nhon.jpg" />
+
+        <x-choose-me />
+        <x-featured-tour :tours="$tours" title="Tour nổi bật"
+            subtitle="Khám phá những điểm đến tuyệt vời nhất tại Quy Nhơn" />
+        <x-booking-guide />
+        <x-feed-back :feedbacks="[
             [
                 'content' => 'Tour Kỳ Co - Eo Gió thật sự tuyệt vời! Hướng dẫn viên nhiệt tình, địa điểm đẹp như mơ. Gia đình tôi đã có những kỷ niệm không thể quên. Chắc chắn sẽ quay lại!',
                 'initials' => 'NL',
@@ -35,4 +38,6 @@
                 'avatar_class' => 'bg-gradient-to-br from-purple-400 to-pink-500'
             ],
         ]" />
+    </div>
+
 @endsection

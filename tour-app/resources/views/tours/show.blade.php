@@ -11,7 +11,7 @@
     <div class="px-[100px] flex flex-wrap mx-[-15px]">
         <div class="w-full lg:w-8/12 px-[15px] ">
             <div>
-                <h1 class="text-[30px] font-normal leading-[36px] text-accent mb-2">{{$tours->title}}</h1>
+                <h1 class="text-[30px] font-bold leading-[36px] text-accent mb-2">{{$tours->title}}</h1>
             </div>
             <div class="w-full py-[20px]">
 
@@ -64,7 +64,7 @@
             </div>
 
             <div class="py-[10px] flex flex-col">
-                <h1 class="des">Description</h1>
+                <h1 class="font-semibold">Description</h1>
                 <span>{{$tours->description}}</span>
             </div>
             <div class="py-[45px] px-[50px] flex relative min-h-[220px] bg-sky-50">
@@ -116,7 +116,7 @@
                     </div>
                     <div class="flex flex-wrap py-[16px] mb-[3px] w-full">
                         <label for="" class="lg:w-4/12">Time</label>
-                        <div class="lg:w-8/12 ">
+                        <div class="lg:w-8/12 space-x-2 ">
                             <input type="radio"><label for="">12:00</label>
 
                             <input type="radio"><label for="">17:00</label>
@@ -124,7 +124,7 @@
                     </div>
                     <div class="pb-[30px] border-dashed border-b">
                         <label for="" class="font-bold mb-[14px]">Tickets</label>
-                        <div class="flex flex-row my-[10px]">
+                        <div class="flex flex-row my-[10px] items-end justify-between">
                             <div>Adult (18+ years) <span class="font-bold">$181</span></div>
                             <select id="quantity" name="quantity"
                                 class="border border-gray-300 rounded box-border leading-[1.5]">
@@ -132,14 +132,14 @@
                             </select>
                         </div>
 
-                        <div class="flex flex-row my-[10px]">
+                        <div class="flex flex-row my-[10px] items-end justify-between">
                             <div>Youth (13-17 years) <span class="font-bold">$171</span></div>
                             <select id="quantity1" name="quantity"
                                 class="border border-gray-300 rounded box-border leading-[1.5]">
                                 <option value="0">0</option>
                             </select>
                         </div>
-                        <div class="flex flex-row my-[10px]">
+                        <div class="flex flex-row my-[10px] items-end justify-between">
                             <div>Children (0-12 years) <span class="font-bold">$161</span></div>
                             <select id="quantity1" name="quantity"
                                 class="border border-gray-300 rounded box-border leading-[1.5]">
