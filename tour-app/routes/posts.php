@@ -1,21 +1,16 @@
 <?php
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostCategoryController;
 use Illuminate\Support\Facades\Route;
 
 
 
 
 
-Route::get('/admin/posts', [PostController::class, 'adminIndex'])->name('admin.posts.index');
+Route::resource('post-categories', PostCategoryController::class)->except(['index']);
 
-Route::prefix('posts')->group(function () {
-    Route::get('/', [PostController::class, 'index'])->name('posts.index');
-    Route::get('/create', [PostController::class, 'create'])->middleware('auth')->name('posts.create');
-    Route::post('/', [PostController::class, 'store'])->middleware('auth')->name('posts.store');
-    Route::get('/{post}/edit', [PostController::class, 'edit'])->middleware('auth')->name('posts.edit');
-    Route::put('/{post}', [PostController::class, 'update'])->middleware('auth')->name('posts.update');
-    Route::delete('/{post}', [PostController::class, 'destroy'])->middleware('auth')->name('posts.destroy');
-    Route::post('/{id}/restore', [PostController::class, 'restore'])->middleware('auth')->name('posts.restore');
-    Route::delete('/{id}/force-delete', [PostController::class, 'forceDelete'])->middleware('auth')->name('posts.forceDelete');
-    Route::get('/{post}', [PostController::class, 'show'])->name('posts.show');
-});
+Route::resource('posts', PostController::class)->except(['index', 'show'])->middleware('auth');
+Route::get('posts', [PostController::class, 'index'])->name('posts.index');
+Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
+Route::post('posts/{id}/restore', [PostController::class, 'restore'])->middleware('auth')->name('posts.restore');
+Route::delete('posts/{id}/force-delete', [PostController::class, 'forceDelete'])->middleware('auth')->name('posts.forceDelete');

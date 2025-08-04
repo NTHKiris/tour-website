@@ -16,8 +16,9 @@ class PostController extends Controller
     use AuthorizesRequests;
     public function adminIndex()
     {
+        $this->authorize('viewAny', Post::class);
         $posts = Post::with(['category', 'author'])->orderByDesc('created_at')->get();
-        return view('posts.admin-index', compact('posts'));
+        return view('admin.posts', compact('posts'));
     }
     /**
      * Display a listing of the resource.
@@ -75,7 +76,9 @@ class PostController extends Controller
                 ]);
             }
         }
-
+        if (auth()->check() && auth()->user()->role === 'admin') {
+            return redirect()->route('admin.posts.index');
+        }
         return redirect()->route('posts.show', $post)->with('success', 'Post created successfully!');
     }
 
@@ -98,8 +101,14 @@ class PostController extends Controller
     {
         $this->authorize('update', $post);
         $data = $request->validated();
+        if (empty($data['link'])) {
+            $data['link'] = '#';
+        }
         $post->update($data);
-
+        if ($post->link === '#') {
+            $post->link = config('app.url') . '/posts/' . $post->id;
+            $post->save();
+        }
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $file) {
                 $path = $file->store('posts', 'public');
@@ -109,7 +118,9 @@ class PostController extends Controller
                 ]);
             }
         }
-
+        if (auth()->check() && auth()->user()->role === 'admin') {
+            return redirect()->route('admin.posts.index');
+        }
         return redirect()->route('posts.show', $post);
     }
     public function destroy(Post $post)
@@ -118,6 +129,9 @@ class PostController extends Controller
 
         $post->images()->delete();
         $post->delete();
+        if (auth()->check() && auth()->user()->role === 'admin') {
+            return redirect()->route('admin.posts.index');
+        }
         return redirect()->route('posts.index');
     }
 

@@ -15,11 +15,12 @@ class PostCategoryController extends Controller
 
     public function index()
     {
+        $this->authorize('viewAny', PostCategory::class);
         $categories = PostCategory::withCount('posts')
             ->orderBy('name')
             ->get();
 
-        return view('post-categories.index', compact('categories'));
+        return view('admin.categories', compact('categories'));
     }
 
     public function create()

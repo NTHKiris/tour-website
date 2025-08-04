@@ -8,9 +8,18 @@ use App\Http\Requests\StoreTourRequest;
 use App\Http\Requests\UpdateTourRequest;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
 
 class TourController extends Controller
 {
+    use AuthorizesRequests;
+    public function adminIndex()
+    {
+        $this->authorize('viewAny', Tour::class);
+        $tours = Tour::all();
+        return view('admin.tours', compact('tours'));
+    }
     public function index()
     {
         $tours = Tour::orderBy('id', 'desc')->paginate(6);
@@ -20,6 +29,7 @@ class TourController extends Controller
     public function create(Request $request)
     {
         $tour = null;
+        $this->authorize('create', Tour::class);
 
         if ($request->has('id')) {
             $tourId = $request->query('id');
@@ -31,6 +41,7 @@ class TourController extends Controller
 
     public function store(StoreTourRequest $request)
     {
+        $this->authorize('create', Tour::class);
         $validated = $request->validated();
         $validated['user_id'] = $request->user()->id;
 
@@ -44,7 +55,9 @@ class TourController extends Controller
                 ]);
             }
         }
-
+        if (auth()->check() && auth()->user()->role === 'admin') {
+            return redirect()->route('admin.tours.index');
+        }
         return redirect()->back()->with('success', 'Tour đã được tạo!');
     }
 
@@ -58,6 +71,8 @@ class TourController extends Controller
     public function edit($id)
     {
         $tour = Tour::findOrFail($id);
+        $this->authorize('update', $tour);
+
         return view('tours.create', compact('tour'));
     }
 
@@ -65,6 +80,8 @@ class TourController extends Controller
     public function update(UpdateTourRequest $request, $id)
     {
         $tour = Tour::findOrFail($id);
+        $this->authorize('update', $tour);
+
         $validated = $request->validated();
 
         // Debug: Log dữ liệu được validate
@@ -81,6 +98,9 @@ class TourController extends Controller
                 }
             }
             if ($updated) {
+                if (auth()->check() && auth()->user()->role === 'admin') {
+                    return redirect()->route('admin.tours.index');
+                }
                 return redirect()->route('tours.index')->with('success', 'Cập nhật thành công.');
             } else {
                 return redirect()->back()->with('error', 'Có lỗi xảy ra khi cập nhật.');
@@ -95,6 +115,9 @@ class TourController extends Controller
     {
         $tour = Tour::find($id);
         $tour->delete();
+        if (auth()->check() && auth()->user()->role === 'admin') {
+            return redirect()->route('admin.tours.index');
+        }
         return redirect()->back()->with('success', 'Tour đã được xóa!');
     }
 }

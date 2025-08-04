@@ -8,12 +8,18 @@ use App\Models\User;
 
 class TourPolicy
 {
+    public function before(User $user, $ability)
+    {
+        if ($user->isAdmin()) {
+            return true;
+        }
+    }
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return $user->isAdmin();
     }
 
     /**

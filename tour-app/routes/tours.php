@@ -2,6 +2,7 @@
 use App\Http\Controllers\TourController;
 use Illuminate\Support\Facades\Route;
 
+
 Route::prefix('tours')->group(function () {
     Route::get('/', [TourController::class, 'index'])->name('tours.index');
 

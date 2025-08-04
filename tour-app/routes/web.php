@@ -22,7 +22,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-Route::resource('post-categories', PostCategoryController::class);
 Route::delete('/images/{image}', [ImageController::class, 'destroy'])->name('images.destroy');
 
 Route::resource('reviews', ReviewController::class);
@@ -36,3 +35,4 @@ Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('revi
 require __DIR__ . '/auth.php';
 require __DIR__ . '/posts.php';
 require __DIR__ . '/tours.php';
+require __DIR__ . '/admin.php';

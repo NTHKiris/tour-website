@@ -24,7 +24,7 @@ class UpdatePostRequest extends FormRequest
         return [
             'title' => 'sometimes|required|string|max:255',
             'link' => 'sometimes|nullable|url|max:255',
-            'description' => 'sometimes|required|string',
+            'description' => 'sometimes|required',
             'category_id' => 'sometimes|required|exists:post_categories,id',
             'author_id' => 'sometimes|required|exists:users,id',
             'images' => 'sometimes|array',
