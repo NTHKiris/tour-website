@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->text('description'); // Mô tả địa điểm
             $table->string('location'); // Vị trí địa điểm
             // Thay thế phương thức point bằng geometry hoặc json
-            $table->string('coordinates'); // Tọa độ (điểm) - nếu bạn muốn lưu trữ dữ liệu địa lý
+            $table->geometry('coordinates'); // Tọa độ (điểm) - nếu bạn muốn lưu trữ dữ liệu địa lý
             // Hoặc
             // $table->json('coordinates'); // Nếu bạn muốn lưu trữ dưới dạng JSON
             $table->string('featured_image'); // Hình ảnh nổi bật
