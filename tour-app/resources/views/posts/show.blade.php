@@ -2,7 +2,7 @@
 @section('title', $post->title)
 
 @section('content')
-    <div class="relative bg-gradient-to-br from-cyan-500 to-blue-700 text-white p-10 max-w-5xl mx-auto">
+    <div class="relative bg-gradient-to-br from-cyan-500 to-blue-700 text-white p-10 max-w-5xl mx-auto mt-24">
         <div
             class="inline-flex items-center mb-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium border border-white/30">
             <i class="fas fa-tag mr-2"></i>

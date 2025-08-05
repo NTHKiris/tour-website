@@ -55,7 +55,7 @@
 
     <x-navbar />
 
-    <main class="">
+    <main class="mt-24">
         @yield('content')
     </main>
 

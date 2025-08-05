@@ -1,6 +1,6 @@
 @extends('layouts.tour')
 
-@section('content')
+@section('title', 'Blog - Quy Nhơn Tour')
 
     <x-banner title="Tour ">
 
@@ -204,4 +204,3 @@
             nextArrow: '<button class="absolute right-0 block h-[40px] w-[40px] leading-[0] cursor-pointer top-1/2 -translate-y-1/2 p-0 outline-none z-[9] rounded-full bg-transparent border-0"><i class="fa fa-chevron-right text-[20px]"></i></button>',
         });
     </script>
-@endsection

@@ -142,7 +142,7 @@
         </div>
     </div>
     <x-title-about smtitle="Tại sao lại đặt chúng tôi" lgtitle="Quy trình đặt thuận tiện và dễ dàng" />
-    <div class="flex flex-wrap  ">
+    <div class="flex flex-wrap w-[70%] mx-auto ">
         @for($i = 1; $i <= 6; $i++)
             <div class="w-1/3 p-2 ">
                 <div class="mb-[50px]">
