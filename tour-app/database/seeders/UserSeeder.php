@@ -12,6 +12,16 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(20)->create();
+        // Tạo user admin trước
+        User::factory()->create([
+            'name' => 'Admin User',
+            'email' => 'admin@binhdinhtour.com',
+            'phone' => '0123456789',
+            'role' => 'admin',
+            'email_verified_at' => now(),
+        ]);
+
+        // Tạo một số user thường
+        User::factory(5)->create();
     }
 }

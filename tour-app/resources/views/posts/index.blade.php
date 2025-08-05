@@ -94,7 +94,7 @@
 
                             <div class="p-6">
                                 <h2 class="text-xl font-bold text-gray-800 hover:text-cyan-600 transition-colors pb-2"><a
-                                        href="">{{Str::limit($post->title, 45)}}</a></h2>
+                                        href="{{route('posts.show', $post->id)}}">{{Str::limit($post->title, 45)}}</a></h2>
                                 <p class="text-gray-600 mb-4 leading-relaxed line-clamp-3 pb-6 ">
                                     {{ Str::limit(html_entity_decode(strip_tags($post->description)), 100) }}
                                 </p>

@@ -80,6 +80,12 @@
                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500" />
             </div>
 
+            <div class="mb-4 ">
+                <label for="slug" class="block text-sm font-medium text-gray-700">Slug</label>
+                <input id="slug" type="text" name="slug" value="{{ isset($tour) ? $tour->slug : '' }}" placeholder="Slug"
+                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500" />
+            </div>
+
             <div class="mb-4">
                 <label for="description" class="block text-sm font-medium text-gray-700">Mô tả</label>
                 <textarea id="description" name="description" placeholder="Mô tả"
@@ -90,7 +96,7 @@
                 <label class="block text-sm font-medium text-gray-700">Lịch trình</label>
                 <div id="itinerary-container">
                     <?php
-    $itinerary = isset($tour) ? json_decode($tour->itinerary, true) : []; 
+                $itinerary = isset($tour) ? json_decode($tour->itinerary, true) : []; 
                                                         ?>
                     <?php if (is_array($itinerary) && !empty($itinerary)): ?>
                     <?php    foreach ($itinerary as $day => $activity): ?>
@@ -151,7 +157,7 @@
                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500" />
             </div>
 
-            <div class="mb-4">
+            <div class="mb-4 hidden">
                 <label for="user_id" class="block text-sm font-medium text-gray-700">ID người dùng</label>
                 <input id="user_id" type="text" name="user_id" value="{{ isset($tour) ? $tour->user_id : auth()->id() }}"
                     placeholder="ID người dùng" readonly
