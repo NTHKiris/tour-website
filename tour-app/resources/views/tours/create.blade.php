@@ -1,6 +1,6 @@
 @extends('layouts.tour')
-@section('title', 'Tạo tour mới - Bình Định Tour')
-@section('description', 'Chia sẻ những trải nghiệm du lịch tuyệt vời tại Bình Định')
+@section('title', 'Tạo tour mới - Quy Nhơn Tour')
+@section('description', 'Chia sẻ những trải nghiệm du lịch tuyệt vời tại Quy Nhơn')
 
 @section('content')
 
@@ -97,7 +97,7 @@
                 <div id="itinerary-container">
                     <?php
     $itinerary = isset($tour) ? json_decode($tour->itinerary, true) : []; 
-                                                        ?>
+                                                            ?>
                     <?php if (is_array($itinerary) && !empty($itinerary)): ?>
                     <?php    foreach ($itinerary as $day => $activity): ?>
                     <div class="flex items-center mb-2">
@@ -196,10 +196,10 @@
             const newItem = document.createElement('div');
             newItem.className = 'flex items-center mb-2';
             newItem.innerHTML = `
-                                                        <input type="text" name="day[]" placeholder="Ngày" class="mt-1 block w-1/3 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500">
-                                                        <input type="text" name="activity[]" placeholder="Hoạt động" class="mt-1 block w-2/3 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500 ml-2">
-                                                        <button type="button" onclick="removeItinerary(this)" class="ml-2 text-red-500">Xóa</button>
-                                                    `;
+                                                            <input type="text" name="day[]" placeholder="Ngày" class="mt-1 block w-1/3 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500">
+                                                            <input type="text" name="activity[]" placeholder="Hoạt động" class="mt-1 block w-2/3 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500 ml-2">
+                                                            <button type="button" onclick="removeItinerary(this)" class="ml-2 text-red-500">Xóa</button>
+                                                        `;
             container.appendChild(newItem);
         }
 

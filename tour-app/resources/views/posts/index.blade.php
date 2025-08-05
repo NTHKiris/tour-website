@@ -1,6 +1,6 @@
 @extends('layouts.tour')
 
-@section('title', 'Blog - Bình Định Tour')
+@section('title', 'Blog - Quy Nhơn Tour')
 
 @push('styles')
 

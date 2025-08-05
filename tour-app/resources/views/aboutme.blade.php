@@ -1,7 +1,7 @@
 @extends('layouts.tour')
 
-@section('title', 'About Us | Bình Định Tour - Khám phá vẻ đẹp Bình Định')
-@section('description', 'Khám phá những điểm đến tuyệt vời tại Bình Định với các tour du lịch chất lượng cao. Kỳ Co, Eo Gió, Quy Nhon và nhiều địa điểm hấp dẫn khác.')
+@section('title', 'About Us | Quy Nhơn Tour - Khám phá vẻ đẹp Quy Nhơn')
+@section('description', 'Khám phá những điểm đến tuyệt vời tại Quy Nhơn với các tour du lịch chất lượng cao. Kỳ Co, Eo Gió, Quy Nhon và nhiều địa điểm hấp dẫn khác.')
 
 @section('content')
     <div class="w-[70%] mx-auto mt-[100px] mb-[60px]">

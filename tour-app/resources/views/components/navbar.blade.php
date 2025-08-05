@@ -136,7 +136,7 @@
                 </a>
                 <a href="/tours"
                     class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors {{(request()->is('tours*')) || request()->is('') ? 'bg-blue-50 text-cyan-600' : '' }}">
-                    Tour Bình Định
+                    Tour Quy Nhơn
                 </a>
                 <a href="/posts"
                     class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors {{(request()->is('posts*')) || request()->is('') ? 'bg-blue-50 text-cyan-600' : '' }}">

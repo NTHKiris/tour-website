@@ -1,7 +1,7 @@
 @extends('layouts.tour')
 
-@section('title', 'Tạo bài viết mới - Bình Định Tour')
-@section('description', 'Chia sẻ những trải nghiệm du lịch tuyệt vời tại Bình Định')
+@section('title', 'Tạo bài viết mới - Quy Nhơn Tour')
+@section('description', 'Chia sẻ những trải nghiệm du lịch tuyệt vời tại Quy Nhơn')
 
 @section('content')
     <div class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-12">
