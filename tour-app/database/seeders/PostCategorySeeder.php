@@ -41,6 +41,7 @@ class PostCategorySeeder extends Seeder
         ];
 
         foreach ($categories as $category) {
+            $category['slug'] = \Str::slug($category['name']);
             PostCategory::create($category);
         }
     }
