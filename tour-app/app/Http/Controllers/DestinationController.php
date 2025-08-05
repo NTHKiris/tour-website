@@ -33,21 +33,6 @@ class DestinationController extends Controller
 
         $destination = $destinations->first();
         return view('destinations.show', compact('destination', 'search'));
-        // $query = Destination::orderBy('created_at', 'desc');
-        // if ($request->has('location')) {
-        //     $destination = PostCategory::where('slug', $request->destination)->first();
-        //     if ($destination) {
-        //         $query->where('destination_id', $destination->id);
-        //     }
-        // }
-        // if ($request->filled('search')) {
-        //     $query->where('name', 'like', '%' . $request->search . '%');
-        // }
-        // if ($request->has('my') && auth()->check()) {
-        //     $query->where('author_id', auth()->id());
-        // }
-        // $destinations = $query->get();
-        // return view('destinations.index', ['destinations' => $destinations]);
     }
 
     public function create()
@@ -170,23 +155,23 @@ class DestinationController extends Controller
     public function restore($id)
     {
 
-        // $post = Post::withTrashed()->findOrFail($id);
-        // $this->authorize('restore', $post);
-        // $post->restore();
-        // $post->images()->withTrashed()->restore();
+        $destination = Destination::withTrashed()->findOrFail($id);
+        $this->authorize('restore', $destination);
+        $destination->restore();
+        $destination->images()->withTrashed()->restore();
 
-        // return redirect()->route('posts.index');
+        return redirect()->route('destinations.index');
     }
     public function forceDelete($id)
     {
-        // $post = Post::withTrashed()->findOrFail($id);
-        // $this->authorize('forceDelete', $post);
+        $destination = Destination::withTrashed()->findOrFail($id);
+        $this->authorize('forceDelete', $destination);
 
-        // foreach ($post->images()->withTrashed()->get() as $image) {
-        //     $image->forceDelete();
-        // }
-        // $post->forceDelete();
-        // return redirect()->route('posts.index');
+        foreach ($destination->images()->withTrashed()->get() as $image) {
+            $image->forceDelete();
+        }
+        $destination->forceDelete();
+        return redirect()->route('destinations.index');
     }
 
 }

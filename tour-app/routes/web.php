@@ -26,11 +26,6 @@ Route::get('/home', function () {
 
 Route::delete('/images/{image}', [ImageController::class, 'destroy'])->name('images.destroy');
 
-Route::resource('reviews', ReviewController::class);
-
-Route::get('/reviews/search', [ReviewController::class, 'show'])->name('reviews.search');
-Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
-
 
 require __DIR__ . '/admin.php';
 require __DIR__ . '/auth.php';

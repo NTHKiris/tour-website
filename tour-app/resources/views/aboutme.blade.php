@@ -140,45 +140,30 @@
                 </div>
             </div>
         </div>
-        <div class="w-[70%] mx-auto mt-[100px]">
-            <div class="flex flex-col">
-                <div class="w-full text-center text-black  text-sm font-semibold uppercase leading-[16px] mb-[40px]">
-                    tại sao lại đặt chúng tôi</div>
-                <h2 class="title-main text-[40px] leading-[45px]">Quy trình đặt thuận tiện và dễ dàng</h2>
-                <div class="m-[15px] py-[45px]">
-                    <span class="block border-t border-sky-500 w-[80px] mx-auto "></span>
-                </div>
-            </div>
-        </div>
-        <div class="flex flex-wrap  ">
-            @for($i = 1; $i <= 6; $i++)
-                <div class="w-1/3 p-2 ">
-                    <div class="mb-[50px]">
-                        <div class="mb-[15px] flex flex-wrap">
-                            <div class="flex items-center">
-                                <span class="mr-[20px]">
-                                    <i class="fa fa-check text-green-500" aria-hidden="true"></i>
-                                </span>
-                                <h3 class="text-[20px] font-normal">Giá tốt nhất</h3>
-                            </div>
-                        </div>
-                        <div class="text-[16px] leading-[1.375] font-normal text-[var(--text)]  w-full">
-                            <p>Du lịch mang lại trải nghiệm vô giá, và chính sách Giá Tốt Nhất giúp bạn tiết kiệm.</p>
+    </div>
+    <x-title-about smtitle="Tại sao lại đặt chúng tôi" lgtitle="Quy trình đặt thuận tiện và dễ dàng" />
+    <div class="flex flex-wrap  ">
+        @for($i = 1; $i <= 6; $i++)
+            <div class="w-1/3 p-2 ">
+                <div class="mb-[50px]">
+                    <div class="mb-[15px] flex flex-wrap">
+                        <div class="flex items-center">
+                            <span class="mr-[20px]">
+                                <i class="fa fa-check text-green-500" aria-hidden="true"></i>
+                            </span>
+                            <h3 class="text-[20px] font-normal">Giá tốt nhất</h3>
                         </div>
                     </div>
+                    <div class="text-[16px] leading-[1.375] font-normal text-[var(--text)]  w-full">
+                        <p>Du lịch mang lại trải nghiệm vô giá, và chính sách Giá Tốt Nhất giúp bạn tiết kiệm.</p>
+                    </div>
                 </div>
-            @endfor
-        </div>
-    </div>
-    <div class="w-[70%] mx-auto pb-[80px]">
-        <div class="flex flex-col">
-            <div class="w-full text-center text-black   font-semibold uppercase leading-[16px] mb-[40px]">
-                Gặp gỡ nhóm</div>
-            <h2 class="title-main text-[40px] leading-[45px]">Các đại lý du lịch tốt nhất</h2>
-            <div class="m-[15px] py-[45px]">
-                <span class="block border-t border-sky-500 w-[80px] mx-auto "></span>
             </div>
-        </div>
+        @endfor
+    </div>
+    </div>
+    <x-title-about smtitle="Gặp gỡ nhóm" lgtitle="Các đại lý du lịch tốt nhất" />
+    <div class="w-[70%] mx-auto pb-[80px]">
         <div class="flex flex-wrap">
             @foreach($destinations as $destination)
                 <div class="w-1/4 px-[15px] text-center flex flex-col">
@@ -196,16 +181,8 @@
             @endforeach
         </div>
     </div>
+    <x-title-about smtitle="Đánh giá trải nghiệm" lgtitle="Những trải nghiệm của du khách" />
     <div class="w-[50%] mx-auto pb-[80px]">
-        <div class="flex flex-col">
-            <div class="w-full text-center text-black   font-semibold uppercase leading-[16px] mb-[40px]">
-                Đánh giá trải nghiệm</div>
-            <h2 class="title-main text-[40px] leading-[45px]">Những trải nghiệm của du khách</h2>
-            <div class="m-[15px] py-[45px]">
-                <span class="block border-t border-sky-500 w-[80px] mx-auto "></span>
-            </div>
-        </div>
-
         <div class="single-item">
             @for($review = 1; $review <= 4; $review++)
                 <div class="text-center p-4  rounded">
