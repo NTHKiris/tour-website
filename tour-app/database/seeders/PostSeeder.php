@@ -6,11 +6,19 @@ use App\Models\Post;
 use App\Models\PostCategory;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class PostSeeder extends Seeder
 {
     public function run()
     {
+        // Tắt kiểm tra khóa ngoại
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::table('posts')->delete();
+        DB::statement('ALTER TABLE posts AUTO_INCREMENT = 1');
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
         $authorId = User::first()->id ?? 1;
 
         $categories = PostCategory::whereIn('slug', [
@@ -88,6 +96,8 @@ class PostSeeder extends Seeder
 
         foreach ($posts as $data) {
             if (isset($categories[$data['category_slug']])) {
+                dump("Đang tạo: " . $data['title']);
+
                 Post::create([
                     'title' => $data['title'],
                     'link' => $data['link'],
@@ -97,6 +107,8 @@ class PostSeeder extends Seeder
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
+            } else {
+                dump("Không tìm thấy category_slug: " . $data['category_slug']);
             }
         }
     }

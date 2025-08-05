@@ -10,11 +10,20 @@
                 {{ session('success') }}
             </div>
         @endif
-        <div class="mb-6 text-right">
-            <a href="{{ route('destinations.create') }}"
-                class="inline-flex items-center px-4 py-2 bg-cyan-500 text-white rounded hover:bg-cyan-600 text-sm font-semibold">
-                <i class="fa-solid fa-plus mr-2"></i> Thêm điểm đến mới
-            </a>
+
+        <div class="flex justify-end items-center gap-4 ">
+            <div class="mb-6 text-right">
+                <a href="{{ route('admin.destinations.index') }}"
+                    class="inline-flex items-center px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 text-sm font-semibold">
+                    <i class="fa-solid fa-trash mr-2"></i> Thùng rác
+                </a>
+            </div>
+            <div class="mb-6 text-right">
+                <a href="{{ route('destinations.create') }}"
+                    class="inline-flex items-center px-4 py-2 bg-cyan-500 text-white rounded hover:bg-cyan-600 text-sm font-semibold">
+                    <i class="fa-solid fa-plus mr-2"></i> Thêm điểm đến mới
+                </a>
+            </div>
         </div>
         @if($destinations->count())
             <div class="space-y-4">
