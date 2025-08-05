@@ -124,33 +124,5 @@ class TourController extends Controller
         }
         return redirect()->back()->with('success', 'Tour đã được xóa!');
     }
-// 
-    public function trash()
-    {
-        $tours = Tour::with(['category', 'author'])->onlyTrashed()->orderByDesc('created_at')->get();
-        return view('admin.tours-trash', compact('tours'));
-    }
-    public function restore($id)
-    {
-
-        $tour = tour::withTrashed()->findOrFail($id);
-        $this->authorize('restore', $tour);
-        $tour->restore();
-        $tour->images()->withTrashed()->restore();
-
-        return redirect()->route('admin.tours.trash')->with('success', 'tour restored successfully!');
-    }
-    public function forceDelete($id)
-    {
-        $tour = tour::withTrashed()->findOrFail($id);
-        $this->authorize('forceDelete', $tour);
-
-        foreach ($tour->images()->withTrashed()->get() as $image) {
-            $image->forceDelete();
-        }
-        $tour->forceDelete();
-        return redirect()->route('admin.tours.trash')->with('success', 'tour deleted successfully!');
-    }
-
 }
 

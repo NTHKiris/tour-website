@@ -80,7 +80,7 @@
                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500" />
             </div>
 
-            <div class="mb-4">
+            <div class="mb-4 ">
                 <label for="slug" class="block text-sm font-medium text-gray-700">Slug</label>
                 <input id="slug" type="text" name="slug" value="{{ isset($tour) ? $tour->slug : '' }}" placeholder="Slug"
                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500" />
@@ -157,7 +157,7 @@
                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500" />
             </div>
 
-            <div class="mb-4">
+            <div class="mb-4 hidden">
                 <label for="user_id" class="block text-sm font-medium text-gray-700">ID người dùng</label>
                 <input id="user_id" type="text" name="user_id" value="{{ isset($tour) ? $tour->user_id : auth()->id() }}"
                     placeholder="ID người dùng" readonly
@@ -196,10 +196,10 @@
             const newItem = document.createElement('div');
             newItem.className = 'flex items-center mb-2';
             newItem.innerHTML = `
-                                                            <input type="text" name="day[]" placeholder="Ngày" class="mt-1 block w-1/3 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500">
-                                                            <input type="text" name="activity[]" placeholder="Hoạt động" class="mt-1 block w-2/3 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500 ml-2">
-                                                            <button type="button" onclick="removeItinerary(this)" class="ml-2 text-red-500">Xóa</button>
-                                                        `;
+                                                                <input type="text" name="day[]" placeholder="Ngày" class="mt-1 block w-1/3 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500">
+                                                                <input type="text" name="activity[]" placeholder="Hoạt động" class="mt-1 block w-2/3 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500 ml-2">
+                                                                <button type="button" onclick="removeItinerary(this)" class="ml-2 text-red-500">Xóa</button>
+                                                            `;
             container.appendChild(newItem);
         }
 

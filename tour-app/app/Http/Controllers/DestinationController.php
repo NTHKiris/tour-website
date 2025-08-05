@@ -152,6 +152,12 @@ class DestinationController extends Controller
         return redirect()->back()->with('success', 'Địa danh đã được xóa!');
     }
 
+
+    public function trash()
+    {
+        $destinations = Destination::onlyTrashed()->orderByDesc('created_at')->get();
+        return view('admin.destinations-trash', compact('destinations'));
+    }
     public function restore($id)
     {
 

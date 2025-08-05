@@ -13,7 +13,7 @@
 
         <div class="flex justify-end items-center gap-4 ">
             <div class="mb-6 text-right">
-                <a href="{{ route('admin.destinations.index') }}"
+                <a href="{{ route('admin.destinations.trash') }}"
                     class="inline-flex items-center px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 text-sm font-semibold">
                     <i class="fa-solid fa-trash mr-2"></i> Thùng rác
                 </a>

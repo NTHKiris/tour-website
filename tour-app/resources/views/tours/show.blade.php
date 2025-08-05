@@ -39,34 +39,79 @@
             </div>
 
 
-            <div class="mb-[35px] ">
-                <nav class="border-b border-gray-300">
+            <div class="mb-[35px] shadow-lg shadow-cyan-500/50 px-[20px] py-[20px] rounded-lg">
+                <nav class="border-b border-gray-300 mb-4">
                     <div class="flex space-x-4">
-                        <a class="text-blue-600 hover:text-blue-800 active:text-blue-800 font-semibold border-b-2 border-blue-600 p-2"
-                            id="home-tab" data-toggle="tab" href="#tab1" role="tab" aria-controls="home"
-                            aria-selected="true">
-                            Tổng quan
-                        </a>
-                        <a class="text-gray-600 hover:text-blue-800 font-semibold p-2" id="profile-tab"
-                            data-toggle="tab" href="#tab2" role="tab" aria-controls="profile" aria-selected="false">
-                            Kế hoạch
-                        </a>
-                        <a class="text-gray-600 hover:text-blue-800 font-semibold p-2" id="messages-tab"
-                            data-toggle="tab" href="#tab3" role="tab" aria-controls="messages" aria-selected="false">
-                            Vị trí
-                        </a>
-                        <a class="text-gray-600 hover:text-blue-800 font-semibold p-2" id="messages-tab"
-                            data-toggle="tab" href="#tab3" role="tab" aria-controls="messages" aria-selected="false">
-                            Đánh giá
-                        </a>
+                        <a class="tab-link text-blue-600 hover:text-blue-800 font-semibold border-b-2 border-blue-600 p-2 active"
+                            data-tab="tab1">Mô tả</a>
+                        <a class="tab-link text-gray-600 hover:text-blue-800 font-semibold p-2"
+                            data-tab="tab2">Lịch trình</a>
+                        <a class="tab-link text-gray-600 hover:text-blue-800 font-semibold p-2"
+                            data-tab="tab3">Vị trí</a>
+                        <a class="tab-link text-gray-600 hover:text-blue-800 font-semibold p-2"
+                            data-tab="tab4">Đánh giá</a>
                     </div>
                 </nav>
+
+                <div class="tab-content">
+                    <div id="tab1" class="tab-pane block">
+                        <p>✦ {{$tours->description}} </p>
+                    </div>
+                    <div id="tab2" class="tab-pane hidden">
+                        <div id="itinerary-container">
+                            <?php
+                            $itinerary = isset($tours) ? json_decode($tours->itinerary, true) : []; 
+                            
+                            ?>
+                            <?php if (is_array($itinerary) && !empty($itinerary)): ?>
+                                <?php foreach ($itinerary as $day => $activity): ?>
+                                    <div class="flex items-start mb-2">
+                                        <p class="w-1/3 text-sm text-gray-800 font-semibold"><?= htmlspecialchars($day) ?></p>
+                                        <p class="w-2/3 text-sm text-gray-600 ml-2"><?= htmlspecialchars($activity) ?></p>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <p class="text-gray-500 italic">Chưa có lịch trình nào.</p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div id="tab3" class="tab-pane hidden">
+                        <p>✦ {{$tours->destination->name}}.</p>
+                    </div>
+                    <div id="tab4" class="tab-pane hidden">
+                        <h3 class="text-lg font-bold mb-4">Đánh giá từ khách hàng</h3>
+
+                        <!-- Đánh giá 1 -->
+                        <div class="mb-4 border-b pb-4">
+                            <p class="font-semibold">Nguyễn Văn Anh</p>
+                            <div class="text-yellow-400 mb-1">
+                                ★★★★★
+                            </div>
+                            <p>Chuyến đi tuyệt vời, hướng dẫn viên thân thiện và địa điểm rất đẹp!</p>
+                        </div>
+
+                        <!-- Đánh giá 2 -->
+                        <div class="mb-4 border-b pb-4">
+                            <p class="font-semibold">Trần Thị Bình</p>
+                            <div class="text-yellow-400 mb-1">
+                                ★★★★★
+                            </div>
+                            <p>Dịch vụ tốt, đặt tour dễ dàng, tôi sẽ giới thiệu cho bạn bè!</p>
+                        </div>
+
+                        <!-- Đánh giá 3 -->
+                        <div class="mb-4 border-b pb-4">
+                            <p class="font-semibold">Lê Văn Cảnh</p>
+                            <div class="text-yellow-400 mb-1">
+                                ★★★★★
+                            </div>
+                            <p>Mọi thứ đều ổn, thời gian hợp lý và được hỗ trợ rất nhanh.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="py-[10px] flex flex-col">
-                <h1 class="font-semibold">Description</h1>
-                <span>{{$tours->description}}</span>
-            </div>
+            
             <div class="py-[45px] px-[50px] flex relative min-h-[220px] bg-sky-50">
                 <div class="w-[20%]">
                     <img src="{{ asset('images/img_single_tour_1.webp')}}" alt="">
@@ -179,3 +224,30 @@
             </div>
         </div>
     </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const tabLinks = document.querySelectorAll('.tab-link');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+
+        tabLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                const tabId = link.dataset.tab;
+
+                // Ẩn toàn bộ tab content
+                tabPanes.forEach(pane => pane.classList.add('hidden'));
+                // Gỡ active khỏi các link
+                tabLinks.forEach(l => {
+                    l.classList.remove('text-blue-600', 'border-b-2', 'border-blue-600');
+                    l.classList.add('text-gray-600');
+                });
+
+                // Hiện tab được chọn
+                document.getElementById(tabId).classList.remove('hidden');
+                // Thêm active vào link
+                link.classList.add('text-blue-600', 'border-b-2', 'border-blue-600');
+                link.classList.remove('text-gray-600');
+            });
+        });
+    });
+</script>
