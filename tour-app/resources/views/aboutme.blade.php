@@ -115,7 +115,7 @@
                     </div>
                     <div>
                         <h3 class="font-[jost] text-[24px] font-semibold leading-[24px] mb-[10px] text-sky-500">
-                        <span> 16,284+ </span>
+                        <span> 16,285+ </span>
                         </h3>
                         <p class="text-black text-[12px] font-semibold uppercase leading-[16px] m-0">Nhà Du Lịch</p>
                     </div>

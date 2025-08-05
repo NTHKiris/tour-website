@@ -81,12 +81,6 @@
             </div>
 
             <div class="mb-4">
-                <label for="slug" class="block text-sm font-medium text-gray-700">Slug</label>
-                <input id="slug" type="text" name="slug" value="{{ isset($tour) ? $tour->slug : '' }}" placeholder="Slug"
-                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500" />
-            </div>
-
-            <div class="mb-4">
                 <label for="description" class="block text-sm font-medium text-gray-700">Mô tả</label>
                 <textarea id="description" name="description" placeholder="Mô tả"
                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500">{{ isset($tour) ? $tour->description : '' }}</textarea>
