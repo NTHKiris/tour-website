@@ -5,6 +5,9 @@ namespace Database\Seeders;
 use App\Models\PostCategory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+
 
 class PostCategorySeeder extends Seeder
 {
@@ -13,36 +16,59 @@ class PostCategorySeeder extends Seeder
      */
     public function run(): void
     {
+        // Tắt kiểm tra khóa ngoại
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
+        // Xóa dữ liệu trước
+        DB::table('post_categories')->delete();
+        DB::statement('ALTER TABLE post_categories AUTO_INCREMENT = 1');
+
+        // Bật lại kiểm tra khóa ngoại
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+
         $categories = [
-            [
-                'name' => 'Điểm đến',
-                'description' => 'Khám phá những điểm đến tuyệt vời tại Quy Nhơn và Bình Định',
-            ],
-            [
-                'name' => 'Ẩm thực',
-                'description' => 'Những món ăn đặc sản không thể bỏ qua khi đến Quy Nhơn',
-            ],
-            [
-                'name' => 'Lịch sử - Văn hóa',
-                'description' => 'Tìm hiểu về lịch sử và văn hóa phong phú của vùng đất Bình Định',
-            ],
-            [
-                'name' => 'Kinh nghiệm du lịch',
-                'description' => 'Những kinh nghiệm hữu ích cho chuyến du lịch Quy Nhơn',
-            ],
-            [
-                'name' => 'Lễ hội - Sự kiện',
-                'description' => 'Các lễ hội và sự kiện văn hóa đặc sắc tại Bình Định',
-            ],
-            [
-                'name' => 'Khách sạn - Lưu trú',
-                'description' => 'Gợi ý những nơi lưu trú tốt nhất tại Quy Nhơn',
-            ],
+            // Các danh mục thêm để dùng trong PostSeeder
+            'Review',
+            'Activities',
+            'Highlights',
+            'News',
+            'Food',
+            'Accommodation',
+            'Tips',
+
+            // Các danh mục khác như ban đầu nếu muốn giữ lại
+            'Bãi biển',
+            'Khu nghỉ dưỡng',
+            'Địa điểm check-in',
+            'Ẩm thực địa phương',
+            'Thám hiểm',
+            'Du lịch sinh thái',
+            'Du lịch tâm linh',
+            'Lễ hội & Văn hóa',
+            'Chợ & mua sắm',
+            'Câu cá & lặn biển',
+            'Đảo & bán đảo',
+            'Lịch sử & Kiến trúc',
+            'Cắm trại & dã ngoại',
+            'Thể thao biển',
+            'Tham quan làng nghề',
+            'Trải nghiệm địa phương',
+            'Quán cà phê nổi tiếng',
+            'Đi bộ đường dài',
+            'Chụp ảnh nghệ thuật',
+            'Hành trình gia đình'
         ];
 
-        foreach ($categories as $category) {
-            $category['slug'] = \Str::slug($category['name']);
-            PostCategory::create($category);
+        foreach ($categories as $name) {
+            DB::table('post_categories')->insert([
+                'name' => $name,
+                'slug' => Str::slug($name),
+                'description' => "Danh mục: $name ở Quy Nhơn",
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
         }
+        
     }
 }

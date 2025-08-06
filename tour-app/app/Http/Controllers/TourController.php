@@ -113,8 +113,9 @@ class TourController extends Controller
         }
     }
 
-    public function destroy(Tour $tour)
+    public function destroy($id)
     {
+        $tour = Tour::findOrFail($id);
         $this->authorize('delete', $tour);
 
         $tour->images()->delete();
@@ -125,4 +126,3 @@ class TourController extends Controller
         return redirect()->back()->with('success', 'Tour đã được xóa!');
     }
 }
-

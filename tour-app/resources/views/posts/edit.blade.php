@@ -1,4 +1,4 @@
-@extends('layouts.tour')
+    @extends('layouts.tour')
 
 @section('title', 'Chỉnh sửa bài viết - Bình Định Tour')
 @section('description', 'Chỉnh sửa thông tin bài viết du lịch')

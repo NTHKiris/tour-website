@@ -7,13 +7,30 @@ use App\Models\PostCategory;
 use App\Models\User;
 use App\Models\Image;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class PostSeeder extends Seeder
 {
     public function run()
     {
-        // Lấy categories theo slug từ PostCategorySeeder
-        $categories = PostCategory::pluck('id', 'slug');
+        // Tắt kiểm tra khóa ngoại
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::table('posts')->delete();
+        DB::statement('ALTER TABLE posts AUTO_INCREMENT = 1');
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+        $authorId = User::first()->id ?? 1;
+
+        $categories = PostCategory::whereIn('slug', [
+            'highlights',
+            'activities',
+            'news',
+            'food',
+            'accommodation',
+            'review',
+            'tips'
+        ])->pluck('id', 'slug');
 
         $posts = [
             [
@@ -271,11 +288,9 @@ class PostSeeder extends Seeder
 
         foreach ($posts as $data) {
             if (isset($categories[$data['category_slug']])) {
+                dump("Đang tạo: " . $data['title']);
 
-                $authorId = User::inRandomOrder()->value('id');
-
-
-                $post = Post::create([
+                Post::create([
                     'title' => $data['title'],
                     'link' => '',
                     'description' => $data['description'],
@@ -284,23 +299,8 @@ class PostSeeder extends Seeder
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
-
-
-                $post->link = route('posts.show', ['post' => $post->id], false);
-                $post->save();
-
-                if (isset($data['images']) && is_array($data['images'])) {
-                    foreach ($data['images'] as $imageUrl) {
-                        Image::create([
-                            'url' => $imageUrl,
-                            'alt' => $post->title,
-                            'imageable_id' => $post->id,
-                            'imageable_type' => Post::class,
-                            'created_at' => now(),
-                            'updated_at' => now(),
-                        ]);
-                    }
-                }
+            } else {
+                dump("Không tìm thấy category_slug: " . $data['category_slug']);
             }
         }
     }

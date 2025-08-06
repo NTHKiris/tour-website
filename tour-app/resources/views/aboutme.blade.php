@@ -123,20 +123,6 @@
                     </div>
                 </div>
 
-<<<<<<< HEAD
-            <div class="w-full md:w-1/2 lg:w-1/4 px-[15px]">
-                <div class="flex text-left items-center">
-                    <div class = "inline-block mr-[20px]">
-                        <span>
-                            <i class="fa-regular fa-user" style="font-size:50px; color:#1e90ff;"></i>
-                        </span>
-                    </div>
-                    <div>
-                        <h3 class="font-[jost] text-[24px] font-semibold leading-[24px] mb-[10px] text-sky-500">
-                        <span> 16,285+ </span>
-                        </h3>
-                        <p class="text-black text-[12px] font-semibold uppercase leading-[16px] m-0">Nhà Du Lịch</p>
-=======
                 <div class="w-full md:w-1/2 lg:w-1/4 px-[15px]">
                     <div class="flex text-left items-center">
                         <div class="inline-block mr-[20px]">
@@ -150,7 +136,6 @@
                             </h3>
                             <p class="text-black  font-semibold uppercase leading-[16px] m-0">Nhà Du Lịch</p>
                         </div>
->>>>>>> 8141618238927a0248da062a257df0be182f4cc7
                     </div>
                 </div>
             </div>
