@@ -5,15 +5,15 @@
 @section('content')
 
     <div class="w-[60%] mx-auto mt-20">
-        @if(session('success'))
+        @if (session('success'))
             <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4">
                 <strong class="font-bold">Thành công!</strong>
                 <span class="block">{{ session('success') }}</span>
             </div>
         @endif
-        @if($errors->any())
+        @if ($errors->any())
             <div class="bg-red-200 text-red-800 p-2 mb-4">
-                @foreach($errors->all() as $error)
+                @foreach ($errors->all() as $error)
                     <div>{{ $error }}</div>
                 @endforeach
             </div>
@@ -21,18 +21,19 @@
         <h1 class="des text-sky-500 text-center">
             {{ isset($tour) ? 'CẬP NHẬT TOUR' : 'TOUR MỚI' }}
         </h1>
-        @if($tour && $tour->images && $tour->images->count() > 0)
+        @if ($tour && $tour->images && $tour->images->count() > 0)
             <div class="space-y-2 pt-8 px-8">
                 <label class="flex items-center text-lg font-semibold text-gray-700">
 
                     Hình ảnh hiện tại
                 </label>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    @foreach($tour->images as $image)
+                    @foreach ($tour->images as $image)
                         <div class="relative group">
                             <img src="{{ $image->url }}" alt="{{ $image->alt }}"
                                 class="w-full h-48 object-cover rounded-lg shadow-md">
-                            <form action="{{ route('images.destroy', $image->id) }}" method="POST" class="absolute top-2 right-2">
+                            <form action="{{ route('images.destroy', $image->id) }}" method="POST"
+                                class="absolute top-2 right-2">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa ảnh này?')"
@@ -48,7 +49,7 @@
         <form action="{{ isset($tour) ? route('tours.update', $tour->id) : route('tours.store') }}" method="POST"
             enctype="multipart/form-data" onsubmit="prepareItinerary()">
             @csrf
-            @if(isset($tour))
+            @if (isset($tour))
                 @method('PUT')
             @endif
 
@@ -82,7 +83,8 @@
 
             <div class="mb-4 ">
                 <label for="slug" class="block text-sm font-medium text-gray-700">Slug</label>
-                <input id="slug" type="text" name="slug" value="{{ isset($tour) ? $tour->slug : '' }}" placeholder="Slug"
+                <input id="slug" type="text" name="slug" value="{{ isset($tour) ? $tour->slug : '' }}"
+                    placeholder="Slug"
                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500" />
             </div>
 
@@ -96,8 +98,8 @@
                 <label class="block text-sm font-medium text-gray-700">Lịch trình</label>
                 <div id="itinerary-container">
                     <?php
-                $itinerary = isset($tour) ? json_decode($tour->itinerary, true) : []; 
-                                                        ?>
+                    $itinerary = isset($tour) ? json_decode($tour->itinerary, true) : [];
+                    ?>
                     <?php if (is_array($itinerary) && !empty($itinerary)): ?>
                     <?php    foreach ($itinerary as $day => $activity): ?>
                     <div class="flex items-center mb-2">
@@ -136,8 +138,8 @@
 
             <div class="mb-4">
                 <label for="price" class="block text-sm font-medium text-gray-700">Giá</label>
-                <input id="price" type="number" name="price" min="0" step="1" value="{{ isset($tour) ? $tour->price : '' }}"
-                    placeholder="Giá"
+                <input id="price" type="number" name="price" min="0" step="1"
+                    value="{{ isset($tour) ? $tour->price : '' }}" placeholder="Giá"
                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500" />
             </div>
 
@@ -145,22 +147,32 @@
                 <label for="max_participants" class="block text-sm font-medium text-gray-700">Số lượng người tham gia tối
                     đa</label>
                 <input id="max_participants" type="number" name="max_participants"
-                    value="{{ isset($tour) ? $tour->max_participants : '' }}" placeholder="Số lượng người tham gia tối đa"
-                    min="1"
+                    value="{{ isset($tour) ? $tour->max_participants : '' }}"
+                    placeholder="Số lượng người tham gia tối đa" min="1"
                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500" />
             </div>
 
             <div class="mb-4">
-                <label for="destination_id" class="block text-sm font-medium text-gray-700">Mã điểm đến</label>
-                <input id="destination_id" type="text" name="destination_id"
-                    value="{{ isset($tour) ? $tour->destination_id : '' }}" placeholder="Mã điểm đến"
-                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500" />
+                <label for="destination_id" class="block text-sm font-medium text-gray-700 mb-1">
+                    Điểm đến
+                </label>
+                <select id="destination_id" name="destination_id"
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500 text-sm">
+                    <option value="">-- Chọn điểm đến --</option>
+                    @foreach ($destinations as $destination)
+                        <option value="{{ $destination->id }}"
+                            {{ isset($tour) && $tour->destination_id == $destination->id ? 'selected' : '' }}>
+                            {{ $destination->name }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
+
 
             <div class="mb-4 hidden">
                 <label for="user_id" class="block text-sm font-medium text-gray-700">ID người dùng</label>
-                <input id="user_id" type="text" name="user_id" value="{{ isset($tour) ? $tour->user_id : auth()->id() }}"
-                    placeholder="ID người dùng" readonly
+                <input id="user_id" type="text" name="user_id"
+                    value="{{ isset($tour) ? $tour->user_id : auth()->id() }}" placeholder="ID người dùng" readonly
                     class="mt-1 block w-full border border-gray-100 rounded-md shadow-sm focus:ring focus:ring-blue-500" />
             </div>
 
@@ -169,9 +181,10 @@
                 <select id="status" name="status"
                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500">
                     <option value="" disabled {{ !isset($tour) ? 'selected' : '' }}>Select Status</option>
-                    <option value="active" {{ (isset($tour) && $tour->status === 'active') ? 'selected' : '' }}>Hoạt động
+                    <option value="active" {{ isset($tour) && $tour->status === 'active' ? 'selected' : '' }}>Hoạt động
                     </option>
-                    <option value="inactive" {{ (isset($tour) && $tour->status === 'inactive') ? 'selected' : '' }}>Không hoạt
+                    <option value="inactive" {{ isset($tour) && $tour->status === 'inactive' ? 'selected' : '' }}>Không
+                        hoạt
                         động</option>
                 </select>
             </div>
@@ -179,7 +192,8 @@
             <div class="mb-4">
                 <label for="featured" class="block text-sm font-medium text-gray-700">Đặc sắc</label>
                 <input type="hidden" name="featured" value="0">
-                <input id="featured" type="checkbox" name="featured" value="1" {{ isset($tour) && $tour->featured ? 'checked' : '' }} />
+                <input id="featured" type="checkbox" name="featured" value="1"
+                    {{ isset($tour) && $tour->featured ? 'checked' : '' }} />
             </div>
 
             <button type="submit" class="mt-2 px-4 py-2 bg-blue-600 text-white rounded-md">

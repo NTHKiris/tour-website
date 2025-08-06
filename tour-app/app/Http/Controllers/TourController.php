@@ -32,18 +32,20 @@ class TourController extends Controller
     {
         $tour = null;
         $this->authorize('create', Tour::class);
+        $destinations = Destination::all();
 
         if ($request->has('id')) {
             $tourId = $request->query('id');
             $tour = Tour::find($tourId);
         }
 
-        return view('tours.create', compact('tour'));
+        return view('tours.create', compact('tour', 'destinations'));
     }
 
     public function store(StoreTourRequest $request)
     {
         $this->authorize('create', Tour::class);
+
         $validated = $request->validated();
         $validated['user_id'] = $request->user()->id;
 
@@ -74,8 +76,8 @@ class TourController extends Controller
     {
         $tour = Tour::findOrFail($id);
         $this->authorize('update', $tour);
-
-        return view('tours.create', compact('tour'));
+        $destinations = Destination::all();
+        return view('tours.create', compact('tour', 'destinations'));
     }
 
 
