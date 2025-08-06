@@ -30,20 +30,18 @@
                             </div>
                         </div>
                         <div class="flex gap-2">
-                            <form action="{{ route('posts.restore', $post->id) }}"
-                                onsubmit="return confirm('Bạn có chắc chắn muốn khôi phục?');" method="POST">
+                            <form action="{{ route('posts.restore', $post->id) }}" method="POST" class="restore-form">
                                 @csrf
-                                <button type="submit"
+                                <button type="button" onclick="showRestoreModal(this.closest('form'), '{{ $post->title }}')"
                                     class="inline-flex items-center px-3 py-1.5 bg-green-500 text-white rounded hover:bg-green-600 text-sm">
-                                    <i class="fa-solid fa-backward mr-2"></i> Khôi phục</button>
+                                    <i class="fa-solid fa-backward mr-2"></i> Khôi phục
+                                </button>
                             </form>
 
-
-                            <form action="{{ route('posts.forceDelete', $post) }}" method="POST"
-                                onsubmit="return confirm('Bạn có chắc chắn muốn xóa?');">
+                            <form action="{{ route('posts.forceDelete', $post) }}" method="POST" class="delete-form">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit"
+                                <button type="button" onclick="showDeleteModal(this.closest('form'), '{{ $post->title }}')"
                                     class="inline-flex items-center px-3 py-1.5 bg-red-500 text-white rounded hover:bg-red-600 text-sm">
                                     <i class="fa-solid fa-trash mr-2"></i> Xóa vĩnh viễn
                                 </button>
@@ -59,4 +57,19 @@
             </div>
         @endif
     </div>
+
+    <!-- Delete Modal -->
+    <x-delete-modal 
+        id="deleteModal"
+        title="Xác nhận xóa vĩnh viễn"
+        message="Bạn có chắc chắn muốn xóa vĩnh viễn bài viết này không? Hành động này không thể hoàn tác."
+        confirmText="Xóa vĩnh viễn"
+    />
+
+    <!-- Restore Modal -->
+    <x-restore-modal 
+        id="restoreModal"
+        title="Xác nhận khôi phục bài viết"
+        message="Bạn có chắc chắn muốn khôi phục bài viết này không?"
+    />
 @endsection

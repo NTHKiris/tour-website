@@ -141,7 +141,6 @@ class PostController extends Controller
     }
     public function restore($id)
     {
-
         $post = Post::withTrashed()->findOrFail($id);
         $this->authorize('restore', $post);
         $post->restore();

@@ -179,7 +179,7 @@
                 id="description"
                 rows="6"
                 class="w-full px-4 py-3 border-none ring-2 ring-cyan-300 border-gray-200 rounded-xl focus:ring-2 focus:ring-cyan-500 transition-all duration-300 text-lg"
-                required
+                
             >{{ old('description', $post->description ?? '') }}</textarea>
             @error('description')
                 <p class="text-red-500 text-sm mt-1 flex items-center">

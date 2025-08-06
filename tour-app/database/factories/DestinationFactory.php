@@ -29,4 +29,6 @@ class DestinationFactory extends Factory
             'featured_image' => $this->faker->imageUrl,
         ];
     }
+
+    
 }

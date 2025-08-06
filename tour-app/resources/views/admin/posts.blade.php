@@ -47,11 +47,10 @@
                                 class="inline-flex items-center px-3 py-1.5 bg-cyan-500 text-white rounded hover:bg-cyan-600 text-sm">
                                 <i class="fa-solid fa-pen-to-square mr-2"></i> Sửa
                             </a>
-                            <form action="{{ route('posts.destroy', $post) }}" method="POST"
-                                onsubmit="return confirm('Bạn có chắc chắn muốn xóa?');">
+                            <form action="{{ route('posts.destroy', $post) }}" method="POST" class="delete-form">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit"
+                                <button type="button" onclick="showDeleteModal(this.closest('form'), '{{ $post->title }}')"
                                     class="inline-flex items-center px-3 py-1.5 bg-red-500 text-white rounded hover:bg-red-600 text-sm">
                                     <i class="fa-solid fa-trash mr-2"></i> Xóa
                                 </button>
@@ -67,4 +66,11 @@
             </div>
         @endif
     </div>
+
+    <!-- Delete Modal -->
+    <x-delete-modal 
+        id="deleteModal"
+        title="Xác nhận xóa bài viết"
+        message="Bạn có chắc chắn muốn xóa bài viết này không? Hành động này không thể hoàn tác."
+    />
 @endsection
