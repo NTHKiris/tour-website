@@ -3,9 +3,17 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\PaymentController;
 
 use App\Models\Tour;
 use App\Models\Destination;
+
+require __DIR__ . '/admin.php';
+require __DIR__ . '/auth.php';
+require __DIR__ . '/posts.php';
+require __DIR__ . '/tours.php';
+require __DIR__ . '/destination.php';
+require __DIR__ . '/payments.php';
 
 Route::get('/', function () {
     $tours = Tour::orderBy('featured', 'desc')->take(3)->get();
@@ -27,8 +35,6 @@ Route::get('/home', function () {
 Route::delete('/images/{image}', [ImageController::class, 'destroy'])->name('images.destroy');
 
 
-require __DIR__ . '/admin.php';
-require __DIR__ . '/auth.php';
-require __DIR__ . '/posts.php';
-require __DIR__ . '/tours.php';
-require __DIR__ . '/destination.php';
+
+
+

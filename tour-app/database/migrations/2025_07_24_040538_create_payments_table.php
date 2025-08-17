@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('booking_id')->constrained('bookings')->onDelete('cascade');
             $table->decimal('amount', 12, 2);
-            $table->enum('payment_method', ['vnpay', 'momo']);
+            $table->enum('payment_method', ['vnpay', 'momo', 'bank_transfer', 'cash']);
             $table->string('transaction_id')->nullable();
             $table->enum('status', ['pending', 'completed', 'failed', 'refunded'])->default('pending');
             $table->json('gateway_response')->nullable();

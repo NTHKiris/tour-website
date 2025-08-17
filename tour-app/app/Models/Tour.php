@@ -12,10 +12,12 @@ class Tour extends Model
     protected $fillable = [
         'title',
         'slug',
+        'pricing_type',
         'description',
         'itinerary',
         'duration',
         'price',
+        'child_price',
         'max_participants',
         'destination_id',
         'user_id',

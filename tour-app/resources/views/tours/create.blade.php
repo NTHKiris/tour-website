@@ -32,8 +32,7 @@
                         <div class="relative group">
                             <img src="{{ $image->url }}" alt="{{ $image->alt }}"
                                 class="w-full h-48 object-cover rounded-lg shadow-md">
-                            <form action="{{ route('images.destroy', $image->id) }}" method="POST"
-                                class="absolute top-2 right-2">
+                            <form action="{{ route('images.destroy', $image->id) }}" method="POST" class="absolute top-2 right-2">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa ảnh này?')"
@@ -83,8 +82,7 @@
 
             <div class="mb-4 ">
                 <label for="slug" class="block text-sm font-medium text-gray-700">Slug</label>
-                <input id="slug" type="text" name="slug" value="{{ isset($tour) ? $tour->slug : '' }}"
-                    placeholder="Slug"
+                <input id="slug" type="text" name="slug" value="{{ isset($tour) ? $tour->slug : '' }}" placeholder="Slug"
                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500" />
             </div>
 
@@ -98,8 +96,8 @@
                 <label class="block text-sm font-medium text-gray-700">Lịch trình</label>
                 <div id="itinerary-container">
                     <?php
-                    $itinerary = isset($tour) ? json_decode($tour->itinerary, true) : [];
-                    ?>
+    $itinerary = isset($tour) ? json_decode($tour->itinerary, true) : [];
+                        ?>
                     <?php if (is_array($itinerary) && !empty($itinerary)): ?>
                     <?php    foreach ($itinerary as $day => $activity): ?>
                     <div class="flex items-center mb-2">
@@ -138,8 +136,8 @@
 
             <div class="mb-4">
                 <label for="price" class="block text-sm font-medium text-gray-700">Giá</label>
-                <input id="price" type="number" name="price" min="0" step="1"
-                    value="{{ isset($tour) ? $tour->price : '' }}" placeholder="Giá"
+                <input id="price" type="number" name="price" min="0" step="1" value="{{ isset($tour) ? $tour->price : '' }}"
+                    placeholder="Giá"
                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500" />
             </div>
 
@@ -147,8 +145,8 @@
                 <label for="max_participants" class="block text-sm font-medium text-gray-700">Số lượng người tham gia tối
                     đa</label>
                 <input id="max_participants" type="number" name="max_participants"
-                    value="{{ isset($tour) ? $tour->max_participants : '' }}"
-                    placeholder="Số lượng người tham gia tối đa" min="1"
+                    value="{{ isset($tour) ? $tour->max_participants : '' }}" placeholder="Số lượng người tham gia tối đa"
+                    min="1"
                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500" />
             </div>
 
@@ -160,8 +158,7 @@
                     class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500 text-sm">
                     <option value="">-- Chọn điểm đến --</option>
                     @foreach ($destinations as $destination)
-                        <option value="{{ $destination->id }}"
-                            {{ isset($tour) && $tour->destination_id == $destination->id ? 'selected' : '' }}>
+                        <option value="{{ $destination->id }}" {{ isset($tour) && $tour->destination_id == $destination->id ? 'selected' : '' }}>
                             {{ $destination->name }}
                         </option>
                     @endforeach
@@ -171,8 +168,8 @@
 
             <div class="mb-4 hidden">
                 <label for="user_id" class="block text-sm font-medium text-gray-700">ID người dùng</label>
-                <input id="user_id" type="text" name="user_id"
-                    value="{{ isset($tour) ? $tour->user_id : auth()->id() }}" placeholder="ID người dùng" readonly
+                <input id="user_id" type="text" name="user_id" value="{{ isset($tour) ? $tour->user_id : auth()->id() }}"
+                    placeholder="ID người dùng" readonly
                     class="mt-1 block w-full border border-gray-100 rounded-md shadow-sm focus:ring focus:ring-blue-500" />
             </div>
 
@@ -192,8 +189,21 @@
             <div class="mb-4">
                 <label for="featured" class="block text-sm font-medium text-gray-700">Đặc sắc</label>
                 <input type="hidden" name="featured" value="0">
-                <input id="featured" type="checkbox" name="featured" value="1"
-                    {{ isset($tour) && $tour->featured ? 'checked' : '' }} />
+                <input id="featured" type="checkbox" name="featured" value="1" {{ isset($tour) && $tour->featured ? 'checked' : '' }} />
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700">Loại giá:</label>
+                <div class="mt-2">
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="pricing_type" value="per_person" {{ old('pricing_type', $tour->pricing_type ?? 'per_person') == 'per_person' ? 'checked' : '' }} class="form-radio">
+                        <span class="ml-2">Theo đầu người</span>
+                    </label>
+                    <label class="inline-flex items-center ml-6">
+                        <input type="radio" name="pricing_type" value="package" {{ old('pricing_type', $tour->pricing_type ?? '') == 'package' ? 'checked' : '' }} class="form-radio">
+                        <span class="ml-2">Trọn gói</span>
+                    </label>
+                </div>
             </div>
 
             <button type="submit" class="mt-2 px-4 py-2 bg-blue-600 text-white rounded-md">
@@ -210,10 +220,10 @@
             const newItem = document.createElement('div');
             newItem.className = 'flex items-center mb-2';
             newItem.innerHTML = `
-                                                                <input type="text" name="day[]" placeholder="Ngày" class="mt-1 block w-1/3 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500">
-                                                                <input type="text" name="activity[]" placeholder="Hoạt động" class="mt-1 block w-2/3 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500 ml-2">
-                                                                <button type="button" onclick="removeItinerary(this)" class="ml-2 text-red-500">Xóa</button>
-                                                            `;
+                                                                    <input type="text" name="day[]" placeholder="Ngày" class="mt-1 block w-1/3 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500">
+                                                                    <input type="text" name="activity[]" placeholder="Hoạt động" class="mt-1 block w-2/3 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500 ml-2">
+                                                                    <button type="button" onclick="removeItinerary(this)" class="ml-2 text-red-500">Xóa</button>
+                                                                `;
             container.appendChild(newItem);
         }
 

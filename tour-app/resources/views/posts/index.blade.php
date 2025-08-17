@@ -11,7 +11,7 @@
     <div class="max-w-7xl mx-auto px-4 py-8">
         <div class=" gap-8 ">
             <div class="col-span-2">
-                <div class="mb-8">
+                <div class="mb-8" id="blog">
                     <h1 class="text-3xl font-bold text-gray-900 mb-4 ">
                         <i
                             class="fa-solid fa-book text-cyan-500 mr-4 hover:-translate-y-1  duration-75 drop-shadow-lg drop-shadow-cyan-500/50"></i>
@@ -27,7 +27,7 @@
                         <h3>
                             <i class="fas fa-search mr-2 text-cyan-500 mb-4"></i> Tìm kiếm
                         </h3>
-                        <form action="" class="">
+                        <form action="#blog" class="">
                             <input type="text" name="search" value="{{request('search')}}"
                                 placeholder="Tìm kiếm bài viết....."
                                 class=" rounded-lg ring-1 ring-cyan-400 forcus:ring-2  focus:ring-cyan-500 forcus:ring-2  border-none w-1/3 ml-4 mr-2 ">
@@ -44,23 +44,23 @@
 
                 <div class="mx-10 mb-6 flex flex-wrap gap-2">
                     @auth
-                        <a href="{{ route('posts.create') }}"
+                        <a href="{{ route('posts.create') }}#blog"
                             class="ml-2 px-4 py-2 rounded-full font-semibold bg-cyan-500 text-white hover:bg-amber-600 transition-colors flex items-center">
                             <i class="fas fa-plus mr-2"></i> Tạo bài viết
                         </a>
                     @endauth
-                    <a href="{{route('posts.index')}}"
+                    <a href="{{route('posts.index')}}#blog"
                         class="px-4 py-2 rounded-full font-semibold {{ request('category') ? 'bg-gray-100 text-gray-700' : 'bg-cyan-500 text-white' }}">All</a>
                     @auth
 
-                        <a href="{{ route('posts.index', array_merge(request()->except('page'), ['my' => 1])) }}"
+                        <a href="{{ route('posts.index', array_merge(request()->except('page'), ['my' => 1])) }}#blog"
                             class="px-4 py-2 rounded-full font-semibold {{ request('my') ? 'bg-cyan-500 text-white' : 'bg-gray-100 text-gray-700' }}">
                             Bài viết của tôi
                         </a>
 
                     @endauth
                     @foreach ($categories as $category)
-                        <a href="{{route('posts.index', ['category' => $category->slug])}}"
+                        <a href="{{route('posts.index', ['category' => $category->slug])}}#blog"
                             class="px-4 py-2 rounded-full font-semibold {{ (request('category') == $category->slug) ? 'bg-cyan-500 text-white' : 'bg-gray-100 text-gray-700' }}">{{$category->name}}</a>
                     @endforeach
                 </div>

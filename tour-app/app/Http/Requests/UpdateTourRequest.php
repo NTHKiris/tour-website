@@ -24,10 +24,12 @@ class UpdateTourRequest extends FormRequest
         return [
             'title' => 'sometimes|string|max:255',
             'slug' => 'sometimes|string|max:255|unique:tours,slug,' . $this->route('id'),
+            'pricing_type' => 'sometimes|in:per_person,package',
             'description' => 'sometimes|nullable|string',
             'itinerary' => 'sometimes|nullable|json',
             'duration' => 'sometimes|integer|min:1',
             'price' => 'sometimes|numeric|min:0',
+            'child_price' => 'sometimes|numeric|min:0',
             'max_participants' => 'sometimes|integer|min:1',
             'destination_id' => 'sometimes|exists:destinations,id',
             'status' => 'sometimes|nullable|in:active,inactive,draft',

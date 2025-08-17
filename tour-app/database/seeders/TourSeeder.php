@@ -22,6 +22,7 @@ class TourSeeder extends Seeder
         $tours = [
             [
                 'title' => 'Tour Eo Gió - Kỳ Co 1 ngày: Thiên đường biển đảo',
+                'pricing_type' => 'package',
                 'description' => 'Tham gia tour 1 ngày khám phá Eo Gió - Kỳ Co, hai trong những điểm đến đẹp nhất Quy Nhơn với vẻ đẹp hoang sơ và nước biển trong xanh như ngọc bích. Tour bao gồm tham quan Eo Gió - vịnh biển đẹp nhất Quy Nhơn, tắm biển tại Kỳ Co được mệnh danh là "Maldives của Việt Nam", lặn ngắm san hô và cá nhiệt đới, thưởng thức hải sản tươi sống và chụp ảnh tại những điểm check-in nổi tiếng. Dịch vụ bao gồm xe ô tô đời mới máy lạnh đưa đón tận nơi, hướng dẫn viên nhiệt tình am hiểu địa phương, bữa trưa hải sản tại nhà hàng ven biển, vé tham quan các điểm du lịch, bảo hiểm du lịch, nước suối và khăn lạnh. Tour phù hợp cho mọi lứa tuổi, đặc biệt lý tưởng cho gia đình, cặp đôi và nhóm bạn muốn khám phá vẻ đẹp thiên nhiên hoang sơ của Quy Nhơn.',
                 'itinerary' => [
                     '07:00 - 08:00' => 'Đón khách tại khách sạn, khởi hành đi Eo Gió',
@@ -46,6 +47,7 @@ class TourSeeder extends Seeder
             ],
             [
                 'title' => 'Tour Cù Lao Xanh 1 ngày: Khám phá đảo Yến hoang sơ',
+                'pricing_type' => 'package',
                 'description' => 'Tham gia tour 1 ngày khám phá Cù Lao Xanh (đảo Yến), hòn đảo hoang sơ với hệ sinh thái biển phong phú và những bãi biển cát trắng tuyệt đẹp. Trải nghiệm độc đáo bao gồm đi tàu cao tốc ra đảo Cù Lao Xanh, lặn ngắm san hô trong làn nước trong vắt, tham quan hang động tự nhiên, thưởng thức yến sào - đặc sản quý hiếm, câu cá cùng ngư dân địa phương và trekking khám phá toàn bộ hòn đảo. Điểm đặc biệt của tour là hệ sinh thái biển đa dạng với hơn 50 loài san hô, nước biển trong suốt với tầm nhìn sâu 15-20m, không gian yên tĩnh hoang sơ và cơ hội gặp rùa biển cùng cá nhiệt đới. Tour dành cho những ai yêu thích khám phá thiên nhiên hoang dã và muốn trải nghiệm cuộc sống của cộng đồng ngư dân truyền thống.',
                 'itinerary' => [
                     '06:30 - 07:30' => 'Đón khách, di chuyển đến cảng Nhơn Hải',
@@ -71,6 +73,7 @@ class TourSeeder extends Seeder
             ],
             [
                 'title' => 'Tour Quy Nhơn City 1 ngày: Khám phá thành phố biển',
+                'pricing_type' => 'package',
                 'description' => 'Tour city 1 ngày khám phá những điểm tham quan nổi tiếng nhất của thành phố Quy Nhơn, từ di tích lịch sử đến những bãi biển đẹp và ẩm thực đặc sắc. Điểm tham quan chính bao gồm Tháp Đôi (Tháp Chăm) - di tích Chăm Pa cổ kính, Bảo tàng Quy Nhơn để tìm hiểu lịch sử văn hóa, Nhà thờ Mằng Lăng với kiến trúc Gothic độc đáo, bãi biển Quy Nhơn để tắm biển thư giãn, Chợ Đầm mua sắm đặc sản địa phương và Cầu Thị Nai - cây cầu dài nhất Việt Nam. Trải nghiệm ẩm thực đặc sắc với bánh xèo tôm nhảy, chả cá nha đam, bánh ít lá gai và nem nướng Ninh Hòa thơm ngon khó cưỡng. Tour phù hợp cho những ai muốn tìm hiểu về văn hóa, lịch sử và ẩm thực của Quy Nhơn trong thời gian ngắn.',
                 'itinerary' => [
                     '08:00 - 08:30' => 'Đón khách tại khách sạn',
@@ -97,6 +100,7 @@ class TourSeeder extends Seeder
             ],
             [
                 'title' => 'Tour Quy Nhơn 3 ngày 2 đêm: Trọn vẹn vùng đất võ',
+                'pricing_type' => 'package',
                 'description' => 'Khám phá trọn vẹn vẻ đẹp của Quy Nhơn - Bình Định trong 3 ngày 2 đêm với lịch trình được thiết kế kỹ lưỡng, kết hợp tham quan, nghỉ dưỡng và trải nghiệm văn hóa địa phương. Điểm nổi bật của tour bao gồm khám phá đầy đủ các điểm đến nổi tiếng nhất Quy Nhơn, nghỉ dưỡng tại resort 4 sao view biển, trải nghiệm ẩm thực đặc sắc miền Trung, tham quan di tích lịch sử Chăm Pa, hoạt động thể thao biển đa dạng và mua sắm đặc sản địa phương. Lưu trú cao cấp tại khách sạn/resort 4 sao tiêu chuẩn quốc tế với phòng view biển đầy đủ tiện nghi, bể bơi, spa, gym hiện đại và nhà hàng buffet đa dạng món ăn. Tour lý tưởng cho gia đình, nhóm bạn hoặc cặp đôi muốn có kỳ nghỉ trọn vẹn tại một trong những điểm đến đẹp nhất miền Trung.',
                 'itinerary' => [
                     'Ngày 1' => 'Đón sân bay - Check in khách sạn - Tham quan thành phố - Ăn tối hải sản',
@@ -117,6 +121,7 @@ class TourSeeder extends Seeder
             ],
             [
                 'title' => 'Tour Team Building Quy Nhơn 2 ngày 1 đêm',
+                'pricing_type' => 'package',
                 'description' => 'Chương trình team building 2 ngày 1 đêm tại Quy Nhơn được thiết kế đặc biệt để tăng cường tinh thần đoàn kết, gắn kết các thành viên trong công ty thông qua các hoạt động vui chơi và thử thách hấp dẫn. Hoạt động team building bao gồm các trò chơi tập thể trên bãi biển, thử thách sinh tồn trên đảo, thi nấu ăn với hải sản tươi sống, đua thuyền kayak trên biển, thi kéo co và bóng chuyền bãi biển, cùng gala dinner với chương trình văn nghệ. Dịch vụ chuyên nghiệp với MC dẫn dắt chương trình, thiết bị âm thanh ánh sáng hiện đại, photographer chụp ảnh kỷ niệm, quà tặng và giải thưởng hấp dẫn, xe đưa đón tận nơi. Chương trình phù hợp cho các công ty, tổ chức muốn tổ chức team building trong không gian biển đảo tuyệt đẹp của Quy Nhơn.',
                 'itinerary' => [
                     'Ngày 1 - Sáng' => 'Đón đoàn - Check in resort - Khai mạc chương trình',
@@ -139,6 +144,7 @@ class TourSeeder extends Seeder
             ],
             [
                 'title' => 'Tour Quy Nhơn - Phú Yên 4 ngày 3 đêm: Khám phá miền Trung',
+                'pricing_type' => 'package',
                 'description' => 'Hành trình khám phá hai tỉnh miền Trung xinh đẹp - Bình Định và Phú Yên, trải nghiệm những cảnh đẹp hoang sơ, ẩm thực đặc sắc và văn hóa phong phú của vùng đất võ truyền thống. Điểm đến nổi bật tại Quy Nhơn bao gồm Eo Gió, Kỳ Co, Cù Lao Xanh và Tháp Đôi, tại Tuy Hòa có Gành Đá Đĩa, Bãi Môn và Mũi Điện, cùng đảo Hòn Nưa để lặn ngắm san hô và câu cá, Vũng Rô - vịnh biển đẹp nhất Phú Yên. Trải nghiệm đặc biệt bao gồm ngắm bình minh tại Gành Đá Đĩa, tắm biển tại những bãi biển hoang sơ, thưởng thức ẩm thực hai miền, chụp ảnh tại các điểm check-in nổi tiếng và mua sắm đặc sản địa phương. Tour dành cho những ai muốn khám phá sâu hơn về vẻ đẹp thiên nhiên và văn hóa của miền Trung Việt Nam.',
                 'itinerary' => [
                     'Ngày 1' => 'Đến Quy Nhơn - Tham quan thành phố - Nghỉ đêm',
@@ -165,6 +171,8 @@ class TourSeeder extends Seeder
             $tour = Tour::create([
                 'title' => $data['title'],
                 'slug' => Str::slug($data['title']),
+                'pricing_type' => $data['pricing_type']
+                ,
                 'description' => $data['description'],
                 'itinerary' => json_encode($data['itinerary']),
                 'duration' => $data['duration'],

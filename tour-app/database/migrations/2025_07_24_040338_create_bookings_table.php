@@ -19,6 +19,8 @@ return new class extends Migration {
             $table->decimal('total_amount', 12, 2);
             $table->enum('status', ['pending', 'completed', 'cancelled']);
             $table->text('note');
+            $table->unsignedInteger('children')->default(1);
+            $table->unsignedInteger('adults')->default(0);
             $table->timestamps();
         });
     }

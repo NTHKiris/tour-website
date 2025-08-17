@@ -1,5 +1,7 @@
 <?php
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\TourController;
+use App\Http\Controllers\BookingController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -16,3 +18,13 @@ Route::prefix('tours')->group(function () {
 
     Route::get('/{id}', [TourController::class, 'show'])->name('tours.show');
 });
+
+// Booking routes
+Route::prefix('bookings')->middleware('auth')->group(function () {
+    Route::get('/{booking}/payments/create', [PaymentController::class, 'create'])
+        ->name('payments.create');
+    Route::post('/', [BookingController::class, 'store'])->name('bookings.store');
+    Route::get('/{booking}', [BookingController::class, 'show'])->name('bookings.show');
+});
+
+

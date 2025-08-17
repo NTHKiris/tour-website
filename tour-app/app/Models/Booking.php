@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Faker\Provider\ar_EG\Payment;
 use Illuminate\Database\Eloquent\Model;
 
 class Booking extends Model
@@ -10,11 +9,18 @@ class Booking extends Model
     protected $fillable = [
         'user_id',
         'tour_id',
+        'adults',
+        'children',
         'participants',
         'tour_date',
         'total_amount',
         'status',
         'note',
+    ];
+
+    protected $casts = [
+        'tour_date' => 'date',
+        'total_amount' => 'decimal:2',
     ];
 
     const STATUS_PENDING = 'pending';
@@ -31,6 +37,11 @@ class Booking extends Model
     public function payment()
     {
         return $this->hasOne(Payment::class);
+    }
+    
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
     }
     public function markCompleted()
     {
