@@ -95,10 +95,30 @@ php artisan view:clear 2>/dev/null || true
 echo "Starting PHP-FPM and Nginx..."
 
 # Start PHP-FPM in background
+echo "Starting PHP-FPM..."
 php-fpm --nodaemonize --force-stderr 2>&1 &
 PHP_PID=$!
 
+# Wait for PHP-FPM to be ready (max 30 seconds)
+echo "Waiting for PHP-FPM to be ready on port 9000..."
+COUNTER=0
+MAX_ATTEMPTS=30
+while [ $COUNTER -lt $MAX_ATTEMPTS ]; do
+    if nc -z 127.0.0.1 9000 2>/dev/null; then
+        echo "✓ PHP-FPM is ready!"
+        break
+    fi
+    COUNTER=$((COUNTER + 1))
+    echo "  Attempt $COUNTER/$MAX_ATTEMPTS..."
+    sleep 1
+done
+
+if [ $COUNTER -eq $MAX_ATTEMPTS ]; then
+    echo "⚠ PHP-FPM did not start in time, proceeding anyway..."
+fi
+
 # Start Nginx in foreground
+echo "Starting Nginx..."
 nginx -g 'daemon off;' 2>&1
 
 # Cleanup
