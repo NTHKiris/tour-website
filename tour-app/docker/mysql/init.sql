@@ -1,0 +1,2 @@
+-- Database will be created by MySQL from MYSQL_DATABASE env variable
+-- No additional setup needed for root user

@@ -33,7 +33,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     </noscript>
 
-    @vite(['resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
 
     <!-- Critical CSS to prevent FOUC -->
@@ -49,6 +49,13 @@
             transition: opacity 0.3s;
         }
     </style>
+    <script>
+        // Immediately show page if fonts don't load
+        document.documentElement.classList.add('wf-active');
+        setTimeout(() => {
+            document.documentElement.classList.add('wf-active');
+        }, 100);
+    </script>
 </head>
 
 <body class="font-be-vietnam text-gray-800 leading-relaxed">
