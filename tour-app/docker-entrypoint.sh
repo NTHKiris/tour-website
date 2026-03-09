@@ -15,10 +15,11 @@ EOF
 # Check if .env exists
 if [ ! -f /app/.env ]; then
     echo "Creating .env file..."
+    APP_KEY_VALUE="${APP_KEY:-base64:y9oIFXiWlG7WipoPq3HN4IMYanXZSGf0I1ghk3JDwnY=}"
     cat > /app/.env << EOF
 APP_NAME=TourApp
 APP_ENV=production
-APP_KEY=
+APP_KEY=$APP_KEY_VALUE
 APP_DEBUG=true
 APP_URL=http://localhost
 
@@ -39,6 +40,10 @@ else
     # Update LOG_CHANNEL to stderr for container
     sed -i 's/LOG_CHANNEL=.*/LOG_CHANNEL=stderr/' /app/.env || true
     sed -i 's/APP_DEBUG=.*/APP_DEBUG=true/' /app/.env || true
+    # Ensure APP_KEY is set
+    if ! grep -q "^APP_KEY=" /app/.env; then
+        echo "APP_KEY=${APP_KEY:-base64:y9oIFXiWlG7WipoPq3HN4IMYanXZSGf0I1ghk3JDwnY=}" >> /app/.env
+    fi
 fi
 
 # Run migrations if database exists
@@ -64,6 +69,12 @@ php artisan view:clear 2>/dev/null || true
 
 echo "Starting PHP-FPM and Nginx..."
 
-# Start PHP-FPM and Nginx
-exec php-fpm --nodaemonize --force-stderr 2>&1 &
+# Start PHP-FPM in background
+php-fpm --nodaemonize --force-stderr 2>&1 &
+PHP_PID=$!
+
+# Start Nginx in foreground
 nginx -g 'daemon off;' 2>&1
+
+# Cleanup
+kill $PHP_PID 2>/dev/null || true

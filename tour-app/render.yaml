@@ -8,6 +8,8 @@ services:
     buildCommand: docker build -t tour-app .
     
     envVars:
+      - key: APP_KEY
+        value: base64:y9oIFXiWlG7WipoPq3HN4IMYanXZSGf0I1ghk3JDwnY=
       - key: APP_ENV
         value: production
       - key: APP_DEBUG
