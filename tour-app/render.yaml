@@ -9,7 +9,7 @@ services:
     
     envVars:
       - key: APP_KEY
-        value: base64:y9oIFXiWlG7WipoPq3HN4IMYanXZSGf0I1ghk3JDwnY=
+        sync: false
       - key: APP_ENV
         value: production
       - key: APP_DEBUG
@@ -31,7 +31,7 @@ services:
       - key: DB_USERNAME
         value: root
       - key: DB_PASSWORD
-        value: yPuqTgsTwhLpLdzdBfCXDVhrCSmlFTNS
+        sync: false
       - key: CACHE_DRIVER
         value: database
       - key: QUEUE_CONNECTION
