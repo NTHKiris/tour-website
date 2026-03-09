@@ -16,6 +16,8 @@ services:
         value: "false"
       - key: APP_URL
         value: https://tour-website-qwbk.onrender.com
+      - key: ASSET_URL
+        value: https://tour-website-qwbk.onrender.com
       - key: LOG_CHANNEL
         value: stderr
       - key: DB_CONNECTION
