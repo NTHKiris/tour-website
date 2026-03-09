@@ -12,39 +12,53 @@ log_errors = On
 error_log = /proc/self/fd/2
 EOF
 
-# Check if .env exists
-if [ ! -f /app/.env ]; then
-    echo "Creating .env file..."
-    APP_KEY_VALUE="${APP_KEY:-base64:y9oIFXiWlG7WipoPq3HN4IMYanXZSGf0I1ghk3JDwnY=}"
-    cat > /app/.env << EOF
-APP_NAME=TourApp
-APP_ENV=production
-APP_KEY=$APP_KEY_VALUE
-APP_DEBUG=true
-APP_URL=http://localhost
+# Create/Update .env file with environment variables
+# Use values from Render environment or defaults for local dev
+echo "Setting up .env with environment variables..."
 
-DB_CONNECTION=mysql
-DB_HOST=db
-DB_PORT=3306
-DB_DATABASE=tour_app
-DB_USERNAME=root
-DB_PASSWORD=rootpassword
+# Default values (for local Docker development)
+APP_NAME="${APP_NAME:-TourApp}"
+APP_ENV="${APP_ENV:-production}"
+APP_KEY="${APP_KEY:-base64:y9oIFXiWlG7WipoPq3HN4IMYanXZSGf0I1ghk3JDwnY=}"
+APP_DEBUG="${APP_DEBUG:-false}"
+APP_URL="${APP_URL:-http://localhost}"
 
-CACHE_DRIVER=file
-QUEUE_CONNECTION=sync
-SESSION_DRIVER=file
-LOG_CHANNEL=stderr
-LOG_LEVEL=debug
+DB_CONNECTION="${DB_CONNECTION:-mysql}"
+DB_HOST="${DB_HOST:-db}"
+DB_PORT="${DB_PORT:-3306}"
+DB_DATABASE="${DB_DATABASE:-tour_app}"
+DB_USERNAME="${DB_USERNAME:-root}"
+DB_PASSWORD="${DB_PASSWORD:-rootpassword}"
+
+CACHE_DRIVER="${CACHE_DRIVER:-database}"
+QUEUE_CONNECTION="${QUEUE_CONNECTION:-sync}"
+SESSION_DRIVER="${SESSION_DRIVER:-database}"
+LOG_CHANNEL="${LOG_CHANNEL:-stderr}"
+LOG_LEVEL="${LOG_LEVEL:-debug}"
+
+# Write .env file
+cat > /app/.env << EOF
+APP_NAME=$APP_NAME
+APP_ENV=$APP_ENV
+APP_KEY=$APP_KEY
+APP_DEBUG=$APP_DEBUG
+APP_URL=$APP_URL
+
+DB_CONNECTION=$DB_CONNECTION
+DB_HOST=$DB_HOST
+DB_PORT=$DB_PORT
+DB_DATABASE=$DB_DATABASE
+DB_USERNAME=$DB_USERNAME
+DB_PASSWORD=$DB_PASSWORD
+
+CACHE_DRIVER=$CACHE_DRIVER
+QUEUE_CONNECTION=$QUEUE_CONNECTION
+SESSION_DRIVER=$SESSION_DRIVER
+LOG_CHANNEL=$LOG_CHANNEL
+LOG_LEVEL=$LOG_LEVEL
 EOF
-else
-    # Update LOG_CHANNEL to stderr for container
-    sed -i 's/LOG_CHANNEL=.*/LOG_CHANNEL=stderr/' /app/.env || true
-    sed -i 's/APP_DEBUG=.*/APP_DEBUG=true/' /app/.env || true
-    # Ensure APP_KEY is set
-    if ! grep -q "^APP_KEY=" /app/.env; then
-        echo "APP_KEY=${APP_KEY:-base64:y9oIFXiWlG7WipoPq3HN4IMYanXZSGf0I1ghk3JDwnY=}" >> /app/.env
-    fi
-fi
+
+echo "✓ .env configured with DB_HOST=$DB_HOST"
 
 # Run migrations if database exists
 if [ -f /app/database.sqlite ]; then
