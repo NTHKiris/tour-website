@@ -16,37 +16,21 @@ services:
         value: stderr
       - key: DB_CONNECTION
         value: mysql
-        # Add your database credentials below
-      # - key: DB_HOST
-      #   fromDatabase:
-      #     name: mysql-db
-      #     property: host
-      # - key: DB_PORT
-      #   fromDatabase:
-      #     name: mysql-db
-      #     property: port
-      # - key: DB_DATABASE
-      #   fromDatabase:
-      #     name: mysql-db
-      #     property: database
-      # - key: DB_USERNAME
-      #   fromDatabase:
-      #     name: mysql-db
-      #     property: username
-      # - key: DB_PASSWORD
-      #   fromDatabase:
-      #     name: mysql-db
-      #     property: password
+      - key: DB_HOST
+        value: ballast.proxy.rlwy.net
+      - key: DB_PORT
+        value: "21833"
+      - key: DB_DATABASE
+        value: railway
+      - key: DB_USERNAME
+        value: root
+      - key: DB_PASSWORD
+        value: yPuqTgsTwhLpLdzdBfCXDVhrCSmlFTNS
       - key: CACHE_DRIVER
         value: database
       - key: QUEUE_CONNECTION
         value: sync
       - key: SESSION_DRIVER
         value: database
-
-# Optional: MySQL Database
-# databases:
-#   - name: mysql-db
-#     databaseName: tour_app
 #     user: tour_user
 #     ipAllowList: [] # Allow all IPs
