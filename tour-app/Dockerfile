@@ -59,11 +59,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
-# Setup environment
-RUN if [ -f .env.example ]; then cp .env.example .env; else echo "APP_KEY=" > .env; fi
-
-# Generate APP_KEY
-RUN php artisan key:generate --no-interaction 2>/dev/null || true
+# NOTE: .env is created by docker-entrypoint.sh at runtime, not build time
 
 # Configure PHP-FPM error logging
 RUN sed -i 's/catch_workers_output = no/catch_workers_output = yes/' /usr/local/etc/php-fpm.conf.d/docker.conf || true

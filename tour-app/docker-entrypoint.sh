@@ -36,6 +36,17 @@ SESSION_DRIVER="${SESSION_DRIVER:-database}"
 LOG_CHANNEL="${LOG_CHANNEL:-stderr}"
 LOG_LEVEL="${LOG_LEVEL:-debug}"
 
+# DEBUG: Print environment variables being used
+echo "=== Environment Configuration ==="
+echo "APP_ENV=$APP_ENV"
+echo "APP_KEY=$APP_KEY" | head -c 30
+echo "..."
+echo "DB_HOST=$DB_HOST"
+echo "DB_PORT=$DB_PORT"
+echo "DB_DATABASE=$DB_DATABASE"
+echo "DB_USERNAME=$DB_USERNAME"
+echo "=================="
+
 # Write .env file
 cat > /app/.env << EOF
 APP_NAME=$APP_NAME
